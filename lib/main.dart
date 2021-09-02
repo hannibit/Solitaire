@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solitaire_wiprojekt_wise202122/spielen.dart';
+import 'package:solitaire_wiprojekt_wise202122/color.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Solitaire',
       theme: ThemeData(
-        backgroundColor: Color(0xff1b5e20),
-        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Color(0xff1b5e20),
+        primarySwatch: Swatch.color,
       ),
       home: StartPage(),
     );
@@ -38,7 +39,7 @@ class _StartPageState extends State<StartPage> {
             Text(
               'Solitaire',
               style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 100.0,
                   fontWeight: FontWeight.bold),
             ),
             OutlinedButton(
@@ -50,7 +51,14 @@ class _StartPageState extends State<StartPage> {
                     )
                   );
                 },
-                child: Text('Spielen')
+                child: Text(
+                    'Spielen',
+                    style: TextStyle(
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                    ),
+                ),
             ),
           ],
         ),
