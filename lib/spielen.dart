@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:solitaire_wiprojekt_wise202122/karte.dart';
 
 class PlayPage extends StatelessWidget {
+  final kartendeck = new KartenDeck().getKartenDeck();
   PlayPage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Spiel gestartet'),
-      ),
       body: Center(
-        child: Text(
-            'Hier gehts rund!',
-            style: TextStyle(
-                fontSize: 100.0,
-                fontWeight: FontWeight.bold),
-        ),
+        child: Image.asset(this.kartendeck[1].getDateiname()),
       ),
     );
   }
