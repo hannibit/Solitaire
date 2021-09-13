@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solitaire_wiprojekt_wise202122/anleitung.dart';
 import 'package:solitaire_wiprojekt_wise202122/spielen.dart';
 import 'package:solitaire_wiprojekt_wise202122/color.dart';
 
@@ -34,7 +35,7 @@ class _StartPageState extends State<StartPage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
               'Solitaire',
@@ -59,6 +60,24 @@ class _StartPageState extends State<StartPage> {
                         color: Colors.black,
                     ),
                 ),
+            ),
+            OutlinedButton(
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => IntroductionPage()
+                    )
+                );
+              },
+              child: Text(
+                'Anleitung',
+                style: TextStyle(
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
         ),
