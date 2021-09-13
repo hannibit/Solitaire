@@ -10,43 +10,66 @@ class PlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 28,
         title: Text('Abbrechen'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 100,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Image.asset(this.kartendeck[1].getDateiname()),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset('playcards/ruecken.JPG'),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  width: 100,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Image.asset(this.kartendeck[1].getDateiname()),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Image.asset(this.kartendeck[1].getDateiname()),
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Image.asset(this.kartendeck[1].getDateiname()),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -291,7 +314,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -520,7 +543,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -531,7 +554,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -749,7 +772,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -760,7 +783,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -772,7 +795,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -978,7 +1001,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -989,7 +1012,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1001,7 +1024,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1013,7 +1036,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1207,7 +1230,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -1218,7 +1241,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1230,7 +1253,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1242,7 +1265,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1254,7 +1277,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1436,7 +1459,7 @@ class PlayPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: Image.asset('playcards/ruecken.JPG'),
                         ),
                       ),
                       Positioned(
@@ -1447,7 +1470,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1459,7 +1482,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1471,7 +1494,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1483,7 +1506,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1495,7 +1518,7 @@ class PlayPage extends StatelessWidget {
                           child: OutlinedButton(
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
