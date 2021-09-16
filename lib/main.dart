@@ -27,6 +27,7 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+  final int = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,10 @@ class _StartPageState extends State<StartPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PlayPage()
+                      builder: (context) => PlayPage(),
+                      settings: RouteSettings(
+                        arguments: int,
+                      ),
                     )
                   );
                 },
