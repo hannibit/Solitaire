@@ -35,7 +35,7 @@ class _StartPageState extends State<StartPage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
               'Solitaire',
@@ -43,7 +43,7 @@ class _StartPageState extends State<StartPage> {
                   fontSize: 100.0,
                   fontWeight: FontWeight.bold),
             ),
-            OutlinedButton(
+            ElevatedButton(
                 onPressed: (){
                   Navigator.push(
                     context,
@@ -61,7 +61,7 @@ class _StartPageState extends State<StartPage> {
                     ),
                 ),
             ),
-            OutlinedButton(
+            ElevatedButton(
               onPressed: (){
                 Navigator.push(
                     context,

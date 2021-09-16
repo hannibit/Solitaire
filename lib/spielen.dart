@@ -24,16 +24,18 @@ class PlayPage extends StatelessWidget {
                   children: [
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset('playcards/ruecken.JPG'),
                       ),
                     ),
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
-                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                        child: Image.asset('playcards/ruecken.JPG'),
                       ),
                     ),
                   ],
@@ -43,28 +45,32 @@ class PlayPage extends StatelessWidget {
                   children: [
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
                     ),
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
                     ),
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
                     ),
                     Container(
                       width: 100,
-                      child: OutlinedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
@@ -83,7 +89,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset(this.kartendeck[1].getDateiname()),
                         ),
@@ -93,7 +100,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -105,7 +113,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -117,7 +126,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -129,7 +139,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -141,7 +152,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -153,7 +165,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -165,7 +178,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -177,7 +191,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -189,7 +204,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -201,7 +217,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -213,7 +230,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -225,7 +243,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -237,7 +256,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -249,7 +269,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -261,7 +282,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -273,7 +295,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -285,7 +308,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -297,7 +321,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -312,7 +337,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -322,7 +348,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -334,7 +361,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -346,7 +374,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -358,7 +387,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -370,7 +400,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -382,7 +413,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -394,7 +426,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -406,7 +439,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -418,7 +452,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -430,7 +465,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -442,7 +478,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -454,7 +491,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -466,7 +504,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -478,7 +517,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -490,7 +530,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -502,7 +543,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -514,7 +556,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -526,7 +569,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -541,7 +585,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -551,7 +596,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -563,7 +609,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -575,7 +622,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -587,7 +635,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -599,7 +648,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -611,7 +661,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -623,7 +674,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -635,7 +687,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -647,7 +700,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -659,7 +713,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -671,7 +726,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -683,7 +739,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -695,7 +752,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -707,7 +765,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -719,7 +778,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -731,7 +791,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -743,7 +804,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -755,7 +817,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -770,7 +833,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -780,7 +844,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -792,7 +857,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -804,7 +870,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -816,7 +883,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -828,7 +896,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -840,7 +909,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -852,7 +922,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -864,7 +935,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -876,7 +948,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -888,7 +961,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -900,7 +974,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -912,7 +987,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -924,7 +1000,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -936,7 +1013,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -948,7 +1026,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -960,7 +1039,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -972,7 +1052,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -984,7 +1065,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -999,7 +1081,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -1009,7 +1092,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1021,7 +1105,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1033,7 +1118,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1045,7 +1131,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1057,7 +1144,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1069,7 +1157,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1081,7 +1170,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1093,7 +1183,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1105,7 +1196,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1117,7 +1209,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1129,7 +1222,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1141,7 +1235,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1153,7 +1248,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1165,7 +1261,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1177,7 +1274,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1189,7 +1287,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1201,7 +1300,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1213,7 +1313,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1228,7 +1329,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -1238,7 +1340,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1250,7 +1353,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1262,7 +1366,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1274,7 +1379,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1286,7 +1392,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1298,7 +1405,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1310,7 +1418,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1322,7 +1431,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1334,7 +1444,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1346,7 +1457,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1358,7 +1470,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1370,7 +1483,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1382,7 +1496,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1394,7 +1509,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1406,7 +1522,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1418,7 +1535,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1430,7 +1548,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1442,7 +1561,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1457,7 +1577,8 @@ class PlayPage extends StatelessWidget {
                       Container(
                         width: 100,
                         alignment: Alignment.topCenter,
-                        child: OutlinedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -1467,7 +1588,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1479,7 +1601,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1491,7 +1614,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1503,7 +1627,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1515,7 +1640,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset('playcards/ruecken.JPG'),
@@ -1527,7 +1653,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1539,7 +1666,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1551,7 +1679,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1563,7 +1692,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1575,7 +1705,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1587,7 +1718,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1599,7 +1731,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1611,7 +1744,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1623,7 +1757,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1635,7 +1770,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1647,7 +1783,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1659,7 +1796,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
@@ -1671,7 +1809,8 @@ class PlayPage extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.topCenter,
-                          child: OutlinedButton(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                             Image.asset(this.kartendeck[1].getDateiname()),
