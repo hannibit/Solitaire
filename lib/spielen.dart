@@ -128,9 +128,10 @@ class _PlayPageState extends State<PlayPage> {
                       width: 100,
                       child: StreamBuilder(
                           stream: streamcntr.stream,
-                          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                          builder: (BuildContext context,
+                              AsyncSnapshot<dynamic> snapshot) {
                             final card = snapshot.data;
-                            if (!snapshot.hasData){
+                            if (!snapshot.hasData) {
                               return ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
@@ -138,9 +139,9 @@ class _PlayPageState extends State<PlayPage> {
                                 onPressed: () {},
                                 child: this.oberklasse.anzeigeKarte.length > 0
                                     ? Image.asset(this
-                                    .oberklasse
-                                    .anzeigeKarte[0]
-                                    .getDateiname())
+                                        .oberklasse
+                                        .anzeigeKarte[0]
+                                        .getDateiname())
                                     : Image.asset('playcards/versuch.png'),
                               );
                             }
@@ -149,7 +150,8 @@ class _PlayPageState extends State<PlayPage> {
                                   primary: Colors.transparent,
                                   shadowColor: Colors.transparent),
                               onPressed: () {},
-                              child: Container(child: Image.asset(card.getDateiname())),
+                              child: Container(
+                                  child: Image.asset(card.getDateiname())),
                             );
                           }),
                     ),
@@ -217,7 +219,12 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset(this.kartendeck[1].getDateiname()),
+                          child: this.oberklasse.kartenStapel1.length == 1
+                              ? Image.asset(this
+                                  .oberklasse
+                                  .kartenStapel1[0]
+                                  .getDateiname())
+                              : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -230,8 +237,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 2
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[1]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -245,8 +256,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 3
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[2]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -260,8 +275,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 4
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[3]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -275,8 +294,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 5
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[4]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -290,8 +313,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -305,8 +332,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -320,8 +351,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -335,8 +370,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -350,8 +389,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -365,8 +408,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -380,8 +427,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -395,8 +446,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel1.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel1[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -413,7 +468,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel2.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel2.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel2[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -426,8 +488,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 2
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[1]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -441,8 +507,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 3
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[2]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -456,8 +526,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 4
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[3]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -471,8 +545,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 5
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[4]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -486,8 +564,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -501,8 +583,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -516,8 +602,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -531,8 +621,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -546,8 +640,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -561,8 +659,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -576,8 +678,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -591,8 +697,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -606,8 +716,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel2.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel2[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -624,7 +738,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel3.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel3.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel3[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -637,7 +758,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel3.length >= 3
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel3.length == 2
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel3[1]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -651,8 +779,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 3
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[2]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -666,8 +798,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 4
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[3]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -681,8 +817,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 5
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[4]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -696,8 +836,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -711,8 +855,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -726,8 +874,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -741,8 +893,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -756,8 +912,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -771,8 +931,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -786,8 +950,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -801,8 +969,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -816,8 +988,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -831,8 +1007,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel3.length == 15
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel3[14]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -849,7 +1029,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel4.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel4.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel4[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -862,7 +1049,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel4.length >= 3
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel4.length == 2
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel4[1]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -876,7 +1070,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel4.length >= 4
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel4.length == 3
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel4[2]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -890,8 +1091,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 4
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[3]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -905,8 +1110,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 5
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[4]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -920,8 +1129,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -935,8 +1148,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -950,8 +1167,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -965,8 +1186,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -980,8 +1205,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -995,8 +1224,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1010,8 +1243,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1025,8 +1262,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1040,8 +1281,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1055,8 +1300,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 15
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[14]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1070,8 +1319,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel4.length == 16
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel4[15]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1088,7 +1341,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel5.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel5.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel5[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -1101,7 +1361,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel5.length >= 3
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel5.length == 2
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel5[1]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1115,7 +1382,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel5.length >= 4
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel5.length == 3
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel5[2]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1129,7 +1403,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel5.length >= 5
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel5.length == 4
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel5[3]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1143,8 +1424,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 5
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[4]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1158,8 +1443,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1173,8 +1462,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1188,8 +1481,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1203,8 +1500,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1218,8 +1519,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1233,8 +1538,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1248,8 +1557,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1263,8 +1576,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1278,8 +1595,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1293,8 +1614,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 15
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[14]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1308,8 +1633,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 16
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[15]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1323,8 +1652,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel5.length == 17
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel5[16]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1341,7 +1674,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel6.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel6.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel6[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -1354,7 +1694,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel6.length >= 3
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel6.length == 2
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel6[1]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1368,7 +1715,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel6.length >= 4
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel6.length == 3
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel6[2]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1382,7 +1736,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel6.length >= 5
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel6.length == 4
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel6[3]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1396,7 +1757,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel6.length >= 6
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel6.length == 5
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel6[4]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1410,8 +1778,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 6
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[5]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1425,8 +1797,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1440,8 +1816,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1455,8 +1835,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1470,8 +1854,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1485,8 +1873,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1500,8 +1892,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1515,8 +1911,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1530,8 +1930,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1545,8 +1949,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 15
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[14]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1560,8 +1968,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 16
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[15]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1575,8 +1987,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 17
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[16]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1590,8 +2006,12 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                                Image.asset(this.kartendeck[1].getDateiname()),
+                            child: this.oberklasse.kartenStapel6.length == 18
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel6[17]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1608,7 +2028,14 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {},
-                          child: Image.asset('playcards/ruecken.JPG'),
+                          child: this.oberklasse.kartenStapel7.length >= 2
+                              ? Image.asset('playcards/ruecken.JPG')
+                              : this.oberklasse.kartenStapel7.length == 1
+                                  ? Image.asset(this
+                                      .oberklasse
+                                      .kartenStapel7[0]
+                                      .getDateiname())
+                                  : Image.asset('playcards/versuch.png'),
                         ),
                       ),
                       Positioned(
@@ -1621,7 +2048,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel7.length >= 3
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel7.length == 2
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel7[1]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1635,7 +2069,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel7.length >= 4
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel7.length == 3
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel7[2]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1649,7 +2090,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel7.length >= 5
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel7.length == 4
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel7[3]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1663,7 +2111,14 @@ class _PlayPageState extends State<PlayPage> {
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child: Image.asset('playcards/ruecken.JPG'),
+                            child: this.oberklasse.kartenStapel7.length >= 6
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel7.length == 5
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel7[4]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
