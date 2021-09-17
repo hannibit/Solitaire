@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,13 +14,16 @@ class PlayPage extends StatefulWidget {
       ),
     );
   }
+
   @override
   _PlayPageState createState() => _PlayPageState();
 }
 
-class _PlayPageState extends State<PlayPage>{
+class _PlayPageState extends State<PlayPage> {
   var oberklasse = new KartenDeck();
   var kartendeck;
+
+  final streamcntr = StreamController<Karte>();
 
   final _isHours = true;
 
@@ -40,8 +44,7 @@ class _PlayPageState extends State<PlayPage>{
 
     this.kartendeck = this.oberklasse.getKartenDeck();
 
-    _stopWatchTimer.rawTime.listen((value) =>
-    {});
+    _stopWatchTimer.rawTime.listen((value) => {});
     _stopWatchTimer.minuteTime.listen((value) => {});
     _stopWatchTimer.secondTime.listen((value) => {});
     _stopWatchTimer.records.listen((value) => {});
@@ -58,11 +61,10 @@ class _PlayPageState extends State<PlayPage>{
 
   @override
   Widget build(BuildContext context) {
-  final zahl = ModalRoute.of(context)!.settings.arguments;
-  if(zahl == 1) {
-    _stopWatchTimer.onExecute
-        .add(StopWatchExecute.start);
-  }
+    final zahl = ModalRoute.of(context)!.settings.arguments;
+    if (zahl == 1) {
+      _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -77,7 +79,7 @@ class _PlayPageState extends State<PlayPage>{
                 builder: (context, snap) {
                   final value = snap.data!;
                   final displayTime =
-                  StopWatchTimer.getDisplayTime(value, hours: _isHours);
+                      StopWatchTimer.getDisplayTime(value, hours: _isHours);
                   return Column(
                     children: <Widget>[
                       Padding(
@@ -111,18 +113,44 @@ class _PlayPageState extends State<PlayPage>{
                     Container(
                       width: 100,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
-                        onPressed: () {this.oberklasse.topStapelClick();},
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
+                        onPressed: () {
+                          this.oberklasse.topStapelClick();
+                          streamcntr.add(this.oberklasse.gibKarte());
+                        },
                         child: Image.asset('playcards/ruecken.JPG'),
                       ),
                     ),
                     Container(
                       width: 100,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
-                        onPressed: () {},
-                        child: this.oberklasse.anzeigeKarte.length>0? Image.asset(this.oberklasse.anzeigeKarte[0].getDateiname()): Image.asset('playcards/versuch.png'),
-                      ),
+                      child: StreamBuilder(
+                          stream: streamcntr.stream,
+                          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                            final card = snapshot.data;
+                            if (!snapshot.hasData){
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.transparent,
+                                    shadowColor: Colors.transparent),
+                                onPressed: () {},
+                                child: this.oberklasse.anzeigeKarte.length > 0
+                                    ? Image.asset(this
+                                    .oberklasse
+                                    .anzeigeKarte[0]
+                                    .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
+                              );
+                            }
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.transparent,
+                                  shadowColor: Colors.transparent),
+                              onPressed: () {},
+                              child: Container(child: Image.asset(card.getDateiname())),
+                            );
+                          }),
                     ),
                   ],
                 ),
@@ -132,7 +160,9 @@ class _PlayPageState extends State<PlayPage>{
                     Container(
                       width: 100,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
@@ -140,7 +170,9 @@ class _PlayPageState extends State<PlayPage>{
                     Container(
                       width: 100,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
@@ -148,7 +180,9 @@ class _PlayPageState extends State<PlayPage>{
                     Container(
                       width: 100,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
@@ -156,7 +190,9 @@ class _PlayPageState extends State<PlayPage>{
                     Container(
                       width: 100,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
                         onPressed: () {},
                         child: Image.asset(this.kartendeck[1].getDateiname()),
                       ),
@@ -176,7 +212,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset(this.kartendeck[1].getDateiname()),
                         ),
@@ -187,7 +225,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -200,7 +240,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -213,7 +255,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -226,7 +270,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -239,7 +285,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -252,7 +300,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -265,7 +315,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -278,7 +330,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -291,7 +345,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -304,7 +360,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -317,7 +375,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -330,7 +390,9 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
                                 Image.asset(this.kartendeck[1].getDateiname()),
@@ -346,7 +408,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -357,10 +421,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -370,10 +436,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -383,10 +451,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -396,10 +466,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -409,10 +481,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -422,10 +496,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -435,10 +511,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -448,10 +526,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -461,10 +541,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -474,10 +556,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -487,10 +571,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -500,10 +586,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -513,10 +601,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -529,7 +619,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -540,10 +632,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -553,10 +646,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -566,10 +661,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -579,10 +676,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -592,10 +691,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -605,10 +706,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -618,10 +721,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -631,10 +736,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -644,10 +751,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -657,10 +766,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -670,10 +781,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -683,10 +796,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -696,10 +811,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -709,10 +826,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -725,7 +844,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -736,10 +857,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -749,10 +871,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -762,10 +885,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -775,10 +900,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -788,10 +915,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -801,10 +930,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -814,10 +945,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -827,10 +960,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -840,10 +975,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -853,10 +990,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -866,10 +1005,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -879,10 +1020,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -892,10 +1035,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -905,10 +1050,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -918,10 +1065,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -934,7 +1083,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -945,10 +1096,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -958,10 +1110,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -971,10 +1124,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -984,10 +1138,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -997,10 +1153,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1010,10 +1168,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1023,10 +1183,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1036,10 +1198,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1049,10 +1213,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1062,10 +1228,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1075,10 +1243,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1088,10 +1258,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1101,10 +1273,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1114,10 +1288,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1127,10 +1303,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1140,10 +1318,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1156,7 +1336,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -1167,10 +1349,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1180,10 +1363,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1193,10 +1377,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1206,10 +1391,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1219,10 +1405,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1232,10 +1420,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1245,10 +1435,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1258,10 +1450,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1271,10 +1465,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1284,10 +1480,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1297,10 +1495,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1310,10 +1510,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1323,10 +1525,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1336,10 +1540,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1349,10 +1555,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1362,10 +1570,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1375,10 +1585,12 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                                Image.asset(this.kartendeck[1].getDateiname()),
                           ),
                         ),
                       ),
@@ -1391,7 +1603,9 @@ class _PlayPageState extends State<PlayPage>{
                         width: 100,
                         alignment: Alignment.topCenter,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              shadowColor: Colors.transparent),
                           onPressed: () {},
                           child: Image.asset('playcards/ruecken.JPG'),
                         ),
@@ -1402,10 +1616,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1415,10 +1630,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1428,10 +1644,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1441,10 +1658,11 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            child: Image.asset('playcards/ruecken.JPG'),
                           ),
                         ),
                       ),
@@ -1454,10 +1672,18 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length>=7?Image.asset('playcards/ruecken.JPG'): this.oberklasse.kartenStapel7.length==6? Image.asset(this.oberklasse.kartenStapel7[5].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length >= 7
+                                ? Image.asset('playcards/ruecken.JPG')
+                                : this.oberklasse.kartenStapel7.length == 6
+                                    ? Image.asset(this
+                                        .oberklasse
+                                        .kartenStapel7[5]
+                                        .getDateiname())
+                                    : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1467,10 +1693,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==7? Image.asset(this.oberklasse.kartenStapel7[6].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 7
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[6]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1480,10 +1712,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==8? Image.asset(this.oberklasse.kartenStapel7[7].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 8
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[7]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1493,10 +1731,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==9? Image.asset(this.oberklasse.kartenStapel7[8].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 9
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[8]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1506,10 +1750,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==10? Image.asset(this.oberklasse.kartenStapel7[9].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 10
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[9]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1519,10 +1769,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==11? Image.asset(this.oberklasse.kartenStapel7[10].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 11
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[10]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1532,10 +1788,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==12? Image.asset(this.oberklasse.kartenStapel7[11].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 12
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[11]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1545,10 +1807,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==13? Image.asset(this.oberklasse.kartenStapel7[12].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 13
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[12]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1558,10 +1826,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==14? Image.asset(this.oberklasse.kartenStapel7[13].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 14
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[13]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1571,10 +1845,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==15? Image.asset(this.oberklasse.kartenStapel7[14].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 15
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[14]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1584,10 +1864,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==16? Image.asset(this.oberklasse.kartenStapel7[15].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 16
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[15]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1597,10 +1883,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==17? Image.asset(this.oberklasse.kartenStapel7[16].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 17
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[16]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1610,10 +1902,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==18? Image.asset(this.oberklasse.kartenStapel7[17].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 18
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[17]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1623,10 +1921,16 @@ class _PlayPageState extends State<PlayPage>{
                           width: 100,
                           alignment: Alignment.topCenter,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
                             onPressed: () {},
-                            child:
-                            this.oberklasse.kartenStapel7.length==19? Image.asset(this.oberklasse.kartenStapel7[18].getDateiname()): Image.asset('playcards/versuch.png'),
+                            child: this.oberklasse.kartenStapel7.length == 19
+                                ? Image.asset(this
+                                    .oberklasse
+                                    .kartenStapel7[18]
+                                    .getDateiname())
+                                : Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),

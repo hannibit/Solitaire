@@ -154,4 +154,8 @@ class KartenDeck {
       this.kartenIndex = 0;
     }
   }
+
+  gibKarte() {
+    return this.anzeigeKarte[0];
+  }
 }
