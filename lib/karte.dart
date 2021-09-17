@@ -1,4 +1,6 @@
 import 'dart:math';
+
+import 'package:flutter/material.dart';
 class Karte {
   late String dateiname;
   late int wert;
@@ -40,6 +42,9 @@ class Karte {
 
 class KartenDeck {
   List<Karte> karten = [];
+  int kartenIndex = 1;
+  List<Karte> anzeigeKarte = [];
+
   var rng = new Random();
   List<Karte> kartenStapel1 = [];
   List<Karte> kartenStapel2 = [];
@@ -106,6 +111,47 @@ class KartenDeck {
       var random = this.rng.nextInt(this.karten.length);
       this.kartenStapel7.add(this.karten[random]);
       this.karten.removeAt(random);
+    }
+    this.anzeigeKarte.add(this.karten[0]);
+  }
+
+  kannAufeinander(card1, card2, end) {
+    if (end) {
+      if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
+        if (card1.wert == card2.wert--) {
+          return true;
+        }
+      }
+      return false;
+    }
+    else {
+      if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
+        if (card1.wert-- == card2.wert) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
+  rotOderSchwarz(cardname) {
+    switch(cardname) {
+      case 'herz' :
+      case 'karo' : return "rot";
+      case 'pik' :
+      case 'kreuz' : return "schwarz";
+    }
+  }
+
+  topStapelClick() {
+    this.anzeigeKarte.clear();
+//    print(this.karten[this.kartenIndex].dateiname);
+    this.anzeigeKarte.add(this.karten[this.kartenIndex]);
+//    print(this.anzeigeKarte[0].dateiname);
+    this.kartenIndex++;
+    if (this.kartenIndex == this.karten.length) {
+      print("reset");
+      this.kartenIndex = 0;
     }
   }
 }

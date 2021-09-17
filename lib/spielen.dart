@@ -18,15 +18,16 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPageState extends State<PlayPage>{
-  final kartendeck = new KartenDeck().getKartenDeck();
+  var oberklasse = new KartenDeck();
+  var kartendeck;
 
   final _isHours = true;
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countUp,
-    onChange: (value) => print('onChange $value'),
-    onChangeRawSecond: (value) => print('onChangeRawSecond $value'),
-    onChangeRawMinute: (value) => print('onChangeRawMinute $value'),
+    onChange: (value) => {},
+    onChangeRawSecond: (value) => {},
+    onChangeRawMinute: (value) => {},
   );
 
   @override
@@ -37,11 +38,13 @@ class _PlayPageState extends State<PlayPage>{
       DeviceOrientation.landscapeLeft,
     ]);
 
+    this.kartendeck = this.oberklasse.getKartenDeck();
+
     _stopWatchTimer.rawTime.listen((value) =>
-        print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
-    _stopWatchTimer.minuteTime.listen((value) => print('minuteTime $value'));
-    _stopWatchTimer.secondTime.listen((value) => print('secondTime $value'));
-    _stopWatchTimer.records.listen((value) => print('records $value'));
+    {});
+    _stopWatchTimer.minuteTime.listen((value) => {});
+    _stopWatchTimer.secondTime.listen((value) => {});
+    _stopWatchTimer.records.listen((value) => {});
 
     /// Can be set preset time. This case is "00:01.23".
     // _stopWatchTimer.setPresetTime(mSec: 1234);
@@ -109,7 +112,7 @@ class _PlayPageState extends State<PlayPage>{
                       width: 100,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
-                        onPressed: () {},
+                        onPressed: () {this.oberklasse.topStapelClick();},
                         child: Image.asset('playcards/ruecken.JPG'),
                       ),
                     ),
@@ -118,7 +121,7 @@ class _PlayPageState extends State<PlayPage>{
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                         onPressed: () {},
-                        child: Image.asset(this.kartendeck[1].getDateiname()),
+                        child: this.oberklasse.anzeigeKarte.length>0? Image.asset(this.oberklasse.anzeigeKarte[0].getDateiname()): Image.asset('playcards/versuch.png'),
                       ),
                     ),
                   ],
@@ -1454,7 +1457,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset('playcards/ruecken.JPG'),
+                            this.oberklasse.kartenStapel7.length>=7?Image.asset('playcards/ruecken.JPG'): this.oberklasse.kartenStapel7.length==6? Image.asset(this.oberklasse.kartenStapel7[5].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1467,7 +1470,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==7? Image.asset(this.oberklasse.kartenStapel7[6].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1480,7 +1483,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==8? Image.asset(this.oberklasse.kartenStapel7[7].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1493,7 +1496,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==9? Image.asset(this.oberklasse.kartenStapel7[8].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1506,7 +1509,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==10? Image.asset(this.oberklasse.kartenStapel7[9].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1519,7 +1522,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==11? Image.asset(this.oberklasse.kartenStapel7[10].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1532,7 +1535,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==12? Image.asset(this.oberklasse.kartenStapel7[11].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1545,7 +1548,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==13? Image.asset(this.oberklasse.kartenStapel7[12].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1558,7 +1561,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==14? Image.asset(this.oberklasse.kartenStapel7[13].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1571,7 +1574,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==15? Image.asset(this.oberklasse.kartenStapel7[14].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1584,7 +1587,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==16? Image.asset(this.oberklasse.kartenStapel7[15].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1597,7 +1600,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==17? Image.asset(this.oberklasse.kartenStapel7[16].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1610,7 +1613,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset(this.kartendeck[1].getDateiname()),
+                            this.oberklasse.kartenStapel7.length==18? Image.asset(this.oberklasse.kartenStapel7[17].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
@@ -1623,7 +1626,7 @@ class _PlayPageState extends State<PlayPage>{
                             style: ElevatedButton.styleFrom(primary: Colors.transparent, shadowColor: Colors.transparent),
                             onPressed: () {},
                             child:
-                            Image.asset('playcards/versuch.JPG'),
+                            this.oberklasse.kartenStapel7.length==19? Image.asset(this.oberklasse.kartenStapel7[18].getDateiname()): Image.asset('playcards/versuch.png'),
                           ),
                         ),
                       ),
