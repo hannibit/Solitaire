@@ -57,6 +57,7 @@ class _PlayPageState extends State<PlayPage> {
   void dispose() async {
     super.dispose();
     await _stopWatchTimer.dispose();
+    streamcntr.close();
   }
 
   @override
