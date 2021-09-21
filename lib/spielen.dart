@@ -88,8 +88,7 @@ class _PlayPageState extends State<PlayPage> {
                         child: Text(
                           displayTime,
                           style: const TextStyle(
-                              fontSize: 30,
-                              fontFamily: 'Helvetica',
+                              fontSize: 25,
                               fontWeight: FontWeight.normal),
                         ),
                       ),
