@@ -2151,8 +2151,8 @@ class _PlayPageState extends State<PlayPage> {
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
-                            onPressed: () {},
-                            child: this.oberklasse.kartenStapel7.length == 7
+                            onPressed: () {this.oberklasse.karteClick(this.oberklasse.kartenStapel7[6], 7);},
+                            child: this.oberklasse.kartenStapel7.length >= 7
                                 ? Image.asset(this
                                     .oberklasse
                                     .kartenStapel7[6]
@@ -2161,25 +2161,23 @@ class _PlayPageState extends State<PlayPage> {
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: 210,
-                        child: Container(
-                          width: 100,
-                          alignment: Alignment.topCenter,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                shadowColor: Colors.transparent),
-                            onPressed: () {},
-                            child: this.oberklasse.kartenStapel7.length == 8
-                                ? Image.asset(this
-                                    .oberklasse
-                                    .kartenStapel7[7]
-                                    .getDateiname())
-                                : Image.asset('playcards/versuch.png'),
-                          ),
-                        ),
-                      ),
+                      //TODO: schön machen und auf rest anwenden
+                      this.oberklasse.kartenStapel7.length >= 8
+                          ? Positioned(
+                            top: 210,
+                            child: Container(
+                              width: 100,
+                              alignment: Alignment.topCenter,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.transparent,
+                                    shadowColor: Colors.transparent),
+                                onPressed: () {this.oberklasse.karteClick(this.oberklasse.kartenStapel7[7], 7);},
+                                child: Image.asset(this.oberklasse.kartenStapel7[7].getDateiname())
+                              ),
+                            ),
+                          )
+                          : Positioned(child: Container()),
                       Positioned(
                         top: 240,
                         child: Container(

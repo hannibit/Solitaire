@@ -117,16 +117,30 @@ class KartenDeck {
 
   kannAufeinander(card1, card2, end) {
     if (end) {
-      if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
-        if (card1.wert == card2.wert--) {
+      if (card2 != null) {
+        if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
+          if (this.wertAufeinanderfolgend(card1.wert, card2.wert)) {
+            return true;
+          }
+        }
+      }
+      else {
+        if (this.wertAufeinanderfolgend(card1.wert, 0)) {
           return true;
         }
       }
       return false;
     }
     else {
-      if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
-        if (card1.wert-- == card2.wert) {
+      if (card2 != null) {
+        if (rotOderSchwarz(card1.farbe) != rotOderSchwarz(card2.farbe)) {
+          if (this.wertAufeinanderfolgend(card1.wert, card2.wert)) {
+            return true;
+          }
+        }
+      }
+      else {
+        if (this.wertAufeinanderfolgend(card1.wert, 14)) {
           return true;
         }
       }
@@ -134,28 +148,81 @@ class KartenDeck {
     }
   }
 
+  wertAufeinanderfolgend(zahl1, zahl2) {
+    return zahl1+1 == zahl2;
+  }
+
   rotOderSchwarz(cardname) {
-    switch(cardname) {
-      case 'herz' :
-      case 'karo' : return "rot";
+    switch(cardname.substring(0,3)) {
+      case 'her' :
+      case 'kar' : return "rot";
       case 'pik' :
-      case 'kreuz' : return "schwarz";
+      case 'kre' : return "schwarz";
     }
   }
 
   topStapelClick() {
     this.anzeigeKarte.clear();
-//    print(this.karten[this.kartenIndex].dateiname);
     this.anzeigeKarte.add(this.karten[this.kartenIndex]);
-//    print(this.anzeigeKarte[0].dateiname);
     this.kartenIndex++;
     if (this.kartenIndex == this.karten.length) {
-      print("reset");
       this.kartenIndex = 0;
     }
   }
 
   gibKarte() {
     return this.anzeigeKarte[0];
+  }
+
+  gibIndex(list, karte) {
+    for (var i = 0; i < list.length; i++) {
+      if (list[i] == karte) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  gibRichtigenStapel(nummer) {
+    switch (nummer) {
+      case 1: return this.kartenStapel1;
+      case 2: return this.kartenStapel2;
+      case 3: return this.kartenStapel3;
+      case 4: return this.kartenStapel4;
+      case 5: return this.kartenStapel5;
+      case 6: return this.kartenStapel6;
+      case 7: return this.kartenStapel7;
+    }
+  }
+
+  gibRichtigenFertig(nummer) {
+    switch (nummer) {
+      case 1: return this.fertig1;
+      case 2: return this.fertig2;
+      case 3: return this.fertig3;
+      case 4: return this.fertig4;
+    }
+  }
+
+  karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
+    for (var i = 1; i < 8; i++) {
+      if (this.kannAufeinander(karte, this.gibRichtigenStapel(i).length != 0 ? this.gibRichtigenStapel(i)[this.gibRichtigenStapel(i).length - 1] : null, false)) {
+        for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+          print(i); //kartenstapel auf den angelegt werden kann
+          print(j);
+          i = 10;
+        }
+      }
+    }
+
+    for (var i = 1; i < 5; i++) {
+      if (this.kannAufeinander(karte, this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, true)) {
+        for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+          print(i); //kartenstapel auf den angelegt werden kann
+          print(j); //wenn mehrere dann abbruch weil karten drauf liegen (also nicht erreichbar)
+          i = 10;
+        }
+      }
+    }
   }
 }
