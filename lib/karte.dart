@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 class Karte {
   late String dateiname;
   late int wert;
@@ -58,6 +57,9 @@ class KartenDeck {
   List<Karte> fertig2 = [];
   List<Karte> fertig3 = [];
   List<Karte> fertig4 = [];
+
+  List<String> ort = [];
+  List<int> index = [];
 
   KartenDeck() {
     for(var i = 1; i < 14; i++) {
@@ -170,7 +172,7 @@ class KartenDeck {
     }
   }
 
-  gibKarte() {
+  gibStapelKarte() {
     return this.anzeigeKarte[0];
   }
 
@@ -205,6 +207,9 @@ class KartenDeck {
   }
 
   karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
+    ort.clear();
+    index.clear();
+
     for (var i = 1; i < 5; i++) {
       if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
         for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
@@ -214,6 +219,8 @@ class KartenDeck {
             this.gibRichtigenFertig(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
             this.gibRichtigenStapel(stapel).removeAt(j);
           }
+          ort.add('Ablage');
+          index.add(i);
           j = 10;
           i = 10;
           this.printAll();
@@ -231,6 +238,8 @@ class KartenDeck {
             this.gibRichtigenStapel(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
             this.gibRichtigenStapel(stapel).removeAt(j);
           }
+          ort.add('Stapel');
+          index.add(i);
           j = 10;
           i = 10;
         }
