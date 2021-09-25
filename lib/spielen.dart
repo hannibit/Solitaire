@@ -207,6 +207,7 @@ class _PlayPageState extends State<PlayPage> {
                                       shadowColor: Colors.transparent),
                                   onPressed: () {
                                     //TODO: Karten vom Stapel hier nehmen
+                                    streamAdd(this.oberklasse.anzeigeKarte[0]);
                                   },
                                   child: this.oberklasse.anzeigeKarte.length > 0
                                       ? Image.asset(this
@@ -390,6 +391,7 @@ class _PlayPageState extends State<PlayPage> {
                                         this.oberklasse.karteClick(
                                             this.oberklasse.kartenStapel1[0],
                                             1);
+                                        streamAdd(this.oberklasse.kartenStapel1[0]);
                                       },
                                       child: this
                                                   .oberklasse
@@ -421,6 +423,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[1],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[1]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -446,6 +449,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[2],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[2]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -471,6 +475,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[3],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[3]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -496,6 +501,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[4],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[4]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -521,6 +527,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[5],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[5]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -546,6 +553,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[6],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[6]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -571,6 +579,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[7],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[7]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -596,6 +605,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[8],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[8]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -621,6 +631,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[9],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[9]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -646,6 +657,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[10],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[10]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -671,6 +683,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[11],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[11]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -696,6 +709,7 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[12],
                                                       1);
+                                                  streamAdd(this.oberklasse.kartenStapel1[12]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -720,6 +734,7 @@ class _PlayPageState extends State<PlayPage> {
                                     onPressed: () {
                                       this.oberklasse.karteClick(
                                           this.oberklasse.kartenStapel1[0], 1);
+                                      streamAdd(this.oberklasse.kartenStapel1[0]);
                                     },
                                     child: this
                                                 .oberklasse
@@ -750,6 +765,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[1],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[1]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -775,6 +791,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[2],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[2]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -800,6 +817,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[3],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[3]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -825,6 +843,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[4],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[4]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -850,6 +869,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[5],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[5]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -875,6 +895,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[6],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[6]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -900,6 +921,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[7],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[7]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -925,6 +947,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[8],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[8]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -950,6 +973,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[9],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[9]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -975,6 +999,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[10],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[10]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -1000,6 +1025,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[11],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[11]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -1025,6 +1051,7 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[12],
                                                     1);
+                                                streamAdd(this.oberklasse.kartenStapel1[12]);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
