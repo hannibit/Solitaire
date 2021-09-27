@@ -28,13 +28,125 @@ class _PlayPageState extends State<PlayPage> {
   final streamAblage2 = StreamController<Karte>();
   final streamAblage3 = StreamController<Karte>();
   final streamAblage4 = StreamController<Karte>();
-  final streamStapel1 = StreamController<Karte>();
-  final streamStapel2 = StreamController<Karte>();
-  final streamStapel3 = StreamController<Karte>();
-  final streamStapel4 = StreamController<Karte>();
-  final streamStapel5 = StreamController<Karte>();
-  final streamStapel6 = StreamController<Karte>();
-  final streamStapel7 = StreamController<Karte>();
+
+  final stream1_1 = StreamController<Karte>.broadcast();
+  final stream1_2 = StreamController<Karte>.broadcast();
+  final stream1_3 = StreamController<Karte>.broadcast();
+  final stream1_4 = StreamController<Karte>.broadcast();
+  final stream1_5 = StreamController<Karte>.broadcast();
+  final stream1_6 = StreamController<Karte>.broadcast();
+  final stream1_7 = StreamController<Karte>.broadcast();
+  final stream1_8 = StreamController<Karte>.broadcast();
+  final stream1_9 = StreamController<Karte>.broadcast();
+  final stream1_10 = StreamController<Karte>.broadcast();
+  final stream1_11 = StreamController<Karte>.broadcast();
+  final stream1_12 = StreamController<Karte>.broadcast();
+  final stream1_13 = StreamController<Karte>.broadcast();
+
+  final stream2_1 = StreamController<Karte>.broadcast();
+  final stream2_2 = StreamController<Karte>.broadcast();
+  final stream2_3 = StreamController<Karte>.broadcast();
+  final stream2_4 = StreamController<Karte>.broadcast();
+  final stream2_5 = StreamController<Karte>.broadcast();
+  final stream2_6 = StreamController<Karte>.broadcast();
+  final stream2_7 = StreamController<Karte>.broadcast();
+  final stream2_8 = StreamController<Karte>.broadcast();
+  final stream2_9 = StreamController<Karte>.broadcast();
+  final stream2_10 = StreamController<Karte>.broadcast();
+  final stream2_11 = StreamController<Karte>.broadcast();
+  final stream2_12 = StreamController<Karte>.broadcast();
+  final stream2_13 = StreamController<Karte>.broadcast();
+  final stream2_14 = StreamController<Karte>.broadcast();
+
+  final stream3_1 = StreamController<Karte>.broadcast();
+  final stream3_2 = StreamController<Karte>.broadcast();
+  final stream3_3 = StreamController<Karte>.broadcast();
+  final stream3_4 = StreamController<Karte>.broadcast();
+  final stream3_5 = StreamController<Karte>.broadcast();
+  final stream3_6 = StreamController<Karte>.broadcast();
+  final stream3_7 = StreamController<Karte>.broadcast();
+  final stream3_8 = StreamController<Karte>.broadcast();
+  final stream3_9 = StreamController<Karte>.broadcast();
+  final stream3_10 = StreamController<Karte>.broadcast();
+  final stream3_11 = StreamController<Karte>.broadcast();
+  final stream3_12 = StreamController<Karte>.broadcast();
+  final stream3_13 = StreamController<Karte>.broadcast();
+  final stream3_14 = StreamController<Karte>.broadcast();
+  final stream3_15 = StreamController<Karte>.broadcast();
+
+  final stream4_1 = StreamController<Karte>.broadcast();
+  final stream4_2 = StreamController<Karte>.broadcast();
+  final stream4_3 = StreamController<Karte>.broadcast();
+  final stream4_4 = StreamController<Karte>.broadcast();
+  final stream4_5 = StreamController<Karte>.broadcast();
+  final stream4_6 = StreamController<Karte>.broadcast();
+  final stream4_7 = StreamController<Karte>.broadcast();
+  final stream4_8 = StreamController<Karte>.broadcast();
+  final stream4_9 = StreamController<Karte>.broadcast();
+  final stream4_10 = StreamController<Karte>.broadcast();
+  final stream4_11 = StreamController<Karte>.broadcast();
+  final stream4_12 = StreamController<Karte>.broadcast();
+  final stream4_13 = StreamController<Karte>.broadcast();
+  final stream4_14 = StreamController<Karte>.broadcast();
+  final stream4_15 = StreamController<Karte>.broadcast();
+  final stream4_16 = StreamController<Karte>.broadcast();
+
+  final stream5_1 = StreamController<Karte>.broadcast();
+  final stream5_2 = StreamController<Karte>.broadcast();
+  final stream5_3 = StreamController<Karte>.broadcast();
+  final stream5_4 = StreamController<Karte>.broadcast();
+  final stream5_5 = StreamController<Karte>.broadcast();
+  final stream5_6 = StreamController<Karte>.broadcast();
+  final stream5_7 = StreamController<Karte>.broadcast();
+  final stream5_8 = StreamController<Karte>.broadcast();
+  final stream5_9 = StreamController<Karte>.broadcast();
+  final stream5_10 = StreamController<Karte>.broadcast();
+  final stream5_11 = StreamController<Karte>.broadcast();
+  final stream5_12 = StreamController<Karte>.broadcast();
+  final stream5_13 = StreamController<Karte>.broadcast();
+  final stream5_14 = StreamController<Karte>.broadcast();
+  final stream5_15 = StreamController<Karte>.broadcast();
+  final stream5_16 = StreamController<Karte>.broadcast();
+  final stream5_17 = StreamController<Karte>.broadcast();
+
+  final stream6_1 = StreamController<Karte>.broadcast();
+  final stream6_2 = StreamController<Karte>.broadcast();
+  final stream6_3 = StreamController<Karte>.broadcast();
+  final stream6_4 = StreamController<Karte>.broadcast();
+  final stream6_5 = StreamController<Karte>.broadcast();
+  final stream6_6 = StreamController<Karte>.broadcast();
+  final stream6_7 = StreamController<Karte>.broadcast();
+  final stream6_8 = StreamController<Karte>.broadcast();
+  final stream6_9 = StreamController<Karte>.broadcast();
+  final stream6_10 = StreamController<Karte>.broadcast();
+  final stream6_11 = StreamController<Karte>.broadcast();
+  final stream6_12 = StreamController<Karte>.broadcast();
+  final stream6_13 = StreamController<Karte>.broadcast();
+  final stream6_14 = StreamController<Karte>.broadcast();
+  final stream6_15 = StreamController<Karte>.broadcast();
+  final stream6_16 = StreamController<Karte>.broadcast();
+  final stream6_17 = StreamController<Karte>.broadcast();
+  final stream6_18 = StreamController<Karte>.broadcast();
+
+  final stream7_1 = StreamController<Karte>.broadcast();
+  final stream7_2 = StreamController<Karte>.broadcast();
+  final stream7_3 = StreamController<Karte>.broadcast();
+  final stream7_4 = StreamController<Karte>.broadcast();
+  final stream7_5 = StreamController<Karte>.broadcast();
+  final stream7_6 = StreamController<Karte>.broadcast();
+  final stream7_7 = StreamController<Karte>.broadcast();
+  final stream7_8 = StreamController<Karte>.broadcast();
+  final stream7_9 = StreamController<Karte>.broadcast();
+  final stream7_10 = StreamController<Karte>.broadcast();
+  final stream7_11 = StreamController<Karte>.broadcast();
+  final stream7_12 = StreamController<Karte>.broadcast();
+  final stream7_13 = StreamController<Karte>.broadcast();
+  final stream7_14 = StreamController<Karte>.broadcast();
+  final stream7_15 = StreamController<Karte>.broadcast();
+  final stream7_16 = StreamController<Karte>.broadcast();
+  final stream7_17 = StreamController<Karte>.broadcast();
+  final stream7_18 = StreamController<Karte>.broadcast();
+  final stream7_19 = StreamController<Karte>.broadcast();
 
   final _isHours = true;
 
@@ -68,25 +180,25 @@ class _PlayPageState extends State<PlayPage> {
       case 'Stapel':
         switch (index) {
           case 1:
-            streamStapel1.add(karte);
+            stream1_1.add(karte);
             return;
           case 2:
-            streamStapel2.add(karte);
+            stream1_2.add(karte);
             return;
           case 3:
-            streamStapel3.add(karte);
+            stream1_3.add(karte);
             return;
           case 4:
-            streamStapel4.add(karte);
+            stream1_4.add(karte);
             return;
           case 5:
-            streamStapel5.add(karte);
+            stream1_5.add(karte);
             return;
           case 6:
-            streamStapel6.add(karte);
+            stream1_6.add(karte);
             return;
           case 7:
-            streamStapel7.add(karte);
+            stream1_7.add(karte);
             return;
         }
         return;
@@ -118,13 +230,125 @@ class _PlayPageState extends State<PlayPage> {
     streamAblage2.close();
     streamAblage3.close();
     streamAblage4.close();
-    streamStapel1.close();
-    streamStapel2.close();
-    streamStapel3.close();
-    streamStapel4.close();
-    streamStapel5.close();
-    streamStapel6.close();
-    streamStapel7.close();
+
+    stream1_1.close();
+    stream1_2.close();
+    stream1_3.close();
+    stream1_4.close();
+    stream1_5.close();
+    stream1_6.close();
+    stream1_7.close();
+    stream1_8.close();
+    stream1_9.close();
+    stream1_10.close();
+    stream1_11.close();
+    stream1_12.close();
+    stream1_13.close();
+
+    stream2_1.close();
+    stream2_2.close();
+    stream2_3.close();
+    stream2_4.close();
+    stream2_5.close();
+    stream2_6.close();
+    stream2_7.close();
+    stream2_8.close();
+    stream2_9.close();
+    stream2_10.close();
+    stream2_11.close();
+    stream2_12.close();
+    stream2_13.close();
+    stream2_14.close();
+
+    stream3_1.close();
+    stream3_2.close();
+    stream3_3.close();
+    stream3_4.close();
+    stream3_5.close();
+    stream3_6.close();
+    stream3_7.close();
+    stream3_8.close();
+    stream3_9.close();
+    stream3_10.close();
+    stream3_11.close();
+    stream3_12.close();
+    stream3_13.close();
+    stream3_14.close();
+    stream3_15.close();
+
+    stream4_1.close();
+    stream4_2.close();
+    stream4_3.close();
+    stream4_4.close();
+    stream4_5.close();
+    stream4_6.close();
+    stream4_7.close();
+    stream4_8.close();
+    stream4_9.close();
+    stream4_10.close();
+    stream4_11.close();
+    stream4_12.close();
+    stream4_13.close();
+    stream4_14.close();
+    stream4_15.close();
+    stream4_16.close();
+
+    stream5_1.close();
+    stream5_2.close();
+    stream5_3.close();
+    stream5_4.close();
+    stream5_5.close();
+    stream5_6.close();
+    stream5_7.close();
+    stream5_8.close();
+    stream5_9.close();
+    stream5_10.close();
+    stream5_11.close();
+    stream5_12.close();
+    stream5_13.close();
+    stream5_14.close();
+    stream5_15.close();
+    stream5_16.close();
+    stream5_17.close();
+
+    stream6_1.close();
+    stream6_2.close();
+    stream6_3.close();
+    stream6_4.close();
+    stream6_5.close();
+    stream6_6.close();
+    stream6_7.close();
+    stream6_8.close();
+    stream6_9.close();
+    stream6_10.close();
+    stream6_11.close();
+    stream6_12.close();
+    stream6_13.close();
+    stream6_14.close();
+    stream6_15.close();
+    stream6_16.close();
+    stream6_17.close();
+    stream6_18.close();
+
+    stream7_1.close();
+    stream7_2.close();
+    stream7_3.close();
+    stream7_4.close();
+    stream7_5.close();
+    stream7_6.close();
+    stream7_7.close();
+    stream7_8.close();
+    stream7_9.close();
+    stream7_10.close();
+    stream7_11.close();
+    stream7_12.close();
+    stream7_13.close();
+    stream7_14.close();
+    stream7_15.close();
+    stream7_16.close();
+    stream7_17.close();
+    stream7_18.close();
+    stream7_19.close();
   }
 
   @override
@@ -371,16 +595,16 @@ class _PlayPageState extends State<PlayPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       //Stapel1
-                      StreamBuilder(
-                          stream: streamStapel1.stream,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<dynamic> snapshot) {
-                            final card = snapshot.data;
-                            if (!snapshot.hasData) {
-                              return Stack(
-                                alignment: Alignment.topCenter,
-                                children: [
-                                  Container(
+                      Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          StreamBuilder(
+                              stream: stream1_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return Container(
                                     width: 100,
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
@@ -391,12 +615,13 @@ class _PlayPageState extends State<PlayPage> {
                                         this.oberklasse.karteClick(
                                             this.oberklasse.kartenStapel1[0],
                                             1);
-                                        streamAdd(this.oberklasse.kartenStapel1[0]);
+                                        streamAdd(
+                                            this.oberklasse.kartenStapel1[0]);
                                       },
                                       child: this
                                                   .oberklasse
                                                   .kartenStapel1
-                                                  .length ==
+                                                  .length >=
                                               1
                                           ? Image.asset(this
                                               .oberklasse
@@ -405,8 +630,31 @@ class _PlayPageState extends State<PlayPage> {
                                           : Image.asset(
                                               'playcards/versuch.png'),
                                     ),
+                                  );
+                                }
+                                return Container(
+                                  width: 100,
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.karteClick(
+                                          this.oberklasse.kartenStapel1[0], 1);
+                                    },
+                                    child: Image.asset(card.getDateiname()),
                                   ),
-                                  this.oberklasse.kartenStapel1.length >= 2
+                                );
+                              }),
+                          StreamBuilder(
+                              stream: stream1_2.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          2
                                       ? Positioned(
                                           top: 30,
                                           child: Container(
@@ -423,7 +671,9 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel1[1],
                                                       1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[1]);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[1]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -431,324 +681,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     .getDateiname())),
                                           ),
                                         )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 3
-                                      ? Positioned(
-                                          top: 60,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[2],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[2]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[2]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 4
-                                      ? Positioned(
-                                          top: 90,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[3],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[3]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[3]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 5
-                                      ? Positioned(
-                                          top: 120,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[4],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[4]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[4]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 6
-                                      ? Positioned(
-                                          top: 150,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[5],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[5]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[5]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 7
-                                      ? Positioned(
-                                          top: 180,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[6],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[6]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[6]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 8
-                                      ? Positioned(
-                                          top: 210,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[7],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[7]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[7]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 9
-                                      ? Positioned(
-                                          top: 240,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[8],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[8]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[8]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 10
-                                      ? Positioned(
-                                          top: 270,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[9],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[9]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[9]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 11
-                                      ? Positioned(
-                                          top: 300,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[10],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[10]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[10]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 12
-                                      ? Positioned(
-                                          top: 330,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[11],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[11]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[11]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel1.length >= 13
-                                      ? Positioned(
-                                          top: 360,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[12],
-                                                      1);
-                                                  streamAdd(this.oberklasse.kartenStapel1[12]);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel1[12]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                ],
-                              );
-                            }
-                            return Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel1[0], 1);
-                                      streamAdd(this.oberklasse.kartenStapel1[0]);
-                                    },
-                                    child: this
-                                                .oberklasse
-                                                .kartenStapel1
-                                                .length ==
-                                            1
-                                        ? Image.asset(this
-                                            .oberklasse
-                                            .kartenStapel1[0]
-                                            .getDateiname())
-                                        : Image.asset('playcards/versuch.png'),
-                                  ),
-                                ),
-                                this.oberklasse.kartenStapel1.length >= 2
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 2
                                     ? Positioned(
                                         top: 30,
                                         child: Container(
@@ -765,16 +700,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[1],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[1]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[1]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 3
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_3.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          3
+                                      ? Positioned(
+                                          top: 60,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[2],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[2]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[2]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 3
                                     ? Positioned(
                                         top: 60,
                                         child: Container(
@@ -791,16 +760,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[2],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[2]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[2]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 4
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_4.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          4
+                                      ? Positioned(
+                                          top: 90,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[3],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[3]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[3]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 4
                                     ? Positioned(
                                         top: 90,
                                         child: Container(
@@ -817,16 +820,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[3],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[3]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[3]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 5
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_5.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          5
+                                      ? Positioned(
+                                          top: 120,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[4],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[4]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[4]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 5
                                     ? Positioned(
                                         top: 120,
                                         child: Container(
@@ -843,16 +880,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[4],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[4]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[4]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 6
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_6.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          6
+                                      ? Positioned(
+                                          top: 150,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[5],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[5]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[5]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 6
                                     ? Positioned(
                                         top: 150,
                                         child: Container(
@@ -869,16 +940,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[5],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[5]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[5]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 7
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_7.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          7
+                                      ? Positioned(
+                                          top: 180,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[6],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[6]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[6]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 7
                                     ? Positioned(
                                         top: 180,
                                         child: Container(
@@ -895,16 +1000,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[6],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[6]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[6]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 8
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_8.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          8
+                                      ? Positioned(
+                                          top: 210,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[7],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[7]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[7]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 8
                                     ? Positioned(
                                         top: 210,
                                         child: Container(
@@ -921,16 +1060,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[7],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[7]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[7]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 9
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_9.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          9
+                                      ? Positioned(
+                                          top: 240,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[8],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[8]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[8]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >= 9
                                     ? Positioned(
                                         top: 240,
                                         child: Container(
@@ -947,16 +1120,51 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[8],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[8]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[8]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 10
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_10.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          10
+                                      ? Positioned(
+                                          top: 270,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[9],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[9]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[9]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >=
+                                        10
                                     ? Positioned(
                                         top: 270,
                                         child: Container(
@@ -973,16 +1181,51 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[9],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[9]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[9]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 11
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_11.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          11
+                                      ? Positioned(
+                                          top: 300,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[10],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[10]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[10]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >=
+                                        11
                                     ? Positioned(
                                         top: 300,
                                         child: Container(
@@ -999,16 +1242,51 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[10],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[10]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[10]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 12
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_12.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          12
+                                      ? Positioned(
+                                          top: 330,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[11],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[11]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[11]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >=
+                                        12
                                     ? Positioned(
                                         top: 330,
                                         child: Container(
@@ -1025,16 +1303,51 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[11],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[11]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[11]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel1.length >= 13
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream1_13.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel1.length >=
+                                          13
+                                      ? Positioned(
+                                          top: 360,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel1[12],
+                                                      1);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel1[12]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel1[12]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel1.length >=
+                                        13
                                     ? Positioned(
                                         top: 360,
                                         child: Container(
@@ -1051,36 +1364,41 @@ class _PlayPageState extends State<PlayPage> {
                                                         .oberklasse
                                                         .kartenStapel1[12],
                                                     1);
-                                                streamAdd(this.oberklasse.kartenStapel1[12]);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel1[12]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                              ],
-                            );
-                          }),
+                                    : Positioned(child: Container());
+                              }),
+                        ],
+                      ),
                       //Stapel2
-                      StreamBuilder(
-                          stream: streamStapel2.stream,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<dynamic> snapshot) {
-                            final card = snapshot.data;
-                            if (!snapshot.hasData) {
-                              return Stack(
-                                alignment: Alignment.topCenter,
-                                children: [
-                                  Container(
+                      Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          StreamBuilder(
+                              stream: stream2_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return Container(
                                     width: 100,
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        this.oberklasse.karteClick(
+                                            this
+                                                .oberklasse
+                                                .kartenStapel2[0],
+                                            2);
+                                        streamAdd(
+                                            this.oberklasse.kartenStapel2[0]);
+                                      },
                                       child: this
                                                   .oberklasse
                                                   .kartenStapel2
@@ -1099,8 +1417,33 @@ class _PlayPageState extends State<PlayPage> {
                                               : Image.asset(
                                                   'playcards/versuch.png'),
                                     ),
+                                  );
+                                }
+                                return Container(
+                                  width: 100,
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.karteClick(
+                                          this
+                                              .oberklasse
+                                              .kartenStapel2[0],
+                                          2);
+                                    },
+                                    child: Image.asset(card.getDateiname()),
                                   ),
-                                  Positioned(
+                                );
+                              }),
+                          StreamBuilder(
+                              stream: stream2_2.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return Positioned(
                                     top: 30,
                                     child: Container(
                                       width: 100,
@@ -1113,6 +1456,8 @@ class _PlayPageState extends State<PlayPage> {
                                           this.oberklasse.karteClick(
                                               this.oberklasse.kartenStapel2[1],
                                               2);
+                                          streamAdd(
+                                              this.oberklasse.kartenStapel2[1]);
                                         },
                                         child: this
                                                     .oberklasse
@@ -1127,8 +1472,31 @@ class _PlayPageState extends State<PlayPage> {
                                                 'playcards/versuch.png'),
                                       ),
                                     ),
+                                  );
+                                }
+                                return Container(
+                                  width: 100,
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.karteClick(
+                                          this.oberklasse.kartenStapel2[1], 2);
+                                    },
+                                    child: Image.asset(card.getDateiname()),
                                   ),
-                                  this.oberklasse.kartenStapel2.length >= 3
+                                );
+                              }),
+                          StreamBuilder(
+                              stream: stream2_3.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          3
                                       ? Positioned(
                                           top: 60,
                                           child: Container(
@@ -1145,6 +1513,9 @@ class _PlayPageState extends State<PlayPage> {
                                                           .oberklasse
                                                           .kartenStapel2[2],
                                                       2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[2]);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1152,344 +1523,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     .getDateiname())),
                                           ),
                                         )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 4
-                                      ? Positioned(
-                                          top: 90,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[3],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[3]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 5
-                                      ? Positioned(
-                                          top: 120,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[4],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[4]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 6
-                                      ? Positioned(
-                                          top: 150,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[5],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[5]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 7
-                                      ? Positioned(
-                                          top: 180,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[6],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[6]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 8
-                                      ? Positioned(
-                                          top: 210,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[7],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[7]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 9
-                                      ? Positioned(
-                                          top: 240,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[8],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[8]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 10
-                                      ? Positioned(
-                                          top: 270,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[9],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[9]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 11
-                                      ? Positioned(
-                                          top: 300,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[10],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[10]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 12
-                                      ? Positioned(
-                                          top: 330,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[11],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[11]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 13
-                                      ? Positioned(
-                                          top: 360,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[12],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[12]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel2.length >= 14
-                                      ? Positioned(
-                                          top: 390,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[13],
-                                                      2);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel2[13]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                ],
-                              );
-                            }
-                            return Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {},
-                                    child: this
-                                                .oberklasse
-                                                .kartenStapel2
-                                                .length >=
-                                            2
-                                        ? Image.asset('playcards/ruecken.JPG')
-                                        : this
-                                                    .oberklasse
-                                                    .kartenStapel2
-                                                    .length >=
-                                                1
-                                            ? Image.asset(this
-                                                .oberklasse
-                                                .kartenStapel2[0]
-                                                .getDateiname())
-                                            : Image.asset(
-                                                'playcards/versuch.png'),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  child: Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel2[1],
-                                            2);
-                                      },
-                                      child: this
-                                                  .oberklasse
-                                                  .kartenStapel2
-                                                  .length >=
-                                              2
-                                          ? Image.asset(this
-                                              .oberklasse
-                                              .kartenStapel2[1]
-                                              .getDateiname())
-                                          : Image.asset(
-                                              'playcards/versuch.png'),
-                                    ),
-                                  ),
-                                ),
-                                this.oberklasse.kartenStapel2.length >= 3
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 3
                                     ? Positioned(
                                         top: 60,
                                         child: Container(
@@ -1507,14 +1543,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[2],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[2]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 4
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_4.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          4
+                                      ? Positioned(
+                                          top: 90,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[3],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[3]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[3]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 4
                                     ? Positioned(
                                         top: 90,
                                         child: Container(
@@ -1532,14 +1603,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[3],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[3]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 5
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_5.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          5
+                                      ? Positioned(
+                                          top: 120,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[4],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[4]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[4]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 5
                                     ? Positioned(
                                         top: 120,
                                         child: Container(
@@ -1557,14 +1663,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[4],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[4]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 6
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_6.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          6
+                                      ? Positioned(
+                                          top: 150,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[5],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[5]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[5]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 6
                                     ? Positioned(
                                         top: 150,
                                         child: Container(
@@ -1582,14 +1723,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[5],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[5]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 7
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_7.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          7
+                                      ? Positioned(
+                                          top: 180,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[6],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[6]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[6]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 7
                                     ? Positioned(
                                         top: 180,
                                         child: Container(
@@ -1607,14 +1783,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[6],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[6]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 8
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_8.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          8
+                                      ? Positioned(
+                                          top: 210,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[7],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[7]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[7]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 8
                                     ? Positioned(
                                         top: 210,
                                         child: Container(
@@ -1632,14 +1843,49 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[7],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[7]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 9
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_9.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          9
+                                      ? Positioned(
+                                          top: 240,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[8],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[8]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[8]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >= 9
                                     ? Positioned(
                                         top: 240,
                                         child: Container(
@@ -1657,14 +1903,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[8],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[8]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 10
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_10.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          10
+                                      ? Positioned(
+                                          top: 270,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[9],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[9]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[9]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >=
+                                        10
                                     ? Positioned(
                                         top: 270,
                                         child: Container(
@@ -1682,14 +1964,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[9],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[9]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 11
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_11.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          11
+                                      ? Positioned(
+                                          top: 300,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[10],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[10]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[10]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >=
+                                        11
                                     ? Positioned(
                                         top: 300,
                                         child: Container(
@@ -1707,14 +2025,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[10],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[10]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 12
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_12.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          12
+                                      ? Positioned(
+                                          top: 330,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[11],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[11]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[11]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >=
+                                        12
                                     ? Positioned(
                                         top: 330,
                                         child: Container(
@@ -1732,14 +2086,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[11],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[11]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 13
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_13.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          13
+                                      ? Positioned(
+                                          top: 360,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[12],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[12]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[12]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >=
+                                        13
                                     ? Positioned(
                                         top: 360,
                                         child: Container(
@@ -1757,14 +2147,50 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[12],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[12]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel2.length >= 14
+                                    : Positioned(child: Container());
+                              }),
+                          StreamBuilder(
+                              stream: stream2_14.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                final card = snapshot.data;
+                                if (!snapshot.hasData) {
+                                  return this.oberklasse.kartenStapel2.length >=
+                                          14
+                                      ? Positioned(
+                                          top: 390,
+                                          child: Container(
+                                            width: 100,
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    primary: Colors.transparent,
+                                                    shadowColor:
+                                                        Colors.transparent),
+                                                onPressed: () {
+                                                  this.oberklasse.karteClick(
+                                                      this
+                                                          .oberklasse
+                                                          .kartenStapel2[13],
+                                                      2);
+                                                  streamAdd(this
+                                                      .oberklasse
+                                                      .kartenStapel2[13]);
+                                                },
+                                                child: Image.asset(this
+                                                    .oberklasse
+                                                    .kartenStapel2[13]
+                                                    .getDateiname())),
+                                          ),
+                                        )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel2.length >=
+                                        14
                                     ? Positioned(
                                         top: 390,
                                         child: Container(
@@ -1782,54 +2208,85 @@ class _PlayPageState extends State<PlayPage> {
                                                         .kartenStapel2[13],
                                                     2);
                                               },
-                                              child: Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel2[13]
-                                                  .getDateiname())),
+                                              child: Image.asset(
+                                                  card.getDateiname())),
                                         ),
                                       )
-                                    : Positioned(child: Container()),
-                              ],
-                            );
-                          }),
+                                    : Positioned(child: Container());
+                              }),
+                        ],
+                      ),
                       //Stapel3
-                      StreamBuilder(
-                          stream: streamStapel3.stream,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<dynamic> snapshot) {
-                            final card = snapshot.data;
-                            if (!snapshot.hasData) {
-                              return Stack(
-                                alignment: Alignment.topCenter,
-                                children: [
-                                  Container(
+                      Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          StreamBuilder(
+                              stream: stream3_1.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return Container(
                                     width: 100,
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        this.oberklasse.karteClick(
+                                            this
+                                                .oberklasse
+                                                .kartenStapel3[0],
+                                            3);
+                                        streamAdd(this
+                                            .oberklasse
+                                            .kartenStapel3[0]);
+                                      },
                                       child: this
-                                                  .oberklasse
-                                                  .kartenStapel3
-                                                  .length >=
-                                              2
+                                          .oberklasse
+                                          .kartenStapel3
+                                          .length >=
+                                          2
                                           ? Image.asset('playcards/ruecken.JPG')
                                           : this
-                                                      .oberklasse
-                                                      .kartenStapel3
-                                                      .length >=
-                                                  1
-                                              ? Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel3[0]
-                                                  .getDateiname())
-                                              : Image.asset(
-                                                  'playcards/versuch.png'),
+                                          .oberklasse
+                                          .kartenStapel3
+                                          .length >=
+                                          1
+                                          ? Image.asset(this
+                                          .oberklasse
+                                          .kartenStapel3[0]
+                                          .getDateiname())
+                                          : Image.asset(
+                                          'playcards/versuch.png'),
                                     ),
+                                  );
+                                }
+                                return Container(
+                                  width: 100,
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.karteClick(
+                                          this
+                                              .oberklasse
+                                              .kartenStapel3[0],
+                                          3);
+                                    },
+                                    child: Image.asset(card.getDateiname()),
                                   ),
-                                  Positioned(
+                                );
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_2.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return Positioned(
                                     top: 30,
                                     child: Container(
                                       width: 100,
@@ -1838,29 +2295,67 @@ class _PlayPageState extends State<PlayPage> {
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
+                                                  .oberklasse
+                                                  .kartenStapel3[1],
+                                              3);
+                                          streamAdd(this
+                                              .oberklasse
+                                              .kartenStapel3[1]);
+                                        },
                                         child: this
-                                                    .oberklasse
-                                                    .kartenStapel3
-                                                    .length >=
-                                                3
+                                            .oberklasse
+                                            .kartenStapel3
+                                            .length >=
+                                            3
                                             ? Image.asset(
-                                                'playcards/ruecken.JPG')
+                                            'playcards/ruecken.JPG')
                                             : this
-                                                        .oberklasse
-                                                        .kartenStapel3
-                                                        .length >=
-                                                    2
-                                                ? Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[1]
-                                                    .getDateiname())
-                                                : Image.asset(
-                                                    'playcards/versuch.png'),
+                                            .oberklasse
+                                            .kartenStapel3
+                                            .length >=
+                                            2
+                                            ? Image.asset(this
+                                            .oberklasse
+                                            .kartenStapel3[1]
+                                            .getDateiname())
+                                            : Image.asset(
+                                            'playcards/versuch.png'),
                                       ),
                                     ),
+                                  );
+                                }
+                                return Positioned(
+                                  top: 30,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {
+                                        this.oberklasse.karteClick(
+                                            this
+                                                .oberklasse
+                                                .kartenStapel3[1],
+                                            3);
+                                      },
+                                      child: Image.asset(
+                                          card.getDateiname()),
+                                    ),
                                   ),
-                                  Positioned(
+                                );
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_3.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return Positioned(
                                     top: 60,
                                     child: Container(
                                       width: 100,
@@ -1873,385 +2368,26 @@ class _PlayPageState extends State<PlayPage> {
                                           this.oberklasse.karteClick(
                                               this.oberklasse.kartenStapel3[2],
                                               3);
+                                          streamAdd(this
+                                              .oberklasse
+                                              .kartenStapel3[2]);
                                         },
                                         child: this
-                                                    .oberklasse
-                                                    .kartenStapel3
-                                                    .length >=
-                                                3
+                                            .oberklasse
+                                            .kartenStapel3
+                                            .length >=
+                                            3
                                             ? Image.asset(this
-                                                .oberklasse
-                                                .kartenStapel3[2]
-                                                .getDateiname())
+                                            .oberklasse
+                                            .kartenStapel3[2]
+                                            .getDateiname())
                                             : Image.asset(
-                                                'playcards/versuch.png'),
+                                            'playcards/versuch.png'),
                                       ),
                                     ),
-                                  ),
-                                  this.oberklasse.kartenStapel3.length >= 4
-                                      ? Positioned(
-                                          top: 90,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[3],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[3]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 5
-                                      ? Positioned(
-                                          top: 120,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[4],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[4]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 6
-                                      ? Positioned(
-                                          top: 150,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[5],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[5]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 7
-                                      ? Positioned(
-                                          top: 180,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[6],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[6]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 8
-                                      ? Positioned(
-                                          top: 210,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[7],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[7]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 9
-                                      ? Positioned(
-                                          top: 240,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[8],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[8]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 10
-                                      ? Positioned(
-                                          top: 270,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[9],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[9]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 11
-                                      ? Positioned(
-                                          top: 300,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[10],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[10]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 12
-                                      ? Positioned(
-                                          top: 330,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[11],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[11]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 13
-                                      ? Positioned(
-                                          top: 360,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[12],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[12]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 14
-                                      ? Positioned(
-                                          top: 390,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[13],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[13]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                  this.oberklasse.kartenStapel3.length >= 15
-                                      ? Positioned(
-                                          top: 420,
-                                          child: Container(
-                                            width: 100,
-                                            alignment: Alignment.topCenter,
-                                            child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary: Colors.transparent,
-                                                    shadowColor:
-                                                        Colors.transparent),
-                                                onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel3[14],
-                                                      3);
-                                                },
-                                                child: Image.asset(this
-                                                    .oberklasse
-                                                    .kartenStapel3[14]
-                                                    .getDateiname())),
-                                          ),
-                                        )
-                                      : Positioned(child: Container()),
-                                ],
-                              );
-                            }
-                            return Stack(
-                              alignment: Alignment.topCenter,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {},
-                                    child: this
-                                                .oberklasse
-                                                .kartenStapel3
-                                                .length >=
-                                            2
-                                        ? Image.asset('playcards/ruecken.JPG')
-                                        : this
-                                                    .oberklasse
-                                                    .kartenStapel3
-                                                    .length >=
-                                                1
-                                            ? Image.asset(this
-                                                .oberklasse
-                                                .kartenStapel3[0]
-                                                .getDateiname())
-                                            : Image.asset(
-                                                'playcards/versuch.png'),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  child: Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {},
-                                      child: this
-                                                  .oberklasse
-                                                  .kartenStapel3
-                                                  .length >=
-                                              3
-                                          ? Image.asset('playcards/ruecken.JPG')
-                                          : this
-                                                      .oberklasse
-                                                      .kartenStapel3
-                                                      .length >=
-                                                  2
-                                              ? Image.asset(this
-                                                  .oberklasse
-                                                  .kartenStapel3[1]
-                                                  .getDateiname())
-                                              : Image.asset(
-                                                  'playcards/versuch.png'),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
+                                  );
+                                }
+                                return Positioned(
                                   top: 60,
                                   child: Container(
                                     width: 100,
@@ -2265,329 +2401,719 @@ class _PlayPageState extends State<PlayPage> {
                                             this.oberklasse.kartenStapel3[2],
                                             3);
                                       },
-                                      child: this
-                                                  .oberklasse
-                                                  .kartenStapel3
-                                                  .length >=
-                                              3
-                                          ? Image.asset(this
-                                              .oberklasse
-                                              .kartenStapel3[2]
-                                              .getDateiname())
-                                          : Image.asset(
-                                              'playcards/versuch.png'),
+                                      child: Image.asset(card.getDateiname()),
                                     ),
                                   ),
-                                ),
-                                this.oberklasse.kartenStapel3.length >= 4
+                                );
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_4.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 4
+                                      ? Positioned(
+                                    top: 90,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[3],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[3]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[3]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 4
                                     ? Positioned(
-                                        top: 90,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[3],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 90,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[3]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 5
+                                                  .kartenStapel3[3],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_5.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 5
+                                      ? Positioned(
+                                    top: 120,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[4],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[4]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[4]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 5
                                     ? Positioned(
-                                        top: 120,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[4],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 120,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[4]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 6
+                                                  .kartenStapel3[4],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_6.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 6
+                                      ? Positioned(
+                                    top: 150,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[5],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[5]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[5]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 6
                                     ? Positioned(
-                                        top: 150,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[5],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 150,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[5]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 7
+                                                  .kartenStapel3[5],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_7.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 7
+                                      ? Positioned(
+                                    top: 180,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[6],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[6]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[6]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 7
                                     ? Positioned(
-                                        top: 180,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[6],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 180,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[6]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 8
+                                                  .kartenStapel3[6],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_8.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 8
+                                      ? Positioned(
+                                    top: 210,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[7],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[7]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[7]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 8
                                     ? Positioned(
-                                        top: 210,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[7],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 210,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[7]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 9
+                                                  .kartenStapel3[7],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_9.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 9
+                                      ? Positioned(
+                                    top: 240,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[8],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[8]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[8]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 9
                                     ? Positioned(
-                                        top: 240,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[8],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 240,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[8]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 10
+                                                  .kartenStapel3[8],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_10.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 10
+                                      ? Positioned(
+                                    top: 270,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[9],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[9]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[9]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 10
                                     ? Positioned(
-                                        top: 270,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[9],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 270,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[9]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 11
+                                                  .kartenStapel3[9],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_11.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 11
+                                      ? Positioned(
+                                    top: 300,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[10],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[10]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[10]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 11
                                     ? Positioned(
-                                        top: 300,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[10],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 300,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[10]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 12
+                                                  .kartenStapel3[10],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_12.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 12
+                                      ? Positioned(
+                                    top: 330,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[11],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[11]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[11]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 12
                                     ? Positioned(
-                                        top: 330,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[11],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 330,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[11]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 13
+                                                  .kartenStapel3[11],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_13.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 13
+                                      ? Positioned(
+                                    top: 360,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[12],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[12]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[12]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 13
                                     ? Positioned(
-                                        top: 360,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[12],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 360,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[12]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 14
+                                                  .kartenStapel3[12],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_14.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 14
+                                      ? Positioned(
+                                    top: 390,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[13],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[13]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[13]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 14
                                     ? Positioned(
-                                        top: 390,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[13],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 390,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[13]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                                this.oberklasse.kartenStapel3.length >= 15
+                                                  .kartenStapel3[13],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                          StreamBuilder(
+                              stream: stream3_15.stream,
+                              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                                final card = snapshot.data;
+                                if(!snapshot.hasData){
+                                  return this.oberklasse.kartenStapel3.length >= 15
+                                      ? Positioned(
+                                    top: 420,
+                                    child: Container(
+                                      width: 100,
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor:
+                                              Colors.transparent),
+                                          onPressed: () {
+                                            this.oberklasse.karteClick(
+                                                this
+                                                    .oberklasse
+                                                    .kartenStapel3[14],
+                                                3);
+                                            streamAdd(this
+                                                .oberklasse
+                                                .kartenStapel3[14]);
+                                          },
+                                          child: Image.asset(this
+                                              .oberklasse
+                                              .kartenStapel3[14]
+                                              .getDateiname())),
+                                    ),
+                                  )
+                                      : Positioned(child: Container());
+                                }
+                                return this.oberklasse.kartenStapel3.length >= 15
                                     ? Positioned(
-                                        top: 420,
-                                        child: Container(
-                                          width: 100,
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[14],
-                                                    3);
-                                              },
-                                              child: Image.asset(this
+                                  top: 420,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor:
+                                            Colors.transparent),
+                                        onPressed: () {
+                                          this.oberklasse.karteClick(
+                                              this
                                                   .oberklasse
-                                                  .kartenStapel3[14]
-                                                  .getDateiname())),
-                                        ),
-                                      )
-                                    : Positioned(child: Container()),
-                              ],
-                            );
-                          }),
+                                                  .kartenStapel3[14],
+                                              3);
+                                        },
+                                        child: Image.asset(card.getDateiname())),
+                                  ),
+                                )
+                                    : Positioned(child: Container());
+                              }
+                          ),
+                        ]
+                      ),
                       //Stapel4
                       StreamBuilder(
-                          stream: streamStapel4.stream,
+                          stream: stream1_4.stream,
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) {
                             final card = snapshot.data;
+                            if (snapshot.hasData) {
+                              this.oberklasse.kartenStapel4.add(card);
+                            }
                             if (!snapshot.hasData) {
                               return Stack(
                                 alignment: Alignment.topCenter,
@@ -3435,10 +3961,13 @@ class _PlayPageState extends State<PlayPage> {
                           }),
                       //Stapel5
                       StreamBuilder(
-                          stream: streamStapel5.stream,
+                          stream: stream1_5.stream,
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) {
                             final card = snapshot.data;
+                            if (snapshot.hasData) {
+                              this.oberklasse.kartenStapel5.add(card);
+                            }
                             if (!snapshot.hasData) {
                               return Stack(
                                 alignment: Alignment.topCenter,
@@ -4347,10 +4876,13 @@ class _PlayPageState extends State<PlayPage> {
                           }),
                       //Stapel6
                       StreamBuilder(
-                          stream: streamStapel6.stream,
+                          stream: stream1_6.stream,
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) {
                             final card = snapshot.data;
+                            if (snapshot.hasData) {
+                              this.oberklasse.kartenStapel6.add(card);
+                            }
                             if (!snapshot.hasData) {
                               return Stack(
                                 alignment: Alignment.topCenter,
@@ -5320,10 +5852,13 @@ class _PlayPageState extends State<PlayPage> {
                           }),
                       //Stapel7
                       StreamBuilder(
-                          stream: streamStapel7.stream,
+                          stream: stream1_7.stream,
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) {
                             final card = snapshot.data;
+                            if (snapshot.hasData) {
+                              this.oberklasse.kartenStapel7.add(card);
+                            }
                             if (!snapshot.hasData) {
                               return Stack(
                                 alignment: Alignment.topCenter,
