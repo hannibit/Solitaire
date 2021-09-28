@@ -357,6 +357,15 @@ class _PlayPageState extends State<PlayPage> {
     if (zahl == 1) {
       _stopWatchTimer.onExecute.add(StopWatchExecute.start);
     }
+    var bool = 0;
+    final str7_7 = stream7_7.stream;
+    stream7_7.add(this.oberklasse.kartenStapel1[0]);
+    StreamSubscription sub7_7 = str7_7.listen((event) {
+      bool = 1;
+      return;
+    });
+    sub7_7.cancel();
+    print(bool);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -6492,61 +6501,38 @@ class _PlayPageState extends State<PlayPage> {
                                 ),
                               );
                             }),
-                        StreamBuilder(
-                            stream: stream7_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[6],
-                                            7);
-                                        streamAdd(
-                                            this.oberklasse.kartenStapel7[6]);
-                                      },
-                                      child: this
-                                                  .oberklasse
-                                                  .kartenStapel7
-                                                  .length >=
-                                              7
-                                          ? Image.asset(this
-                                              .oberklasse
-                                              .kartenStapel7[6]
-                                              .getDateiname())
-                                          : Image.asset(
-                                              'playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: Container(
-                                  width: 100,
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel7[6], 7);
-                                    },
-                                    child: Image.asset(card.getDateiname()),
-                                  ),
-                                ),
-                              );
-                            }),
+                        Container(
+                          child: (bool == 1)?
+                          Container(
+                            width: 100,
+                            alignment: Alignment.topCenter,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.transparent,
+                                  shadowColor: Colors.transparent),
+                              onPressed: () {
+                                this.oberklasse.karteClick(
+                                    this.oberklasse.kartenStapel7[6],
+                                    7);
+                                streamAdd(
+                                    this.oberklasse.kartenStapel7[6]);
+                              },
+                              child: this
+                                  .oberklasse
+                                  .kartenStapel7
+                                  .length >=
+                                  7
+                                  ? Image.asset(this
+                                  .oberklasse
+                                  .kartenStapel7[6]
+                                  .getDateiname())
+                                  : Image.asset(
+                                  'playcards/versuch.png'),
+                            ),
+                          ):
+                          Text('Blub')
+
+                        ),
                         StreamBuilder(
                             stream: stream7_8.stream,
                             builder: (BuildContext context,
