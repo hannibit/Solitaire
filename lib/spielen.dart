@@ -157,51 +157,192 @@ class _PlayPageState extends State<PlayPage> {
     onChangeRawMinute: (value) => {},
   );
 
-  void streamAdd(Karte karte) {
-    final ort = this.oberklasse.ort[0];
-    final index = this.oberklasse.index[0];
-    switch (ort) {
-      case 'Ablage':
-        switch (index) {
-          case 1:
-            streamAblage1.add(karte);
-            return;
-          case 2:
-            streamAblage2.add(karte);
-            return;
-          case 3:
-            streamAblage3.add(karte);
-            return;
-          case 4:
-            streamAblage4.add(karte);
-            return;
-        }
-        return;
-      case 'Stapel':
-        switch (index) {
-          case 1:
-            stream1_1.add(karte);
-            return;
-          case 2:
-            stream1_2.add(karte);
-            return;
-          case 3:
-            stream1_3.add(karte);
-            return;
-          case 4:
-            stream1_4.add(karte);
-            return;
-          case 5:
-            stream1_5.add(karte);
-            return;
-          case 6:
-            stream1_6.add(karte);
-            return;
-          case 7:
-            stream1_7.add(karte);
-            return;
-        }
-        return;
+  void streamAdd(Karte karte, pos) {
+    // print(this.oberklasse.karteClick(karte, pos));
+    if (this.oberklasse.karteClick(karte, pos)) {
+      final ort = this.oberklasse.ort[0];
+      final index = this.oberklasse.index[0];
+      print(ort);
+      print(index);
+
+      switch (ort) {
+        case 'Ablage':
+          switch (index) {
+            case 1:
+              streamAblage1.add(karte);
+              return;
+            case 2:
+              streamAblage2.add(karte);
+              return;
+            case 3:
+              streamAblage3.add(karte);
+              return;
+            case 4:
+              streamAblage4.add(karte);
+              return;
+          }
+          return;
+          //TODO: stapel 2 problem? zähler wie viele karten pro stapel umgedreht sein müssen; gegen for laufen lassen; stapel auslagern und clear switch implementieren
+        case 'Stapel':
+          final Map myCategoryDynamic = {};
+          switch (index) {
+            case 1:
+              for(var i = 0; i < this.oberklasse.kartenStapel1.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel1[i] is Karte? stream1_1.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel1[i] is Karte? stream1_2.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel1[i] is Karte? stream1_3.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel1[i] is Karte? stream1_4.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel1[i] is Karte? stream1_5.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel1[i] is Karte? stream1_6.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel1[i] is Karte? stream1_7.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel1[i] is Karte? stream1_8.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel1[i] is Karte? stream1_9.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel1[i] is Karte? stream1_10.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel1[i] is Karte? stream1_11.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel1[i] is Karte? stream1_12.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel1[i] is Karte? stream1_13.add(this.oberklasse.kartenStapel1[i]) : null; break;
+                }
+              }
+              return;
+            case 2:
+              for(var i = 0; i < this.oberklasse.kartenStapel2.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel2[i] is Karte? stream2_1.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel2[i] is Karte? stream2_2.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel2[i] is Karte? stream2_3.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel2[i] is Karte? stream2_4.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel2[i] is Karte? stream2_5.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel2[i] is Karte? stream2_6.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel2[i] is Karte? stream2_7.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel2[i] is Karte? stream2_8.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel2[i] is Karte? stream2_9.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel2[i] is Karte? stream2_10.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel2[i] is Karte? stream2_11.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel2[i] is Karte? stream2_12.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel2[i] is Karte? stream2_13.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel2[i] is Karte? stream2_14.add(this.oberklasse.kartenStapel2[i]) : null; break;
+                }
+              }
+              return;
+            case 3:
+              for(var i = 0; i < this.oberklasse.kartenStapel3.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel3[i] is Karte? stream3_1.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel3[i] is Karte? stream3_2.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel3[i] is Karte? stream3_3.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel3[i] is Karte? stream3_4.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel3[i] is Karte? stream3_5.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel3[i] is Karte? stream3_6.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel3[i] is Karte? stream3_7.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel3[i] is Karte? stream3_8.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel3[i] is Karte? stream3_9.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel3[i] is Karte? stream3_10.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel3[i] is Karte? stream3_11.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel3[i] is Karte? stream3_12.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel3[i] is Karte? stream3_13.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel3[i] is Karte? stream3_14.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                  case 14: this.oberklasse.kartenStapel3[i] is Karte? stream3_15.add(this.oberklasse.kartenStapel3[i]) : null; break;
+                }
+              }
+              return;
+            case 4:
+              for(var i = 0; i < this.oberklasse.kartenStapel4.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel4[i] is Karte? stream4_1.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel4[i] is Karte? stream4_2.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel4[i] is Karte? stream4_3.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel4[i] is Karte? stream4_4.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel4[i] is Karte? stream4_5.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel4[i] is Karte? stream4_6.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel4[i] is Karte? stream4_7.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel4[i] is Karte? stream4_8.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel4[i] is Karte? stream4_9.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel4[i] is Karte? stream4_10.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel4[i] is Karte? stream4_11.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel4[i] is Karte? stream4_12.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel4[i] is Karte? stream4_13.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel4[i] is Karte? stream4_14.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 14: this.oberklasse.kartenStapel4[i] is Karte? stream4_15.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                  case 15: this.oberklasse.kartenStapel4[i] is Karte? stream4_16.add(this.oberklasse.kartenStapel4[i]) : null; break;
+                }
+              }
+              return;
+            case 5:
+              for(var i = 0; i < this.oberklasse.kartenStapel5.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel5[i] is Karte? stream5_1.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel5[i] is Karte? stream5_2.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel5[i] is Karte? stream5_3.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel5[i] is Karte? stream5_4.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel5[i] is Karte? stream5_5.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel5[i] is Karte? stream5_6.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel5[i] is Karte? stream5_7.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel5[i] is Karte? stream5_8.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel5[i] is Karte? stream5_9.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel5[i] is Karte? stream5_10.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel5[i] is Karte? stream5_11.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel5[i] is Karte? stream5_12.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel5[i] is Karte? stream5_13.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel5[i] is Karte? stream5_14.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 14: this.oberklasse.kartenStapel5[i] is Karte? stream5_15.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 15: this.oberklasse.kartenStapel5[i] is Karte? stream5_16.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                  case 16: this.oberklasse.kartenStapel5[i] is Karte? stream5_17.add(this.oberklasse.kartenStapel5[i]) : null; break;
+                }
+              }
+              return;
+            case 6:
+              for(var i = 0; i < this.oberklasse.kartenStapel6.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel6[i] is Karte? stream6_1.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel6[i] is Karte? stream6_2.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel6[i] is Karte? stream6_3.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel6[i] is Karte? stream6_4.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel6[i] is Karte? stream6_5.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel6[i] is Karte? stream6_6.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel6[i] is Karte? stream6_7.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel6[i] is Karte? stream6_8.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel6[i] is Karte? stream6_9.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel6[i] is Karte? stream6_10.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel6[i] is Karte? stream6_11.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel6[i] is Karte? stream6_12.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel6[i] is Karte? stream6_13.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel6[i] is Karte? stream6_14.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 14: this.oberklasse.kartenStapel6[i] is Karte? stream6_15.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 15: this.oberklasse.kartenStapel6[i] is Karte? stream6_16.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 16: this.oberklasse.kartenStapel6[i] is Karte? stream6_17.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                  case 17: this.oberklasse.kartenStapel6[i] is Karte? stream6_18.add(this.oberklasse.kartenStapel6[i]) : null; break;
+                }
+              }
+              return;
+            case 7:
+              for(var i = 0; i < this.oberklasse.kartenStapel7.length; i++) {
+                switch(i) {
+                  case 0: this.oberklasse.kartenStapel7[i] is Karte? stream7_1.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 1: this.oberklasse.kartenStapel7[i] is Karte? stream7_2.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 2: this.oberklasse.kartenStapel7[i] is Karte? stream7_3.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 3: this.oberklasse.kartenStapel7[i] is Karte? stream7_4.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 4: this.oberklasse.kartenStapel7[i] is Karte? stream7_5.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 5: this.oberklasse.kartenStapel7[i] is Karte? stream7_6.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 6: this.oberklasse.kartenStapel7[i] is Karte? stream7_7.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 7: this.oberklasse.kartenStapel7[i] is Karte? stream7_8.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 8: this.oberklasse.kartenStapel7[i] is Karte? stream7_9.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 9: this.oberklasse.kartenStapel7[i] is Karte? stream7_10.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 10: this.oberklasse.kartenStapel7[i] is Karte? stream7_11.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 11: this.oberklasse.kartenStapel7[i] is Karte? stream7_12.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 12: this.oberklasse.kartenStapel7[i] is Karte? stream7_13.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 13: this.oberklasse.kartenStapel7[i] is Karte? stream7_14.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 14: this.oberklasse.kartenStapel7[i] is Karte? stream7_15.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 15: this.oberklasse.kartenStapel7[i] is Karte? stream7_16.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 16: this.oberklasse.kartenStapel7[i] is Karte? stream7_17.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 17: this.oberklasse.kartenStapel7[i] is Karte? stream7_18.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                  case 18: this.oberklasse.kartenStapel7[i] is Karte? stream7_19.add(this.oberklasse.kartenStapel7[i]) : null; break;
+                }
+              }
+              return;
+          }
+          return;
+      }
     }
   }
 
@@ -359,13 +500,20 @@ class _PlayPageState extends State<PlayPage> {
     }
     var bool = 0;
     final str7_7 = stream7_7.stream;
-    stream7_7.add(this.oberklasse.kartenStapel1[0]);
-    StreamSubscription sub7_7 = str7_7.listen((event) {
-      bool = 1;
-      return;
+    // stream7_7.add(this.oberklasse.kartenStapel7[0]);
+    print(str7_7);
+    print(stream7_7.hasListener);
+    StreamSubscription sub7_7 = str7_7.listen((event) => {
+      print(this.oberklasse.kartenStapel7),
+      bool = 1,
+      print("----------------------1"),
+      print(event),
+      print("----------------------2")
+      // return;
     });
+    print(stream7_7.hasListener);
     sub7_7.cancel();
-    print(bool);
+    // print(bool);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -440,7 +588,7 @@ class _PlayPageState extends State<PlayPage> {
                                       shadowColor: Colors.transparent),
                                   onPressed: () {
                                     //TODO: Karten vom Stapel hier nehmen
-                                    streamAdd(this.oberklasse.anzeigeKarte[0]);
+                                    streamAdd(this.oberklasse.anzeigeKarte[0], 0);
                                   },
                                   child: this.oberklasse.anzeigeKarte.length > 0
                                       ? Image.asset(this
@@ -621,11 +769,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel1[0],
-                                            1);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel1[0]);
+                                            this.oberklasse.kartenStapel1[0], 1);
                                       },
                                       child: this
                                                   .oberklasse
@@ -675,14 +820,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[1],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[1]);
+                                                      .kartenStapel1[1], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -735,14 +875,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[2],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[2]);
+                                                      .kartenStapel1[2], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -795,14 +930,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[3],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[3]);
+                                                      .kartenStapel1[3], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -855,14 +985,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[4],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[4]);
+                                                      .kartenStapel1[4], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -915,14 +1040,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[5],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[5]);
+                                                      .kartenStapel1[5], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -975,14 +1095,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[6],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[6]);
+                                                      .kartenStapel1[6], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1035,14 +1150,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[7],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[7]);
+                                                      .kartenStapel1[7], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1095,14 +1205,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[8],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[8]);
+                                                      .kartenStapel1[8], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1155,14 +1260,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[9],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[9]);
+                                                      .kartenStapel1[9], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1216,14 +1316,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[10],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[10]);
+                                                      .kartenStapel1[10], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1277,14 +1372,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[11],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[11]);
+                                                      .kartenStapel1[11], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1338,14 +1428,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel1[12],
-                                                      1);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel1[12]);
+                                                      .kartenStapel1[12], 1);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1400,11 +1485,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel2[0],
-                                            2);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel2[0]);
+                                            this.oberklasse.kartenStapel2[0], 2);
                                       },
                                       child: this
                                                   .oberklasse
@@ -1457,11 +1539,8 @@ class _PlayPageState extends State<PlayPage> {
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
                                         onPressed: () {
-                                          this.oberklasse.karteClick(
-                                              this.oberklasse.kartenStapel2[1],
-                                              2);
                                           streamAdd(
-                                              this.oberklasse.kartenStapel2[1]);
+                                              this.oberklasse.kartenStapel2[1], 2);
                                         },
                                         child: this
                                                     .oberklasse
@@ -1512,14 +1591,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[2],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[2]);
+                                                      .kartenStapel2[2], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1572,14 +1646,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[3],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[3]);
+                                                      .kartenStapel2[3], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1632,14 +1701,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[4],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[4]);
+                                                      .kartenStapel2[4], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1692,14 +1756,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[5],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[5]);
+                                                      .kartenStapel2[5], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1752,14 +1811,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[6],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[6]);
+                                                      .kartenStapel2[6], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1812,14 +1866,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[7],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[7]);
+                                                      .kartenStapel2[7], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1872,14 +1921,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[8],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[8]);
+                                                      .kartenStapel2[8], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1932,14 +1976,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[9],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[9]);
+                                                      .kartenStapel2[9], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -1993,14 +2032,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[10],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[10]);
+                                                      .kartenStapel2[10], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -2054,14 +2088,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[11],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[11]);
+                                                      .kartenStapel2[11], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -2115,14 +2144,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[12],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[12]);
+                                                      .kartenStapel2[12], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -2176,14 +2200,9 @@ class _PlayPageState extends State<PlayPage> {
                                                     shadowColor:
                                                         Colors.transparent),
                                                 onPressed: () {
-                                                  this.oberklasse.karteClick(
-                                                      this
-                                                          .oberklasse
-                                                          .kartenStapel2[13],
-                                                      2);
                                                   streamAdd(this
                                                       .oberklasse
-                                                      .kartenStapel2[13]);
+                                                      .kartenStapel2[13], 2);
                                                 },
                                                 child: Image.asset(this
                                                     .oberklasse
@@ -2236,10 +2255,8 @@ class _PlayPageState extends State<PlayPage> {
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel3[0], 3);
                                       streamAdd(
-                                          this.oberklasse.kartenStapel3[0]);
+                                          this.oberklasse.kartenStapel3[0], 3);
                                     },
                                     child: this
                                                 .oberklasse
@@ -2292,11 +2309,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel3[1],
-                                            3);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel3[1]);
+                                            this.oberklasse.kartenStapel3[1], 3);
                                       },
                                       child: this
                                                   .oberklasse
@@ -2353,11 +2367,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel3[2],
-                                            3);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel3[2]);
+                                            this.oberklasse.kartenStapel3[2], 3);
                                       },
                                       child: this
                                                   .oberklasse
@@ -2410,14 +2421,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[3],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[3]);
+                                                    .kartenStapel3[3], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2469,14 +2475,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[4],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[4]);
+                                                    .kartenStapel3[4], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2528,14 +2529,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[5],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[5]);
+                                                    .kartenStapel3[5], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2587,14 +2583,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[6],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[6]);
+                                                    .kartenStapel3[6], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2646,14 +2637,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[7],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[7]);
+                                                    .kartenStapel3[7], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2705,14 +2691,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[8],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[8]);
+                                                    .kartenStapel3[8], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2765,14 +2746,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[9],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[9]);
+                                                    .kartenStapel3[9], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2825,14 +2801,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[10],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[10]);
+                                                    .kartenStapel3[10], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2885,14 +2856,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[11],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[11]);
+                                                    .kartenStapel3[11], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -2945,14 +2911,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[12],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[12]);
+                                                    .kartenStapel3[12], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3005,14 +2966,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[13],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[13]);
+                                                    .kartenStapel3[13], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3065,14 +3021,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel3[14],
-                                                    3);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel3[14]);
+                                                    .kartenStapel3[14], 3);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3123,10 +3074,8 @@ class _PlayPageState extends State<PlayPage> {
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel4[0], 4);
                                       streamAdd(
-                                          this.oberklasse.kartenStapel4[0]);
+                                          this.oberklasse.kartenStapel4[0], 4);
                                     },
                                     child: this
                                                 .oberklasse
@@ -3179,11 +3128,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel4[1],
-                                            4);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel4[1]);
+                                            this.oberklasse.kartenStapel4[1], 4);
                                       },
                                       child: this
                                                   .oberklasse
@@ -3240,11 +3186,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel4[2],
-                                            4);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel4[2]);
+                                            this.oberklasse.kartenStapel4[2], 4);
                                       },
                                       child: this
                                                   .oberklasse
@@ -3301,11 +3244,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel4[3],
-                                            4);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel4[3]);
+                                            this.oberklasse.kartenStapel4[3], 4);
                                       },
                                       child: this
                                                   .oberklasse
@@ -3358,14 +3298,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[4],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[4]);
+                                                    .kartenStapel4[4], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3417,14 +3352,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[5],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[5]);
+                                                    .kartenStapel4[5], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3476,14 +3406,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[6],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[6]);
+                                                    .kartenStapel4[6], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3535,14 +3460,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[7],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[7]);
+                                                    .kartenStapel4[7], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3594,14 +3514,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[8],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[8]);
+                                                    .kartenStapel4[8], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3654,14 +3569,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[9],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[9]);
+                                                    .kartenStapel4[9], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3714,14 +3624,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[10],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[10]);
+                                                    .kartenStapel4[10], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3774,14 +3679,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[11],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[11]);
+                                                    .kartenStapel4[11], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3834,14 +3734,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[12],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[12]);
+                                                    .kartenStapel4[12], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3894,14 +3789,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[13],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[13]);
+                                                    .kartenStapel4[13], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -3954,14 +3844,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[14],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[14]);
+                                                    .kartenStapel4[14], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4014,14 +3899,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel4[15],
-                                                    4);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel4[15]);
+                                                    .kartenStapel4[15], 4);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4072,10 +3952,8 @@ class _PlayPageState extends State<PlayPage> {
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel5[0], 5);
                                       streamAdd(
-                                          this.oberklasse.kartenStapel5[0]);
+                                          this.oberklasse.kartenStapel5[0], 5);
                                     },
                                     child: this
                                                 .oberklasse
@@ -4128,11 +4006,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel5[1],
-                                            5);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel5[1]);
+                                            this.oberklasse.kartenStapel5[1], 5);
                                       },
                                       child: this
                                                   .oberklasse
@@ -4189,11 +4064,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel5[2],
-                                            5);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel5[2]);
+                                            this.oberklasse.kartenStapel5[2], 5);
                                       },
                                       child: this
                                                   .oberklasse
@@ -4250,11 +4122,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel5[3],
-                                            5);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel5[3]);
+                                            this.oberklasse.kartenStapel5[3], 5);
                                       },
                                       child: this
                                                   .oberklasse
@@ -4311,11 +4180,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel5[4],
-                                            5);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel5[4]);
+                                            this.oberklasse.kartenStapel5[4], 5);
                                       },
                                       child: this
                                                   .oberklasse
@@ -4368,14 +4234,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[5],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[5]);
+                                                    .kartenStapel5[5], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4427,14 +4288,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[6],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[6]);
+                                                    .kartenStapel5[6], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4486,14 +4342,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[7],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[7]);
+                                                    .kartenStapel5[7], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4545,14 +4396,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[8],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[8]);
+                                                    .kartenStapel5[8], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4605,14 +4451,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[9],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[9]);
+                                                    .kartenStapel5[9], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4665,14 +4506,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[10],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[10]);
+                                                    .kartenStapel5[10], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4725,14 +4561,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[11],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[11]);
+                                                    .kartenStapel5[11], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4785,14 +4616,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[12],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[12]);
+                                                    .kartenStapel5[12], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4845,14 +4671,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[13],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[13]);
+                                                    .kartenStapel5[13], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4905,14 +4726,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[14],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[14]);
+                                                    .kartenStapel5[14], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -4965,14 +4781,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[15],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[15]);
+                                                    .kartenStapel5[15], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5025,14 +4836,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel5[16],
-                                                    5);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel5[16]);
+                                                    .kartenStapel5[16], 5);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5083,10 +4889,8 @@ class _PlayPageState extends State<PlayPage> {
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel6[0], 6);
                                       streamAdd(
-                                          this.oberklasse.kartenStapel6[0]);
+                                          this.oberklasse.kartenStapel6[0], 6);
                                     },
                                     child: this
                                                 .oberklasse
@@ -5139,11 +4943,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel6[1],
-                                            6);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel6[1]);
+                                            this.oberklasse.kartenStapel6[1], 6);
                                       },
                                       child: this
                                                   .oberklasse
@@ -5200,11 +5001,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel6[2],
-                                            6);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel6[2]);
+                                            this.oberklasse.kartenStapel6[2], 6);
                                       },
                                       child: this
                                                   .oberklasse
@@ -5261,11 +5059,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel6[3],
-                                            6);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel6[3]);
+                                            this.oberklasse.kartenStapel6[3], 6);
                                       },
                                       child: this
                                                   .oberklasse
@@ -5322,11 +5117,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel6[4],
-                                            6);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel6[4]);
+                                            this.oberklasse.kartenStapel6[4], 6);
                                       },
                                       child: this
                                                   .oberklasse
@@ -5383,11 +5175,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel6[5],
-                                            6);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel6[5]);
+                                            this.oberklasse.kartenStapel6[5], 6);
                                       },
                                       child: this
                                                   .oberklasse
@@ -5440,14 +5229,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[6],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[6]);
+                                                    .kartenStapel6[6], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5499,14 +5283,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[7],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[7]);
+                                                    .kartenStapel6[7], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5558,14 +5337,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[8],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[8]);
+                                                    .kartenStapel6[8], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5618,14 +5392,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[9],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[9]);
+                                                    .kartenStapel6[9], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5678,14 +5447,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[10],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[10]);
+                                                    .kartenStapel6[10], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5738,14 +5502,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[11],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[11]);
+                                                    .kartenStapel6[11], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5798,14 +5557,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[12],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[12]);
+                                                    .kartenStapel6[12], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5858,14 +5612,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[13],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[13]);
+                                                    .kartenStapel6[13], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5918,14 +5667,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[14],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[14]);
+                                                    .kartenStapel6[14], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -5978,14 +5722,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[15],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[15]);
+                                                    .kartenStapel6[15], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6038,14 +5777,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[16],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[16]);
+                                                    .kartenStapel6[16], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6098,14 +5832,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel6[17],
-                                                    6);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel6[17]);
+                                                    .kartenStapel6[17], 6);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6156,10 +5885,8 @@ class _PlayPageState extends State<PlayPage> {
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {
-                                      this.oberklasse.karteClick(
-                                          this.oberklasse.kartenStapel7[0], 7);
                                       streamAdd(
-                                          this.oberklasse.kartenStapel7[0]);
+                                          this.oberklasse.kartenStapel7[0], 7);
                                     },
                                     child: this
                                                 .oberklasse
@@ -6212,11 +5939,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[1],
-                                            7);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel7[1]);
+                                            this.oberklasse.kartenStapel7[1], 7);
                                       },
                                       child: this
                                                   .oberklasse
@@ -6273,11 +5997,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[2],
-                                            7);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel7[2]);
+                                            this.oberklasse.kartenStapel7[2], 7);
                                       },
                                       child: this
                                                   .oberklasse
@@ -6334,11 +6055,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[3],
-                                            7);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel7[3]);
+                                            this.oberklasse.kartenStapel7[3], 7);
                                       },
                                       child: this
                                                   .oberklasse
@@ -6395,11 +6113,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[4],
-                                            7);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel7[4]);
+                                            this.oberklasse.kartenStapel7[4], 7);
                                       },
                                       child: this
                                                   .oberklasse
@@ -6456,11 +6171,8 @@ class _PlayPageState extends State<PlayPage> {
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
                                       onPressed: () {
-                                        this.oberklasse.karteClick(
-                                            this.oberklasse.kartenStapel7[5],
-                                            7);
                                         streamAdd(
-                                            this.oberklasse.kartenStapel7[5]);
+                                            this.oberklasse.kartenStapel7[5], 7);
                                       },
                                       child: this
                                                   .oberklasse
@@ -6501,38 +6213,59 @@ class _PlayPageState extends State<PlayPage> {
                                 ),
                               );
                             }),
-                        Container(
-                          child: (bool == 1)?
-                          Container(
-                            width: 100,
-                            alignment: Alignment.topCenter,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.transparent,
-                                  shadowColor: Colors.transparent),
-                              onPressed: () {
-                                this.oberklasse.karteClick(
-                                    this.oberklasse.kartenStapel7[6],
-                                    7);
-                                streamAdd(
-                                    this.oberklasse.kartenStapel7[6]);
-                              },
-                              child: this
-                                  .oberklasse
-                                  .kartenStapel7
-                                  .length >=
-                                  7
-                                  ? Image.asset(this
-                                  .oberklasse
-                                  .kartenStapel7[6]
-                                  .getDateiname())
-                                  : Image.asset(
-                                  'playcards/versuch.png'),
-                            ),
-                          ):
-                          Text('Blub')
-
-                        ),
+                        StreamBuilder(
+                            stream: stream7_7.stream,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<dynamic> snapshot) {
+                              final card = snapshot.data;
+                              if (!snapshot.hasData) {
+                                return Positioned(
+                                  top: 180,
+                                  child: Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {
+                                        stream7_7.add(this.oberklasse.kartenStapel7[6]);
+                                        streamAdd(
+                                            this.oberklasse.kartenStapel7[6], 7);
+                                      },
+                                      child: this
+                                          .oberklasse
+                                          .kartenStapel7
+                                          .length >=
+                                          7
+                                          ? Image.asset(this
+                                          .oberklasse
+                                          .kartenStapel7[6]
+                                          .getDateiname())
+                                          : Image.asset(
+                                          'playcards/versuch.png'),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return Positioned(
+                                top: 180,
+                                child: Container(
+                                  width: 100,
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.karteClick(
+                                          this.oberklasse.kartenStapel7[6], 7);
+                                    },
+                                    child: Image.asset(card.getDateiname()),
+                                  ),
+                                ),
+                              );
+                            }),
                         StreamBuilder(
                             stream: stream7_8.stream,
                             builder: (BuildContext context,
@@ -6551,14 +6284,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[7],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[7]);
+                                                    .kartenStapel7[7], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6610,14 +6338,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[8],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[8]);
+                                                    .kartenStapel7[8], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6670,14 +6393,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[9],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[9]);
+                                                    .kartenStapel7[9], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6730,14 +6448,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[10],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[10]);
+                                                    .kartenStapel7[10], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6790,14 +6503,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[11],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[11]);
+                                                    .kartenStapel7[11], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6850,14 +6558,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[12],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[12]);
+                                                    .kartenStapel7[12], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6910,14 +6613,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[13],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[13]);
+                                                    .kartenStapel7[13], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -6970,14 +6668,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[14],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[14]);
+                                                    .kartenStapel7[14], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -7030,14 +6723,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[15],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[15]);
+                                                    .kartenStapel7[15], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -7090,14 +6778,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[16],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[16]);
+                                                    .kartenStapel7[16], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -7150,14 +6833,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[17],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[17]);
+                                                    .kartenStapel7[17], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
@@ -7210,14 +6888,9 @@ class _PlayPageState extends State<PlayPage> {
                                                   shadowColor:
                                                       Colors.transparent),
                                               onPressed: () {
-                                                this.oberklasse.karteClick(
-                                                    this
-                                                        .oberklasse
-                                                        .kartenStapel7[18],
-                                                    7);
                                                 streamAdd(this
                                                     .oberklasse
-                                                    .kartenStapel7[18]);
+                                                    .kartenStapel7[18], 7);
                                               },
                                               child: Image.asset(this
                                                   .oberklasse
