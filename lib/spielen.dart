@@ -157,11 +157,185 @@ class _PlayPageState extends State<PlayPage> {
     onChangeRawMinute: (value) => {},
   );
 
-  void streamAdd(Karte karte, pos) {
-    // print(this.oberklasse.karteClick(karte, pos));
-    if (this.oberklasse.karteClick(karte, pos)) {
+  void updateStream1(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel1.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel1[i] is Karte? stream1_1.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel1[i] is Karte? stream1_2.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel1[i] is Karte? stream1_3.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel1[i] is Karte? stream1_4.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel1[i] is Karte? stream1_5.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel1[i] is Karte? stream1_6.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel1[i] is Karte? stream1_7.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel1[i] is Karte? stream1_8.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel1[i] is Karte? stream1_9.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel1[i] is Karte? stream1_10.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel1[i] is Karte? stream1_11.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel1[i] is Karte? stream1_12.add(this.oberklasse.kartenStapel1[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel1[i] is Karte? stream1_13.add(this.oberklasse.kartenStapel1[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream2(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel2.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel2[i] is Karte? stream2_1.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel2[i] is Karte? stream2_2.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel2[i] is Karte? stream2_3.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel2[i] is Karte? stream2_4.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel2[i] is Karte? stream2_5.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel2[i] is Karte? stream2_6.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel2[i] is Karte? stream2_7.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel2[i] is Karte? stream2_8.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel2[i] is Karte? stream2_9.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel2[i] is Karte? stream2_10.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel2[i] is Karte? stream2_11.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel2[i] is Karte? stream2_12.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel2[i] is Karte? stream2_13.add(this.oberklasse.kartenStapel2[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel2[i] is Karte? stream2_14.add(this.oberklasse.kartenStapel2[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream3(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel3.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel3[i] is Karte? stream3_1.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel3[i] is Karte? stream3_2.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel3[i] is Karte? stream3_3.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel3[i] is Karte? stream3_4.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel3[i] is Karte? stream3_5.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel3[i] is Karte? stream3_6.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel3[i] is Karte? stream3_7.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel3[i] is Karte? stream3_8.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel3[i] is Karte? stream3_9.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel3[i] is Karte? stream3_10.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel3[i] is Karte? stream3_11.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel3[i] is Karte? stream3_12.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel3[i] is Karte? stream3_13.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel3[i] is Karte? stream3_14.add(this.oberklasse.kartenStapel3[i]) : null; break;
+        case 14: this.oberklasse.kartenStapel3[i] is Karte? stream3_15.add(this.oberklasse.kartenStapel3[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream4(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel4.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel4[i] is Karte? stream4_1.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel4[i] is Karte? stream4_2.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel4[i] is Karte? stream4_3.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel4[i] is Karte? stream4_4.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel4[i] is Karte? stream4_5.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel4[i] is Karte? stream4_6.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel4[i] is Karte? stream4_7.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel4[i] is Karte? stream4_8.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel4[i] is Karte? stream4_9.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel4[i] is Karte? stream4_10.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel4[i] is Karte? stream4_11.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel4[i] is Karte? stream4_12.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel4[i] is Karte? stream4_13.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel4[i] is Karte? stream4_14.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 14: this.oberklasse.kartenStapel4[i] is Karte? stream4_15.add(this.oberklasse.kartenStapel4[i]) : null; break;
+        case 15: this.oberklasse.kartenStapel4[i] is Karte? stream4_16.add(this.oberklasse.kartenStapel4[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream5(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel5.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel5[i] is Karte? stream5_1.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel5[i] is Karte? stream5_2.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel5[i] is Karte? stream5_3.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel5[i] is Karte? stream5_4.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel5[i] is Karte? stream5_5.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel5[i] is Karte? stream5_6.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel5[i] is Karte? stream5_7.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel5[i] is Karte? stream5_8.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel5[i] is Karte? stream5_9.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel5[i] is Karte? stream5_10.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel5[i] is Karte? stream5_11.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel5[i] is Karte? stream5_12.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel5[i] is Karte? stream5_13.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel5[i] is Karte? stream5_14.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 14: this.oberklasse.kartenStapel5[i] is Karte? stream5_15.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 15: this.oberklasse.kartenStapel5[i] is Karte? stream5_16.add(this.oberklasse.kartenStapel5[i]) : null; break;
+        case 16: this.oberklasse.kartenStapel5[i] is Karte? stream5_17.add(this.oberklasse.kartenStapel5[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream6(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel6.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel6[i] is Karte? stream6_1.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel6[i] is Karte? stream6_2.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel6[i] is Karte? stream6_3.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel6[i] is Karte? stream6_4.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel6[i] is Karte? stream6_5.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel6[i] is Karte? stream6_6.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel6[i] is Karte? stream6_7.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel6[i] is Karte? stream6_8.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel6[i] is Karte? stream6_9.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel6[i] is Karte? stream6_10.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel6[i] is Karte? stream6_11.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel6[i] is Karte? stream6_12.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel6[i] is Karte? stream6_13.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel6[i] is Karte? stream6_14.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 14: this.oberklasse.kartenStapel6[i] is Karte? stream6_15.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 15: this.oberklasse.kartenStapel6[i] is Karte? stream6_16.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 16: this.oberklasse.kartenStapel6[i] is Karte? stream6_17.add(this.oberklasse.kartenStapel6[i]) : null; break;
+        case 17: this.oberklasse.kartenStapel6[i] is Karte? stream6_18.add(this.oberklasse.kartenStapel6[i]) : null; break;
+      }
+    }
+  }
+
+  void updateStream7(Karte karte) {
+    for(var i = 0; i < this.oberklasse.kartenStapel7.length; i++) {
+      switch(i) {
+        case 0: this.oberklasse.kartenStapel7[i] is Karte? stream7_1.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 1: this.oberklasse.kartenStapel7[i] is Karte? stream7_2.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 2: this.oberklasse.kartenStapel7[i] is Karte? stream7_3.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 3: this.oberklasse.kartenStapel7[i] is Karte? stream7_4.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 4: this.oberklasse.kartenStapel7[i] is Karte? stream7_5.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 5: this.oberklasse.kartenStapel7[i] is Karte? stream7_6.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 6: this.oberklasse.kartenStapel7[i] is Karte? stream7_7.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 7: this.oberklasse.kartenStapel7[i] is Karte? stream7_8.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 8: this.oberklasse.kartenStapel7[i] is Karte? stream7_9.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 9: this.oberklasse.kartenStapel7[i] is Karte? stream7_10.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 10: this.oberklasse.kartenStapel7[i] is Karte? stream7_11.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 11: this.oberklasse.kartenStapel7[i] is Karte? stream7_12.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 12: this.oberklasse.kartenStapel7[i] is Karte? stream7_13.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 13: this.oberklasse.kartenStapel7[i] is Karte? stream7_14.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 14: this.oberklasse.kartenStapel7[i] is Karte? stream7_15.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 15: this.oberklasse.kartenStapel7[i] is Karte? stream7_16.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 16: this.oberklasse.kartenStapel7[i] is Karte? stream7_17.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 17: this.oberklasse.kartenStapel7[i] is Karte? stream7_18.add(this.oberklasse.kartenStapel7[i]) : null; break;
+        case 18: this.oberklasse.kartenStapel7[i] is Karte? stream7_19.add(this.oberklasse.kartenStapel7[i]) : null; break;
+      }
+    }
+  }
+
+  void updateHerkunftsStream(Karte karte, stapel) {
+    switch(stapel) {
+      case 1: updateStream1(karte); return;
+      case 2: updateStream2(karte); return;
+      case 3: updateStream3(karte); return;
+      case 4: updateStream4(karte); return;
+      case 5: updateStream5(karte); return;
+      case 6: updateStream6(karte); return;
+      case 7: updateStream7(karte); return;
+    }
+  }
+
+  void streamAdd(Karte karte, stapel) {
+    // print(this.oberklasse.karteClick(karte, stapel));
+    if (this.oberklasse.karteClick(karte, stapel)) {
       final ort = this.oberklasse.ort[0];
       final index = this.oberklasse.index[0];
+      var herkunft = 0;
       print(ort);
       print(index);
 
@@ -170,175 +344,54 @@ class _PlayPageState extends State<PlayPage> {
           switch (index) {
             case 1:
               streamAblage1.add(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 2:
               streamAblage2.add(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 3:
               streamAblage3.add(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 4:
               streamAblage4.add(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
           }
           return;
           //TODO: stapel 2 problem? zähler wie viele karten pro stapel umgedreht sein müssen; gegen for laufen lassen; stapel auslagern und clear switch implementieren
+         //vlt Attribut bei Kartendeck und update bei karteClick oder abhängig von length der Liste pro Stapel
+        //Stapel 2: erste  Karte wird gelöscht und mit der zweiten ersetzt. Zweiter Slot ist leer. drei bleibt gleich.
         case 'Stapel':
-          final Map myCategoryDynamic = {};
           switch (index) {
             case 1:
-              for(var i = 0; i < this.oberklasse.kartenStapel1.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel1[i] is Karte? stream1_1.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel1[i] is Karte? stream1_2.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel1[i] is Karte? stream1_3.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel1[i] is Karte? stream1_4.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel1[i] is Karte? stream1_5.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel1[i] is Karte? stream1_6.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel1[i] is Karte? stream1_7.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel1[i] is Karte? stream1_8.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel1[i] is Karte? stream1_9.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel1[i] is Karte? stream1_10.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel1[i] is Karte? stream1_11.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel1[i] is Karte? stream1_12.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel1[i] is Karte? stream1_13.add(this.oberklasse.kartenStapel1[i]) : null; break;
-                }
-              }
+              updateStream1(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 2:
-              for(var i = 0; i < this.oberklasse.kartenStapel2.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel2[i] is Karte? stream2_1.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel2[i] is Karte? stream2_2.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel2[i] is Karte? stream2_3.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel2[i] is Karte? stream2_4.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel2[i] is Karte? stream2_5.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel2[i] is Karte? stream2_6.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel2[i] is Karte? stream2_7.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel2[i] is Karte? stream2_8.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel2[i] is Karte? stream2_9.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel2[i] is Karte? stream2_10.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel2[i] is Karte? stream2_11.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel2[i] is Karte? stream2_12.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel2[i] is Karte? stream2_13.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel2[i] is Karte? stream2_14.add(this.oberklasse.kartenStapel2[i]) : null; break;
-                }
-              }
+              updateStream2(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 3:
-              for(var i = 0; i < this.oberklasse.kartenStapel3.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel3[i] is Karte? stream3_1.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel3[i] is Karte? stream3_2.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel3[i] is Karte? stream3_3.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel3[i] is Karte? stream3_4.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel3[i] is Karte? stream3_5.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel3[i] is Karte? stream3_6.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel3[i] is Karte? stream3_7.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel3[i] is Karte? stream3_8.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel3[i] is Karte? stream3_9.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel3[i] is Karte? stream3_10.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel3[i] is Karte? stream3_11.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel3[i] is Karte? stream3_12.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel3[i] is Karte? stream3_13.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel3[i] is Karte? stream3_14.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                  case 14: this.oberklasse.kartenStapel3[i] is Karte? stream3_15.add(this.oberklasse.kartenStapel3[i]) : null; break;
-                }
-              }
+              updateStream3(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 4:
-              for(var i = 0; i < this.oberklasse.kartenStapel4.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel4[i] is Karte? stream4_1.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel4[i] is Karte? stream4_2.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel4[i] is Karte? stream4_3.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel4[i] is Karte? stream4_4.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel4[i] is Karte? stream4_5.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel4[i] is Karte? stream4_6.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel4[i] is Karte? stream4_7.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel4[i] is Karte? stream4_8.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel4[i] is Karte? stream4_9.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel4[i] is Karte? stream4_10.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel4[i] is Karte? stream4_11.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel4[i] is Karte? stream4_12.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel4[i] is Karte? stream4_13.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel4[i] is Karte? stream4_14.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 14: this.oberklasse.kartenStapel4[i] is Karte? stream4_15.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                  case 15: this.oberklasse.kartenStapel4[i] is Karte? stream4_16.add(this.oberklasse.kartenStapel4[i]) : null; break;
-                }
-              }
+              updateStream4(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 5:
-              for(var i = 0; i < this.oberklasse.kartenStapel5.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel5[i] is Karte? stream5_1.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel5[i] is Karte? stream5_2.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel5[i] is Karte? stream5_3.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel5[i] is Karte? stream5_4.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel5[i] is Karte? stream5_5.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel5[i] is Karte? stream5_6.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel5[i] is Karte? stream5_7.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel5[i] is Karte? stream5_8.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel5[i] is Karte? stream5_9.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel5[i] is Karte? stream5_10.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel5[i] is Karte? stream5_11.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel5[i] is Karte? stream5_12.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel5[i] is Karte? stream5_13.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel5[i] is Karte? stream5_14.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 14: this.oberklasse.kartenStapel5[i] is Karte? stream5_15.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 15: this.oberklasse.kartenStapel5[i] is Karte? stream5_16.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                  case 16: this.oberklasse.kartenStapel5[i] is Karte? stream5_17.add(this.oberklasse.kartenStapel5[i]) : null; break;
-                }
-              }
+              updateStream5(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 6:
-              for(var i = 0; i < this.oberklasse.kartenStapel6.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel6[i] is Karte? stream6_1.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel6[i] is Karte? stream6_2.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel6[i] is Karte? stream6_3.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel6[i] is Karte? stream6_4.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel6[i] is Karte? stream6_5.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel6[i] is Karte? stream6_6.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel6[i] is Karte? stream6_7.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel6[i] is Karte? stream6_8.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel6[i] is Karte? stream6_9.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel6[i] is Karte? stream6_10.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel6[i] is Karte? stream6_11.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel6[i] is Karte? stream6_12.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel6[i] is Karte? stream6_13.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel6[i] is Karte? stream6_14.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 14: this.oberklasse.kartenStapel6[i] is Karte? stream6_15.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 15: this.oberklasse.kartenStapel6[i] is Karte? stream6_16.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 16: this.oberklasse.kartenStapel6[i] is Karte? stream6_17.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                  case 17: this.oberklasse.kartenStapel6[i] is Karte? stream6_18.add(this.oberklasse.kartenStapel6[i]) : null; break;
-                }
-              }
+              updateStream6(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
             case 7:
-              for(var i = 0; i < this.oberklasse.kartenStapel7.length; i++) {
-                switch(i) {
-                  case 0: this.oberklasse.kartenStapel7[i] is Karte? stream7_1.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 1: this.oberklasse.kartenStapel7[i] is Karte? stream7_2.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 2: this.oberklasse.kartenStapel7[i] is Karte? stream7_3.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 3: this.oberklasse.kartenStapel7[i] is Karte? stream7_4.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 4: this.oberklasse.kartenStapel7[i] is Karte? stream7_5.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 5: this.oberklasse.kartenStapel7[i] is Karte? stream7_6.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 6: this.oberklasse.kartenStapel7[i] is Karte? stream7_7.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 7: this.oberklasse.kartenStapel7[i] is Karte? stream7_8.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 8: this.oberklasse.kartenStapel7[i] is Karte? stream7_9.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 9: this.oberklasse.kartenStapel7[i] is Karte? stream7_10.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 10: this.oberklasse.kartenStapel7[i] is Karte? stream7_11.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 11: this.oberklasse.kartenStapel7[i] is Karte? stream7_12.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 12: this.oberklasse.kartenStapel7[i] is Karte? stream7_13.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 13: this.oberklasse.kartenStapel7[i] is Karte? stream7_14.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 14: this.oberklasse.kartenStapel7[i] is Karte? stream7_15.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 15: this.oberklasse.kartenStapel7[i] is Karte? stream7_16.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 16: this.oberklasse.kartenStapel7[i] is Karte? stream7_17.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 17: this.oberklasse.kartenStapel7[i] is Karte? stream7_18.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                  case 18: this.oberklasse.kartenStapel7[i] is Karte? stream7_19.add(this.oberklasse.kartenStapel7[i]) : null; break;
-                }
-              }
+              updateStream7(karte);
+              updateHerkunftsStream(karte, stapel);
               return;
           }
           return;
@@ -498,22 +551,6 @@ class _PlayPageState extends State<PlayPage> {
     if (zahl == 1) {
       _stopWatchTimer.onExecute.add(StopWatchExecute.start);
     }
-    var bool = 0;
-    final str7_7 = stream7_7.stream;
-    // stream7_7.add(this.oberklasse.kartenStapel7[0]);
-    print(str7_7);
-    print(stream7_7.hasListener);
-    StreamSubscription sub7_7 = str7_7.listen((event) => {
-      print(this.oberklasse.kartenStapel7),
-      bool = 1,
-      print("----------------------1"),
-      print(event),
-      print("----------------------2")
-      // return;
-    });
-    print(stream7_7.hasListener);
-    sub7_7.cancel();
-    // print(bool);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -6926,7 +6963,8 @@ class _PlayPageState extends State<PlayPage> {
                             }),
                       ]),
                     ],
-                  )),
+                  )
+              ),
             ),
           ],
         ),
