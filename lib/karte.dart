@@ -9,17 +9,15 @@ class Karte {
     this.farbe = pFarbe;
     this.wert = pWert;
     switch (this.wert) {
+      case 42: dateiname = 'playcards/versuch.png';
+      break;
       case 1 :  dateiname = "playcards/" + farbe + "ass.JPG";
-
       break;
       case 11 : dateiname = "playcards/" + farbe + "bube.JPG";
-
       break;
       case 12 : dateiname = "playcards/" + farbe + "dame.JPG";
-
       break;
       case 13 : dateiname = "playcards/" + farbe + "könig.JPG";
-
       break;
       default: dateiname = "playcards/" + farbe + this.wert.toString() + ".JPG";
 
@@ -43,6 +41,14 @@ class KartenDeck {
   List<Karte> karten = [];
   int kartenIndex = 1;
   List<Karte> anzeigeKarte = [];
+
+  int rueckenStapel1 = 0;
+  int rueckenStapel2 = 1;
+  int rueckenStapel3 = 2;
+  int rueckenStapel4 = 3;
+  int rueckenStapel5 = 4;
+  int rueckenStapel6 = 5;
+  int rueckenStapel7 = 6;
 
   var rng = new Random();
   List<Karte> kartenStapel1 = [];
