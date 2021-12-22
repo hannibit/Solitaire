@@ -39,7 +39,7 @@ class Karte {
 
 class KartenDeck {
   List<Karte> karten = [];
-  int kartenIndex = 1;
+  int kartenIndex = 0;
   List<Karte> anzeigeKarte = [];
 
   int rueckenStapel1 = 0;
@@ -168,13 +168,24 @@ class KartenDeck {
       case 'kre' : return "schwarz";
     }
   }
+  
+  topStapelRemove() {
+    print(this.karten);
+    print(this.karten[this.kartenIndex-1].getDateiname());
+    this.karten.removeAt(this.kartenIndex-1);
+    print(this.karten);
+  }
 
   topStapelClick() {
     this.anzeigeKarte.clear();
-    this.anzeigeKarte.add(this.karten[this.kartenIndex]);
-    this.kartenIndex++;
-    if (this.kartenIndex == this.karten.length) {
+    print(this.kartenIndex);
+    if (this.kartenIndex > this.karten.length -1) {
       this.kartenIndex = 0;
+      this.anzeigeKarte.add(new Karte(42, "Herz"));
+    }
+    else {
+      this.anzeigeKarte.add(this.karten[this.kartenIndex]);
+      this.kartenIndex++;
     }
   }
 
@@ -193,6 +204,7 @@ class KartenDeck {
 
   gibRichtigenStapel(nummer) {
     switch (nummer) {
+      case 0: return this.anzeigeKarte;
       case 1: return this.kartenStapel1;
       case 2: return this.kartenStapel2;
       case 3: return this.kartenStapel3;
@@ -215,43 +227,63 @@ class KartenDeck {
   karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
     ort.clear();
     index.clear();
-    for (var i = 1; i < 5; i++) {
-      if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
-        for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+      for (var i = 1; i < 5; i++) {
+        if (this.kannAufeinander(this
+            .gibRichtigenFertig(i)
+            .length != 0 ? this.gibRichtigenFertig(i)[this
+            .gibRichtigenFertig(i)
+            .length - 1] : null, karte, true)) {
+          for (var j = this.gibIndex(
+              this.gibRichtigenStapel(stapel), karte); j < this
+              .gibRichtigenStapel(stapel)
+              .length; j++) {
 //          print(i); //kartenstapel auf den angelegt werden kann
 //          print(j); //wenn mehrere dann abbruch weil karten drauf liegen (also nicht erreichbar)
-          if (this.wertAufeinanderfolgend(j, this.gibRichtigenStapel(stapel).length)) {
-            this.gibRichtigenFertig(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
-            this.gibRichtigenStapel(stapel).removeAt(j);
+            if (this.wertAufeinanderfolgend(j, this
+                .gibRichtigenStapel(stapel)
+                .length)) {
+              this.gibRichtigenFertig(i).add(
+                  this.gibRichtigenStapel(stapel).elementAt(j));
+              this.gibRichtigenStapel(stapel).removeAt(j);
+            }
+            ort.add('Ablage');
+            index.add(i);
+            j = 10;
+            i = 10;
+            this.printAll();
+            return true;
           }
-          ort.add('Ablage');
-          index.add(i);
-          j = 10;
-          i = 10;
-          this.printAll();
-          return true;
         }
       }
-    }
 
-    for (var i = 1; i < 8; i++) {
-      if (this.kannAufeinander(karte, this.gibRichtigenStapel(i).length != 0 ? this.gibRichtigenStapel(i)[this.gibRichtigenStapel(i).length - 1] : null, false)) {
-        for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+      for (var i = 1; i < 8; i++) {
+        if (this.kannAufeinander(karte, this
+            .gibRichtigenStapel(i)
+            .length != 0 ? this.gibRichtigenStapel(i)[this
+            .gibRichtigenStapel(i)
+            .length - 1] : null, false)) {
+          for (var j = this.gibIndex(
+              this.gibRichtigenStapel(stapel), karte); j < this
+              .gibRichtigenStapel(stapel)
+              .length; j++) {
 //          print(i); //kartenstapel auf den angelegt werden kann
 //          print(j);
-          while (this.gibRichtigenStapel(stapel).length > j) {
-            this.gibRichtigenStapel(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
-            this.gibRichtigenStapel(stapel).removeAt(j);
+            while (this
+                .gibRichtigenStapel(stapel)
+                .length > j) {
+              this.gibRichtigenStapel(i).add(
+                  this.gibRichtigenStapel(stapel).elementAt(j));
+              this.gibRichtigenStapel(stapel).removeAt(j);
+            }
+            ort.add('Stapel');
+            index.add(i);
+            j = 10;
+            i = 10;
+            this.printAll();
+            return true;
           }
-          ort.add('Stapel');
-          index.add(i);
-          j = 10;
-          i = 10;
-          this.printAll();
-          return true;
         }
       }
-    }
     return false;
   }
 
