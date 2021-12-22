@@ -296,7 +296,6 @@ class _PlayPageState extends State<PlayPage> {
 
   void updateStream7(Karte karte) {
     for(var i = this.oberklasse.rueckenStapel7; i < 19; i++) {
-      print(i);
       switch(i) {
         case 0: this.oberklasse.kartenStapel7.length >= 1? stream7_1.add(this.oberklasse.kartenStapel7[i]) : stream7_1.add(null); break;
         case 1: this.oberklasse.kartenStapel7.length >= 2? stream7_2.add(this.oberklasse.kartenStapel7[i]) : stream7_2.add(null); break;
@@ -321,9 +320,8 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateHerkunftsStream(Karte karte, stapel) {
+  void updateHerkunft(Karte karte, stapel) {
     checkLength(stapel);
-    print(this.empty);
     switch(stapel) {
       case 1: updateStream1(karte); break;
       case 2: updateStream2(karte); break;
@@ -341,7 +339,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel1.length == this.oberklasse.rueckenStapel1) {
           if (this.oberklasse.rueckenStapel1 != 0) {
             this.oberklasse.rueckenStapel1 = this.oberklasse.rueckenStapel1 - 1;
-            print("true1");
           }
         }
         return;
@@ -349,7 +346,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel2.length == this.oberklasse.rueckenStapel2) {
           if (this.oberklasse.rueckenStapel2 != 0) {
             this.oberklasse.rueckenStapel2 = this.oberklasse.rueckenStapel2 - 1;
-            print("true2");
           }
         }
         return;
@@ -357,7 +353,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel3.length == this.oberklasse.rueckenStapel3) {
           if (this.oberklasse.rueckenStapel3 != 0) {
             this.oberklasse.rueckenStapel3 = this.oberklasse.rueckenStapel3 - 1;
-            print("true3");
           }
         }
         return;
@@ -365,7 +360,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel4.length == this.oberklasse.rueckenStapel4) {
           if (this.oberklasse.rueckenStapel4 != 0) {
             this.oberklasse.rueckenStapel4 = this.oberklasse.rueckenStapel4 - 1;
-            print("true4");
           }
         }
         return;
@@ -373,7 +367,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel5.length == this.oberklasse.rueckenStapel5) {
           if (this.oberklasse.rueckenStapel5 != 0) {
             this.oberklasse.rueckenStapel5 = this.oberklasse.rueckenStapel5 - 1;
-            print("true5");
           }
         }
         return;
@@ -381,7 +374,6 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel6.length == this.oberklasse.rueckenStapel6) {
           if (this.oberklasse.rueckenStapel6 != 0) {
             this.oberklasse.rueckenStapel6 = this.oberklasse.rueckenStapel6 - 1;
-            print("true6");
           }
         }
         return;
@@ -389,82 +381,66 @@ class _PlayPageState extends State<PlayPage> {
         if (this.oberklasse.kartenStapel7.length == this.oberklasse.rueckenStapel7) {
           if (this.oberklasse.rueckenStapel7 != 0) {
             this.oberklasse.rueckenStapel7 = this.oberklasse.rueckenStapel7 - 1;
-            print("true7");
           }
         }
         return;
     }
   }
 
-  void matchStart() {
-    print("matchStart();");
-    stream1_1.add(this.oberklasse.kartenStapel1[0]);
-
-    stream7_7.add(this.oberklasse.kartenStapel7[6]);
-  }
-
   void streamAdd(Karte karte, stapel) {
-    // print(this.oberklasse.karteClick(karte, stapel));
     if (this.oberklasse.karteClick(karte, stapel)) {
       final ort = this.oberklasse.ort[0];
       final index = this.oberklasse.index[0];
-      var herkunft = 0;
-      print(ort);
-      print(index);
-
       switch (ort) {
         case 'Ablage':
           switch (index) {
             case 1:
               streamAblage1.add(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 2:
               streamAblage2.add(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 3:
               streamAblage3.add(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 4:
               streamAblage4.add(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
           }
           return;
-          //TODO: stapel 2 problem? zähler wie viele karten pro stapel umgedreht sein müssen; gegen for laufen lassen; stapel auslagern und clear switch implementieren
-         //vlt Attribut bei Kartendeck und update bei karteClick oder abhängig von length der Liste pro Stapel
-        //Stapel 2: erste  Karte wird gelöscht und mit der zweiten ersetzt. Zweiter Slot ist leer. drei bleibt gleich.
         case 'Stapel':
           switch (index) {
             case 1:
               updateStream1(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 2:
               updateStream2(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 3:
               updateStream3(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 4:
               updateStream4(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 5:
               updateStream5(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 6:
               updateStream6(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
             case 7:
               updateStream7(karte);
-              updateHerkunftsStream(karte, stapel);
+              updateHerkunft(karte, stapel);
               return;
           }
           return;
@@ -481,8 +457,6 @@ class _PlayPageState extends State<PlayPage> {
     ]);
 
     this.kartendeck = this.oberklasse.getKartenDeck();
-
-    this.matchStart();
 
     _stopWatchTimer.rawTime.listen((value) => {});
     _stopWatchTimer.minuteTime.listen((value) => {});
@@ -723,7 +697,6 @@ class _PlayPageState extends State<PlayPage> {
                     ],
                   ),
                   //Ablage
-                  //TODO: Karten von der Ablage nehmen
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -748,7 +721,9 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {},
+                                onPressed: () {
+                                  //TODO: Karten von der Ablage nehmen
+                                },
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -775,7 +750,9 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {},
+                                onPressed: () {
+
+                                },
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -802,7 +779,9 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {},
+                                onPressed: () {
+
+                                },
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -829,7 +808,9 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {},
+                                onPressed: () {
+
+                                },
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -1086,7 +1067,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 8
                                     ? Positioned(
@@ -1120,7 +1100,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 9
                                     ? Positioned(
@@ -1154,7 +1133,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 10
                                     ? Positioned(
@@ -1188,7 +1166,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 11
                                     ? Positioned(
@@ -1222,7 +1199,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 12
                                     ? Positioned(
@@ -1256,7 +1232,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel1.length >= 13
                                     ? Positioned(
@@ -1527,7 +1502,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_8.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 8
                                       ? Positioned(
@@ -1561,7 +1535,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_9.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 9
                                       ? Positioned(
@@ -1595,7 +1568,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_10.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 10
                                       ? Positioned(
@@ -1629,7 +1601,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_11.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 11
                                       ? Positioned(
@@ -1663,7 +1634,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_12.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 12
                                       ? Positioned(
@@ -1697,7 +1667,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_13.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 13
                                       ? Positioned(
@@ -1731,7 +1700,6 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream2_14.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                final card = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return this.oberklasse.kartenStapel2.length >= 14
                                       ? Positioned(
@@ -2001,7 +1969,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 8
                                     ? Positioned(
@@ -2035,7 +2002,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 9
                                     ? Positioned(
@@ -2069,7 +2035,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 10
                                     ? Positioned(
@@ -2103,7 +2068,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 11
                                     ? Positioned(
@@ -2137,7 +2101,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 12
                                     ? Positioned(
@@ -2171,7 +2134,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 13
                                     ? Positioned(
@@ -2205,7 +2167,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_14.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 14
                                     ? Positioned(
@@ -2239,7 +2200,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream3_15.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel3.length >= 15
                                     ? Positioned(
@@ -2508,7 +2468,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 8
                                     ? Positioned(
@@ -2542,7 +2501,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 9
                                     ? Positioned(
@@ -2576,7 +2534,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 10
                                     ? Positioned(
@@ -2610,7 +2567,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 11
                                     ? Positioned(
@@ -2644,7 +2600,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 12
                                     ? Positioned(
@@ -2678,7 +2633,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 13
                                     ? Positioned(
@@ -2712,7 +2666,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_14.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 14
                                     ? Positioned(
@@ -2746,7 +2699,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_15.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 15
                                     ? Positioned(
@@ -2780,7 +2732,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_16.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 16
                                     ? Positioned(
@@ -3049,7 +3000,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 8
                                     ? Positioned(
@@ -3083,7 +3033,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 9
                                     ? Positioned(
@@ -3117,7 +3066,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 10
                                     ? Positioned(
@@ -3151,7 +3099,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 11
                                     ? Positioned(
@@ -3185,7 +3132,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 12
                                     ? Positioned(
@@ -3219,7 +3165,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 13
                                     ? Positioned(
@@ -3253,7 +3198,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_14.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 14
                                     ? Positioned(
@@ -3287,7 +3231,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_15.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 15
                                     ? Positioned(
@@ -3321,7 +3264,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_16.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 16
                                     ? Positioned(
@@ -3355,7 +3297,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream5_17.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel5.length >= 17
                                     ? Positioned(
@@ -3622,7 +3563,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 8
                                     ? Positioned(
@@ -3656,7 +3596,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 9
                                     ? Positioned(
@@ -3690,7 +3629,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 10
                                     ? Positioned(
@@ -3724,7 +3662,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 11
                                     ? Positioned(
@@ -3758,7 +3695,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 12
                                     ? Positioned(
@@ -3792,7 +3728,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 13
                                     ? Positioned(
@@ -3826,7 +3761,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_14.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 14
                                     ? Positioned(
@@ -3860,7 +3794,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_15.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 15
                                     ? Positioned(
@@ -3894,7 +3827,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_16.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 16
                                     ? Positioned(
@@ -3928,7 +3860,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_17.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 17
                                     ? Positioned(
@@ -3962,7 +3893,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream6_18.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel6.length >= 18
                                     ? Positioned(
@@ -4231,7 +4161,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_8.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 8
                                     ? Positioned(
@@ -4265,7 +4194,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_9.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 9
                                     ? Positioned(
@@ -4299,7 +4227,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_10.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 10
                                     ? Positioned(
@@ -4333,7 +4260,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_11.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 11
                                     ? Positioned(
@@ -4367,7 +4293,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_12.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 12
                                     ? Positioned(
@@ -4401,7 +4326,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_13.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 13
                                     ? Positioned(
@@ -4435,7 +4359,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_14.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 14
                                     ? Positioned(
@@ -4469,7 +4392,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_15.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 15
                                     ? Positioned(
@@ -4503,7 +4425,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_16.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 16
                                     ? Positioned(
@@ -4537,7 +4458,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_17.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 17
                                     ? Positioned(
@@ -4571,7 +4491,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_18.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 18
                                     ? Positioned(
@@ -4605,7 +4524,6 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream7_19.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
                               if (!snapshot.hasData) {
                                 return this.oberklasse.kartenStapel7.length >= 19
                                     ? Positioned(

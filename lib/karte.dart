@@ -215,7 +215,6 @@ class KartenDeck {
   karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
     ort.clear();
     index.clear();
-  print("ja");
     for (var i = 1; i < 5; i++) {
       if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
         for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
@@ -230,8 +229,6 @@ class KartenDeck {
           j = 10;
           i = 10;
           this.printAll();
-          print(ort);
-          print(index);
           return true;
         }
       }
@@ -251,8 +248,6 @@ class KartenDeck {
           j = 10;
           i = 10;
           this.printAll();
-          print(ort);
-          print(index);
           return true;
         }
       }
