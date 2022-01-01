@@ -67,6 +67,10 @@ class KartenDeck {
   List<String> ort = [];
   List<int> index = [];
 
+  var spielen;
+  Karte leer = new Karte(42, "Herz");
+  List<String> zeichenList = ["herz", "karo", "kreuz", "pik"];
+
   KartenDeck() {
     for(var i = 1; i < 14; i++) {
       this.karten.add(new Karte(i, "herz"));
@@ -126,7 +130,7 @@ class KartenDeck {
   kannAufeinander(card1, card2, end) {
     if (end) {
       if (card1 != null) {
-        if (rotOderSchwarz(card1.farbe) == rotOderSchwarz(card2.farbe)) {
+        if (card1.farbe.substring(0,3) == card2.farbe.substring(0,3)) {
           if (this.wertAufeinanderfolgend(card1.wert, card2.wert)) {
             return true;
           }
@@ -170,15 +174,15 @@ class KartenDeck {
   }
   
   topStapelRemove() {
-    print(this.karten);
-    print(this.karten[this.kartenIndex-1].getDateiname());
-    this.karten.removeAt(this.kartenIndex-1);
-    print(this.karten);
+    if (this.karten.length > 0) {
+      this.karten.removeAt(this.kartenIndex-1);
+    }
   }
 
-  topStapelClick() {
+  topStapelClick(context) {
+    print(context);
+    this.spielen = context;
     this.anzeigeKarte.clear();
-    print(this.kartenIndex);
     if (this.kartenIndex > this.karten.length -1) {
       this.kartenIndex = 0;
       this.anzeigeKarte.add(new Karte(42, "Herz"));
@@ -251,6 +255,7 @@ class KartenDeck {
             j = 10;
             i = 10;
             this.printAll();
+//            this.loesbar();
             return true;
           }
         }
@@ -280,6 +285,7 @@ class KartenDeck {
             j = 10;
             i = 10;
             this.printAll();
+//            this.loesbar();
             return true;
           }
         }
@@ -287,17 +293,64 @@ class KartenDeck {
     return false;
   }
 
+  clear() {
+    this.karten.clear();
+    this.anzeigeKarte.clear();
+    this.kartenIndex = 0;
+    this.kartenStapel1.clear();
+    this.kartenStapel2.clear();
+    this.kartenStapel3.clear();
+    this.kartenStapel4.clear();
+    this.kartenStapel5.clear();
+    this.kartenStapel6.clear();
+    this.kartenStapel7.clear();
+    this.fertig1.add(this.findeRichtigesZeichen(this.fertig1));
+    this.fertig2.add(this.findeRichtigesZeichen(this.fertig2));
+    this.fertig3.add(this.findeRichtigesZeichen(this.fertig3));
+    this.fertig4.add(this.findeRichtigesZeichen(this.fertig4));
+  }
+
   printAll() {
-    print(this.kartenStapel1);
-    print(this.kartenStapel2);
-    print(this.kartenStapel3);
-    print(this.kartenStapel4);
-    print(this.kartenStapel5);
-    print(this.kartenStapel6);
-    print(this.kartenStapel7);
-    print(this.fertig1);
-    print(this.fertig2);
-    print(this.fertig3);
-    print(this.fertig4);
+//    print(this.kartenStapel1);
+//    print(this.kartenStapel2);
+//    print(this.kartenStapel3);
+//    print(this.kartenStapel4);
+//    print(this.kartenStapel5);
+//    print(this.kartenStapel6);
+//    print(this.kartenStapel7);
+//    print(this.fertig1);
+//    print(this.fertig2);
+//    print(this.fertig3);
+//    print(this.fertig4);
+  }
+
+  void loesbar() {
+    if (rueckenStapel1 == 0 && rueckenStapel2 == 0 && rueckenStapel3 == 0 && rueckenStapel4 == 0 && rueckenStapel5 == 0 && rueckenStapel6 == 0 && rueckenStapel7 == 0) {
+      print("LÖSBAR");
+      this.spielen.streamloesbar.add(true);
+    }
+  }
+
+  Karte findeRichtigesZeichen(list) {
+    print(list.length);
+    if (list.length != 0) {
+      switch(list[0].farbe) {
+        case 'pik': this.removeFromList("pik"); return new Karte(13, "pik");
+        case 'herz': this.removeFromList("herz"); return new Karte(13, "herz");
+        case 'karo': this.removeFromList("karo"); return new Karte(13, "karo");
+        case 'kreuz': this.removeFromList("kreuz"); return new Karte(13, "kreuz");
+      }
+    }
+    var save = new Karte(13, this.zeichenList[0]);
+    this.zeichenList.removeAt(0);
+    return save;
+  }
+
+  removeFromList(zeichen) {
+    for (var i = 0; i < this.zeichenList.length; i++) {
+      if (this.zeichenList[i] == zeichen) {
+        this.zeichenList.removeAt(i);
+      }
+    }
   }
 }

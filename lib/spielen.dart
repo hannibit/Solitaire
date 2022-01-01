@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:solitaire_wiprojekt_wise202122/karte.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:solitaire_wiprojekt_wise202122/color.dart';
 
 class PlayPage extends StatefulWidget {
   static Future<void> navigatorPush(BuildContext context) async {
@@ -28,6 +29,8 @@ class _PlayPageState extends State<PlayPage> {
   final streamAblage2 = StreamController<Karte>();
   final streamAblage3 = StreamController<Karte>();
   final streamAblage4 = StreamController<Karte>();
+
+  final streamloesbar = StreamController<bool>();
 
   final stream1_1 = StreamController<Karte?>.broadcast();
   final stream1_2 = StreamController<Karte?>.broadcast();
@@ -157,11 +160,9 @@ class _PlayPageState extends State<PlayPage> {
     onChangeRawMinute: (value) => {},
   );
 
-  void updateStream0(Karte karte) {
+  void updateStream0() {
     this.oberklasse.topStapelRemove();
-    print(this.oberklasse.kartenIndex);
     this.oberklasse.kartenIndex -= 2;
-    print(this.oberklasse.kartenIndex);
     this.oberklasse.anzeigeKarte.clear;
     if (this.oberklasse.kartenIndex < 0) {
       this.oberklasse.kartenIndex = 0;
@@ -175,7 +176,7 @@ class _PlayPageState extends State<PlayPage> {
 //    this.oberklasse.topStapelClick();
   }
 
-  void updateStream1(Karte karte) {
+  void updateStream1() {
     for(var i = this.oberklasse.rueckenStapel1; i < 13; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel1.length >= 1? stream1_1.add(this.oberklasse.kartenStapel1[i]) : stream1_1.add(null); break;
@@ -193,9 +194,13 @@ class _PlayPageState extends State<PlayPage> {
         case 12: this.oberklasse.kartenStapel1.length >= 13? stream1_13.add(this.oberklasse.kartenStapel1[i]) : stream1_13.add(null); break;
       }
     }
+    if (this.oberklasse.kartenStapel1.length == 0) {
+      print("jo");
+      this.stream1_1.add(this.oberklasse.leer);
+    }
   }
 
-  void updateStream2(Karte karte) {
+  void updateStream2() {
     for(var i = this.oberklasse.rueckenStapel2; i < 14; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel2.length >= 1? stream2_1.add(this.oberklasse.kartenStapel2[i]) : stream2_1.add(null); break;
@@ -216,7 +221,7 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateStream3(Karte karte) {
+  void updateStream3() {
     for(var i = this.oberklasse.rueckenStapel3; i < 15; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel3.length >= 1? stream3_1.add(this.oberklasse.kartenStapel3[i]) : stream3_1.add(null); break;
@@ -238,7 +243,7 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateStream4(Karte karte) {
+  void updateStream4() {
     for(var i = this.oberklasse.rueckenStapel4; i < 16; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel4.length >= 1? stream4_1.add(this.oberklasse.kartenStapel4[i]) : stream4_1.add(null); break;
@@ -261,7 +266,7 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateStream5(Karte karte) {
+  void updateStream5() {
     for(var i = this.oberklasse.rueckenStapel5; i < 17; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel5.length >= 1? stream5_1.add(this.oberklasse.kartenStapel5[i]) : stream5_1.add(null); break;
@@ -285,7 +290,7 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateStream6(Karte karte) {
+  void updateStream6() {
     for(var i = this.oberklasse.rueckenStapel6; i < 18; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel6.length >= 1? stream6_1.add(this.oberklasse.kartenStapel6[i]) : stream6_1.add(null); break;
@@ -310,7 +315,7 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateStream7(Karte karte) {
+  void updateStream7() {
     for(var i = this.oberklasse.rueckenStapel7; i < 19; i++) {
       switch(i) {
         case 0: this.oberklasse.kartenStapel7.length >= 1? stream7_1.add(this.oberklasse.kartenStapel7[i]) : stream7_1.add(null); break;
@@ -336,17 +341,17 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
-  void updateHerkunft(Karte karte, stapel) {
+  void updateHerkunft(stapel) {
     checkLength(stapel);
     switch(stapel) {
-      case 0: updateStream0(karte); break;
-      case 1: updateStream1(karte); break;
-      case 2: updateStream2(karte); break;
-      case 3: updateStream3(karte); break;
-      case 4: updateStream4(karte); break;
-      case 5: updateStream5(karte); break;
-      case 6: updateStream6(karte); break;
-      case 7: updateStream7(karte); break;
+      case 0: updateStream0(); break;
+      case 1: updateStream1(); break;
+      case 2: updateStream2(); break;
+      case 3: updateStream3(); break;
+      case 4: updateStream4(); break;
+      case 5: updateStream5(); break;
+      case 6: updateStream6(); break;
+      case 7: updateStream7(); break;
     }
   }
 
@@ -413,53 +418,54 @@ class _PlayPageState extends State<PlayPage> {
           switch (index) {
             case 1:
               streamAblage1.add(karte);
-              updateHerkunft(karte, stapel);
+              updateHerkunft(stapel);
               return;
             case 2:
               streamAblage2.add(karte);
-              updateHerkunft(karte, stapel);
+              updateHerkunft(stapel);
               return;
             case 3:
               streamAblage3.add(karte);
-              updateHerkunft(karte, stapel);
+              updateHerkunft(stapel);
               return;
             case 4:
               streamAblage4.add(karte);
-              updateHerkunft(karte, stapel);
+              updateHerkunft(stapel);
               return;
           }
           return;
         case 'Stapel':
           switch (index) {
             case 1:
-              updateStream1(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream1();
+              updateHerkunft(stapel);
+              break;
             case 2:
-              updateStream2(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream2();
+              updateHerkunft(stapel);
+              break;
             case 3:
-              updateStream3(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream3();
+              updateHerkunft(stapel);
+              break;
             case 4:
-              updateStream4(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream4();
+              updateHerkunft(stapel);
+              break;
             case 5:
-              updateStream5(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream5();
+              updateHerkunft(stapel);
+              break;
             case 6:
-              updateStream6(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream6();
+              updateHerkunft(stapel);
+              break;
             case 7:
-              updateStream7(karte);
-              updateHerkunft(karte, stapel);
-              return;
+              updateStream7();
+              updateHerkunft(stapel);
+              break;
           }
+          this.oberklasse.loesbar();
           return;
       }
     }
@@ -490,6 +496,8 @@ class _PlayPageState extends State<PlayPage> {
     streamAblage2.close();
     streamAblage3.close();
     streamAblage4.close();
+
+    streamloesbar.close();
 
     stream1_1.close();
     stream1_2.close();
@@ -650,6 +658,39 @@ class _PlayPageState extends State<PlayPage> {
           ],
         ),
       ),
+      floatingActionButton: new Container(
+        child: StreamBuilder(
+          stream: streamloesbar.stream,
+          builder: (BuildContext context,
+            AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data) {
+                return FloatingActionButton.extended(
+                    onPressed: () {
+                      this.oberklasse.clear();
+                      this.updateStream0();
+                      this.updateStream1();
+                      this.updateStream2();
+                      this.updateStream3();
+                      this.updateStream4();
+                      this.updateStream5();
+                      this.updateStream6();
+                      this.updateStream7();
+                      this.streamAblage1.add(this.oberklasse.fertig1[this.oberklasse.fertig1.length-1]);
+                      this.streamAblage2.add(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1]);
+                      this.streamAblage3.add(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1]);
+                      this.streamAblage4.add(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1]);
+                    },
+                    label: const Text('Lösen'),
+                    icon: const Icon(Icons.check),
+                    backgroundColor: Swatch.color
+                );
+              }
+            }
+            return new Container();
+          }
+        )
+    ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -671,7 +712,7 @@ class _PlayPageState extends State<PlayPage> {
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
                           onPressed: () {
-                            this.oberklasse.topStapelClick();
+                            this.oberklasse.topStapelClick(this);
                             streamDraw.add(this.oberklasse.gibStapelKarte());
                           },
                           child: Image.asset('playcards/ruecken.JPG'),
@@ -845,30 +886,50 @@ class _PlayPageState extends State<PlayPage> {
                             stream: stream1_1.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-                                  width: 100,
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
-                                    child: this.oberklasse.kartenStapel1.length >= 1 ?
-                                    Image.asset(this.oberklasse.kartenStapel1[0].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                  ),
-                                );
+                              if (snapshot.data != null) {
+                                if (snapshot.data.wert == 42) {
+                                  return Container(
+                                    margin: const EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(3.0),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black)
+                                    ),
+                                    child: Image.asset('playcards/versuch.png'),
+                                  );
+                                }
                               }
-                              return this.oberklasse.kartenStapel1.length >= 1?
-                              this.oberklasse.rueckenStapel1 <= 0?
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.transparent,
-                                      shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
-                                  child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname())
-                              ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                                  return Container(
+                                    width: 100,
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {
+                                        streamAdd(
+                                            this.oberklasse.kartenStapel1[0],
+                                            1);
+                                      },
+                                      child: this.oberklasse.kartenStapel1
+                                          .length >= 1 ?
+                                      Image.asset(
+                                          this.oberklasse.kartenStapel1[0]
+                                              .getDateiname()) : Image.asset(
+                                          'playcards/versuch.png'),
+                                    ),
+                                  );
+                              }
+//                              return this.oberklasse.kartenStapel1.length >= 1?
+//                              this.oberklasse.rueckenStapel1 <= 0?
+//                              ElevatedButton(
+//                                  style: ElevatedButton.styleFrom(
+//                                      primary: Colors.transparent,
+//                                      shadowColor: Colors.transparent),
+//                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
+//                                  child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname())
+//                              ) : Image.asset('playcards/ruecken.JPG') :
+//                              Text(snapshot.hasData? snapshot.data.getDateiname() : "");
+                            ),
                         StreamBuilder(
                             stream: stream1_2.stream,
                             builder: (BuildContext context,
