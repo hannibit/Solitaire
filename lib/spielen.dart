@@ -882,122 +882,130 @@ class _PlayPageState extends State<PlayPage> {
                       //Stapel1
                       Stack(
                         alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
+                        Container(
+                          width: 100,
+                          child: StreamBuilder(
                             stream: stream1_1.stream,
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              if (snapshot.data != null) {
-                                if (snapshot.data.wert == 42) {
-                                  return Container(
-                                    margin: const EdgeInsets.all(15.0),
-                                    padding: const EdgeInsets.all(3.0),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.black)
-                                    ),
-                                    child: Image.asset('playcards/versuch.png'),
-                                  );
-                                }
-                              }
-                                  return Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {
-                                        streamAdd(
-                                            this.oberklasse.kartenStapel1[0],
-                                            1);
-                                      },
-                                      child: this.oberklasse.kartenStapel1
-                                          .length >= 1 ?
-                                      Image.asset(
-                                          this.oberklasse.kartenStapel1[0]
-                                              .getDateiname()) : Image.asset(
-                                          'playcards/versuch.png'),
-                                    ),
-                                  );
-                              }
-//                              return this.oberklasse.kartenStapel1.length >= 1?
-//                              this.oberklasse.rueckenStapel1 <= 0?
-//                              ElevatedButton(
-//                                  style: ElevatedButton.styleFrom(
-//                                      primary: Colors.transparent,
-//                                      shadowColor: Colors.transparent),
-//                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
-//                                  child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname())
-//                              ) : Image.asset('playcards/ruecken.JPG') :
-//                              Text(snapshot.hasData? snapshot.data.getDateiname() : "");
-                            ),
-                        StreamBuilder(
-                            stream: stream1_2.stream,
-                            builder: (BuildContext context,
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                            }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream1_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+    if (snapshot.data == null) {
+    return Container(
+    alignment: Alignment.topCenter,
+    child: ElevatedButton(
+    style: ElevatedButton.styleFrom(
+    primary: Colors.transparent,
+    shadowColor: Colors.transparent),
+    onPressed: () {
+    streamAdd(
+    this.oberklasse.kartenStapel1[0],
+    1);
+    },
+    child: this.oberklasse.kartenStapel1
+        .length >= 1 ?
+    Image.asset(
+    this.oberklasse.kartenStapel1[0]
+        .getDateiname()) : Image.asset(
+    'playcards/versuch.png'),
+    ),
+    );
+    }
+    else {
+    return Container();
+    }
+    }
+
+                                ),
+                                ),
+                                StreamBuilder(
+                                stream: stream1_2.stream,
+                                builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
+                                if (!snapshot.hasData && snapshot.data != null) {
                                 return Positioned(
-                                  top: 30,
-                                  child: Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
+                                top: 30,
+                                child: Container(
+
+                                alignment: Alignment.topCenter,
+                                child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
+                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
+                                child: this.oberklasse.kartenStapel1.length >= 2 ?
+                                Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                ),
+                                ),
                                 );
-                              }
-                              return Positioned(
+                                }
+                                return Positioned(
                                 top: 30,
                                 child: this.oberklasse.kartenStapel1.length >= 2?
                                 this.oberklasse.rueckenStapel1 <= 1?
                                 ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())
+                                style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
+                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
+                                child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())
                                 ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-                                    width: 100,
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
                                 );
-                              }
-                              return Positioned(
+                                }),
+                                StreamBuilder(
+                                stream: stream1_3.stream,
+                                builder: (BuildContext context,
+                                AsyncSnapshot<dynamic> snapshot) {
+                                if (!snapshot.hasData && snapshot.data != null) {
+                                return Positioned(
+                                top: 60,
+                                child: Container(
+
+                                alignment: Alignment.topCenter,
+                                child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
+                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
+                                child: this.oberklasse.kartenStapel1.length >= 3 ?
+                                Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                ),
+                                ),
+                                );
+                                }
+                                return Positioned(
                                 top: 60,
                                 child: this.oberklasse.kartenStapel1.length >= 3?
                                 this.oberklasse.rueckenStapel1 <= 2?
                                 ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())
+                                style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
+                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
+                                child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())
                                 ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
+                                );
+                                }
+                              ),
                         StreamBuilder(
                             stream: stream1_4.stream,
                             builder: (BuildContext context,
@@ -1006,7 +1014,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1040,7 +1048,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1074,7 +1082,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1108,7 +1116,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1143,7 +1151,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 210,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1176,7 +1184,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 240,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1209,7 +1217,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 270,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1242,7 +1250,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 300,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1275,7 +1283,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 330,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1308,7 +1316,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 360,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1343,7 +1351,7 @@ class _PlayPageState extends State<PlayPage> {
                                   AsyncSnapshot<dynamic> snapshot) {
                                 if (!snapshot.hasData && snapshot.data != null) {
                                   return Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1373,7 +1381,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 30,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1407,7 +1415,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 60,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1441,7 +1449,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 90,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1475,7 +1483,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 120,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1509,7 +1517,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 150,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1543,7 +1551,7 @@ class _PlayPageState extends State<PlayPage> {
                                   return Positioned(
                                     top: 180,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -1578,7 +1586,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 210,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1611,7 +1619,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 240,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1644,7 +1652,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 270,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1677,7 +1685,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 300,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1710,7 +1718,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 330,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1743,7 +1751,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 360,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1776,7 +1784,7 @@ class _PlayPageState extends State<PlayPage> {
                                       ? Positioned(
                                     top: 390,
                                     child: Container(
-                                      width: 100,
+
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -1810,7 +1818,7 @@ class _PlayPageState extends State<PlayPage> {
                                 AsyncSnapshot<dynamic> snapshot) {
                               if (!snapshot.hasData && snapshot.data != null) {
                                 return Container(
-                                  width: 100,
+
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -1840,7 +1848,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 30,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1874,7 +1882,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 60,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1908,7 +1916,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1942,7 +1950,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -1976,7 +1984,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2010,7 +2018,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2045,7 +2053,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 210,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2078,7 +2086,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 240,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2111,7 +2119,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 270,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2144,7 +2152,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 300,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2177,7 +2185,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 330,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2210,7 +2218,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 360,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2243,7 +2251,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 390,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2276,7 +2284,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 420,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2309,7 +2317,7 @@ class _PlayPageState extends State<PlayPage> {
                                 AsyncSnapshot<dynamic> snapshot) {
                               if (!snapshot.hasData && snapshot.data != null) {
                                 return Container(
-                                  width: 100,
+
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -2339,7 +2347,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 30,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2373,7 +2381,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 60,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2407,7 +2415,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2441,7 +2449,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2475,7 +2483,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2509,7 +2517,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2544,7 +2552,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 210,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2577,7 +2585,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 240,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2610,7 +2618,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 270,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2643,7 +2651,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 300,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2676,7 +2684,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 330,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2709,7 +2717,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 360,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2742,7 +2750,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 390,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2775,7 +2783,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 420,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2808,7 +2816,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 450,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -2841,7 +2849,7 @@ class _PlayPageState extends State<PlayPage> {
                                 AsyncSnapshot<dynamic> snapshot) {
                               if (!snapshot.hasData && snapshot.data != null) {
                                 return Container(
-                                  width: 100,
+
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -2871,7 +2879,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 30,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2905,7 +2913,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 60,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2939,7 +2947,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -2973,7 +2981,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3007,7 +3015,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3041,7 +3049,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3076,7 +3084,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 210,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3109,7 +3117,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 240,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3142,7 +3150,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 270,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3175,7 +3183,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 300,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3208,7 +3216,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 330,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3241,7 +3249,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 360,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3274,7 +3282,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 390,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3307,7 +3315,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 420,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3340,7 +3348,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 450,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3373,7 +3381,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 480,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3406,7 +3414,7 @@ class _PlayPageState extends State<PlayPage> {
                                 AsyncSnapshot<dynamic> snapshot) {
                               if (!snapshot.hasData && snapshot.data != null) {
                                 return Container(
-                                  width: 100,
+
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -3436,7 +3444,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 30,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3470,7 +3478,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 60,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3504,7 +3512,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3538,7 +3546,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3572,7 +3580,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3605,7 +3613,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -3639,7 +3647,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 210,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3672,7 +3680,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 240,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3705,7 +3713,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 270,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3738,7 +3746,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 300,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3771,7 +3779,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 330,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3804,7 +3812,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 360,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3837,7 +3845,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 390,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3870,7 +3878,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 420,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3903,7 +3911,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 450,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3936,7 +3944,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 480,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -3969,7 +3977,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                   top: 510,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -4002,7 +4010,7 @@ class _PlayPageState extends State<PlayPage> {
                                 AsyncSnapshot<dynamic> snapshot) {
                               if (!snapshot.hasData && snapshot.data != null) {
                                 return Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4032,7 +4040,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 30,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4066,7 +4074,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 60,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4100,7 +4108,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 90,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4134,7 +4142,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 120,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4168,7 +4176,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 150,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4202,7 +4210,7 @@ class _PlayPageState extends State<PlayPage> {
                                 return Positioned(
                                   top: 180,
                                   child: Container(
-                                    width: 100,
+
                                     alignment: Alignment.topCenter,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -4237,7 +4245,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 210,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4270,7 +4278,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 240,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4303,7 +4311,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 270,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4336,7 +4344,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 300,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4369,7 +4377,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 330,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4402,7 +4410,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 360,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4435,7 +4443,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 390,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4468,7 +4476,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 420,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4501,7 +4509,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 450,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4534,7 +4542,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 480,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4567,7 +4575,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 510,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -4600,7 +4608,7 @@ class _PlayPageState extends State<PlayPage> {
                                     ? Positioned(
                                         top: 540,
                                         child: Container(
-                                          width: 100,
+
                                           alignment: Alignment.topCenter,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
