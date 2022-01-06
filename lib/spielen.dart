@@ -195,7 +195,6 @@ class _PlayPageState extends State<PlayPage> {
       }
     }
     if (this.oberklasse.kartenStapel1.length == 0) {
-      print("jo");
       this.stream1_1.add(this.oberklasse.leer);
     }
   }
@@ -219,6 +218,9 @@ class _PlayPageState extends State<PlayPage> {
         case 13: this.oberklasse.kartenStapel2.length >= 14? stream2_14.add(this.oberklasse.kartenStapel2[i]) : stream2_14.add(null); break;
       }
     }
+    if (this.oberklasse.kartenStapel2.length == 0) {
+      this.stream2_1.add(this.oberklasse.leer);
+    }
   }
 
   void updateStream3() {
@@ -240,6 +242,9 @@ class _PlayPageState extends State<PlayPage> {
         case 13: this.oberklasse.kartenStapel3.length >= 14? stream3_14.add(this.oberklasse.kartenStapel3[i]) : stream3_14.add(null); break;
         case 14: this.oberklasse.kartenStapel3.length >= 15? stream3_15.add(this.oberklasse.kartenStapel3[i]) : stream3_15.add(null); break;
       }
+    }
+    if (this.oberklasse.kartenStapel3.length == 0) {
+      this.stream3_1.add(this.oberklasse.leer);
     }
   }
 
@@ -264,6 +269,9 @@ class _PlayPageState extends State<PlayPage> {
         case 15: this.oberklasse.kartenStapel4.length >= 16? stream4_16.add(this.oberklasse.kartenStapel4[i]) : stream4_16.add(null); break;
       }
     }
+    if (this.oberklasse.kartenStapel4.length == 0) {
+      this.stream4_1.add(this.oberklasse.leer);
+    }
   }
 
   void updateStream5() {
@@ -287,6 +295,9 @@ class _PlayPageState extends State<PlayPage> {
         case 15: this.oberklasse.kartenStapel5.length >= 16? stream5_16.add(this.oberklasse.kartenStapel5[i]) : stream5_16.add(null); break;
         case 16: this.oberklasse.kartenStapel5.length >= 17? stream5_17.add(this.oberklasse.kartenStapel5[i]) : stream5_17.add(null); break;
       }
+    }
+    if (this.oberklasse.kartenStapel5.length == 0) {
+      this.stream5_1.add(this.oberklasse.leer);
     }
   }
 
@@ -313,6 +324,9 @@ class _PlayPageState extends State<PlayPage> {
         case 17: this.oberklasse.kartenStapel6.length >= 18? stream6_18.add(this.oberklasse.kartenStapel6[i]) : stream6_18.add(null); break;
       }
     }
+    if (this.oberklasse.kartenStapel6.length == 0) {
+      this.stream6_1.add(this.oberklasse.leer);
+    }
   }
 
   void updateStream7() {
@@ -338,6 +352,9 @@ class _PlayPageState extends State<PlayPage> {
         case 17: this.oberklasse.kartenStapel7.length >= 18? stream7_18.add(this.oberklasse.kartenStapel7[i]) : stream7_18.add(null); break;
         case 18: this.oberklasse.kartenStapel7.length >= 19? stream7_19.add(this.oberklasse.kartenStapel7[i]) : stream7_19.add(null); break;
       }
+    }
+    if (this.oberklasse.kartenStapel7.length == 0) {
+      this.stream7_1.add(this.oberklasse.leer);
     }
   }
 
@@ -909,103 +926,83 @@ class _PlayPageState extends State<PlayPage> {
                               stream: stream1_1.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-    if (snapshot.data == null) {
-    return Container(
-    alignment: Alignment.topCenter,
-    child: ElevatedButton(
-    style: ElevatedButton.styleFrom(
-    primary: Colors.transparent,
-    shadowColor: Colors.transparent),
-    onPressed: () {
-    streamAdd(
-    this.oberklasse.kartenStapel1[0],
-    1);
-    },
-    child: this.oberklasse.kartenStapel1
-        .length >= 1 ?
-    Image.asset(
-    this.oberklasse.kartenStapel1[0]
-        .getDateiname()) : Image.asset(
-    'playcards/versuch.png'),
-    ),
-    );
-    }
-    else {
-    return Container();
-    }
-    }
-
-                                ),
-                                ),
-                                StreamBuilder(
-                                stream: stream1_2.stream,
-                                builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
+                                      return this.oberklasse.kartenStapel1.length >= 1 ? Container(
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname()),
+                                        ),
+                                      ) : Container();
+                              }
+                              ),
+                        ),
+                        StreamBuilder(
+                          stream: stream1_2.stream,
+                          builder: (BuildContext context,
+                          AsyncSnapshot<dynamic> snapshot) {
+                            if (!snapshot.hasData && snapshot.data != null) {
+                              return Positioned(
                                 top: 30,
                                 child: Container(
-
                                 alignment: Alignment.topCenter,
                                 child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                                 onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                child: this.oberklasse.kartenStapel1.length >= 2 ?
-                                Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                child: this.oberklasse.kartenStapel1.length >= 2 ? Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
                                 ),
                                 ),
-                                );
-                                }
-                                return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel1.length >= 2?
+                              );
+                            }
+                            return Positioned(
+                              top: 30,
+                              child: this.oberklasse.kartenStapel1.length >= 2?
                                 this.oberklasse.rueckenStapel1 <= 1?
                                 ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                                }),
-                                StreamBuilder(
-                                stream: stream1_3.stream,
-                                builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
+                                  style: ElevatedButton.styleFrom(
+                                  primary: Colors.transparent,
+                                  shadowColor: Colors.transparent),
+                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
+                                  child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                            );
+                            }
+                            ),
+                        StreamBuilder(
+                          stream: stream1_3.stream,
+                          builder: (BuildContext context,
+                          AsyncSnapshot<dynamic> snapshot) {
+                            if (!snapshot.hasData && snapshot.data != null) {
+                              return Positioned(
                                 top: 60,
                                 child: Container(
-
                                 alignment: Alignment.topCenter,
                                 child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                 primary: Colors.transparent,
                                 shadowColor: Colors.transparent),
                                 onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                child: this.oberklasse.kartenStapel1.length >= 3 ?
-                                Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                child: this.oberklasse.kartenStapel1.length >= 3 ? Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
                                 ),
                                 ),
-                                );
-                                }
-                                return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel1.length >= 3?
+                              );
+                            }
+                            return Positioned(
+                              top: 60,
+                              child: this.oberklasse.kartenStapel1.length >= 3?
                                 this.oberklasse.rueckenStapel1 <= 2?
                                 ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                                }
-                              ),
+                                  style: ElevatedButton.styleFrom(
+                                  primary: Colors.transparent,
+                                  shadowColor: Colors.transparent),
+                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
+                                  child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                            );
+                          }
+                          ),
                         StreamBuilder(
                             stream: stream1_4.stream,
                             builder: (BuildContext context,
@@ -1345,34 +1342,48 @@ class _PlayPageState extends State<PlayPage> {
                       //Stapel2
                       Stack(
                         alignment: Alignment.topCenter, children: [
-                          StreamBuilder(
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream2_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
                               stream: stream2_1.stream,
                               builder: (BuildContext context,
                                   AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
-                                  return Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[0], 2);},
-                                      child: this.oberklasse.kartenStapel2.length >= 1 ?
-                                      Image.asset(this.oberklasse.kartenStapel2[0].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  );
-                                }
-                                return this.oberklasse.kartenStapel2.length >= 1?
-                                this.oberklasse.rueckenStapel2 <= 0?
-                                ElevatedButton(
+                                return this.oberklasse.kartenStapel2.length >= 1 ?
+                                  this.oberklasse.rueckenStapel2 <= 0?
+                                Container(
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel2[0], 2);},
-                                    child: Image.asset(this.oberklasse.kartenStapel2[0].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                              }),
+                                    child: Image.asset(this.oberklasse.kartenStapel2[0].getDateiname()),
+                                  ),
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
+                              }
+                          ),
+                        ),
                           StreamBuilder(
                               stream: stream2_2.stream,
                               builder: (BuildContext context,
@@ -1812,34 +1823,48 @@ class _PlayPageState extends State<PlayPage> {
                       ),
                       //Stapel3
                       Stack(alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
-                            stream: stream3_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream3_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream3_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                return this.oberklasse.kartenStapel3.length >= 1 ?
+                                this.oberklasse.rueckenStapel3 <= 0?
+                                Container(
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel3[0], 3);},
-                                    child: this.oberklasse.kartenStapel3.length >= 1 ?
-                                    Image.asset(this.oberklasse.kartenStapel3[0].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    child: Image.asset(this.oberklasse.kartenStapel3[0].getDateiname()),
                                   ),
-                                );
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
                               }
-                              return this.oberklasse.kartenStapel3.length >= 1?
-                              this.oberklasse.rueckenStapel3 <= 0?
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.transparent,
-                                      shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel3[0], 3);},
-                                  child: Image.asset(this.oberklasse.kartenStapel3[0].getDateiname())
-                              ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                          ),
+                        ),
                         StreamBuilder(
                             stream: stream3_2.stream,
                             builder: (BuildContext context,
@@ -2311,34 +2336,48 @@ class _PlayPageState extends State<PlayPage> {
                       ]),
                       //Stapel4
                       Stack(alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
-                            stream: stream4_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream4_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream4_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                return this.oberklasse.kartenStapel4.length >= 1 ?
+                                this.oberklasse.rueckenStapel4 <= 0?
+                                Container(
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel4[0], 4);},
-                                    child: this.oberklasse.kartenStapel4.length >= 1 ?
-                                    Image.asset(this.oberklasse.kartenStapel4[0].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    child: Image.asset(this.oberklasse.kartenStapel4[0].getDateiname()),
                                   ),
-                                );
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
                               }
-                              return this.oberklasse.kartenStapel4.length >= 1?
-                              this.oberklasse.rueckenStapel4 <= 0?
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.transparent,
-                                      shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel4[0], 4);},
-                                  child: Image.asset(this.oberklasse.kartenStapel4[0].getDateiname())
-                              ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                          ),
+                        ),
                         StreamBuilder(
                             stream: stream4_2.stream,
                             builder: (BuildContext context,
@@ -2843,34 +2882,48 @@ class _PlayPageState extends State<PlayPage> {
                       ]),
                       //Stapel5
                       Stack(alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
-                            stream: stream5_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream5_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream5_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                return this.oberklasse.kartenStapel5.length >= 1 ?
+                                this.oberklasse.rueckenStapel5 <= 0?
+                                Container(
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel5[0], 5);},
-                                    child: this.oberklasse.kartenStapel5.length >= 1 ?
-                                    Image.asset(this.oberklasse.kartenStapel5[0].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    child: Image.asset(this.oberklasse.kartenStapel5[0].getDateiname()),
                                   ),
-                                );
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
                               }
-                              return this.oberklasse.kartenStapel5.length >= 1?
-                              this.oberklasse.rueckenStapel5 <= 0?
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.transparent,
-                                      shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel5[0], 5);},
-                                  child: Image.asset(this.oberklasse.kartenStapel5[0].getDateiname())
-                              ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                          ),
+                        ),
                         StreamBuilder(
                             stream: stream5_2.stream,
                             builder: (BuildContext context,
@@ -3408,34 +3461,48 @@ class _PlayPageState extends State<PlayPage> {
                       ]),
                       //Stapel6
                       Stack(alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
-                            stream: stream6_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream6_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream6_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                return this.oberklasse.kartenStapel6.length >= 1 ?
+                                this.oberklasse.rueckenStapel6 <= 0?
+                                Container(
                                   alignment: Alignment.topCenter,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel6[0], 6);},
-                                    child: this.oberklasse.kartenStapel6.length >= 1 ?
-                                    Image.asset(this.oberklasse.kartenStapel6[0].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    child: Image.asset(this.oberklasse.kartenStapel6[0].getDateiname()),
                                   ),
-                                );
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
                               }
-                              return this.oberklasse.kartenStapel6.length >= 1?
-                              this.oberklasse.rueckenStapel6 <= 0?
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.transparent,
-                                      shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel6[0], 6);},
-                                  child: Image.asset(this.oberklasse.kartenStapel6[0].getDateiname())
-                              ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                          ),
+                        ),
                         StreamBuilder(
                             stream: stream6_2.stream,
                             builder: (BuildContext context,
@@ -4004,34 +4071,48 @@ class _PlayPageState extends State<PlayPage> {
                       ]),
                       //Stapel7
                       Stack(alignment: Alignment.topCenter, children: [
-                        StreamBuilder(
-                            stream: stream7_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[0], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 1 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[0].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  );
-                              }
-                              return this.oberklasse.kartenStapel7.length >= 1?
-                              this.oberklasse.rueckenStapel7 <= 0?
-                              ElevatedButton(
+                        Container(
+                            width: 100,
+                            child: StreamBuilder(
+                                stream: stream7_1.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return Container();
+                                }
+                            )
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                              stream: stream7_1.stream,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                return this.oberklasse.kartenStapel7.length >= 1 ?
+                                this.oberklasse.rueckenStapel7 <= 0?
+                                Container(
+                                  alignment: Alignment.topCenter,
+                                  child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                     onPressed: () {streamAdd(this.oberklasse.kartenStapel7[0], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[0].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png');
-                            }),
+                                    child: Image.asset(this.oberklasse.kartenStapel7[0].getDateiname()),
+                                  ),
+                                ) : Image.asset('playcards/ruecken.JPG') : Container();
+                              }
+                          ),
+                        ),
                         StreamBuilder(
                             stream: stream7_2.stream,
                             builder: (BuildContext context,

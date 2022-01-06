@@ -66,6 +66,7 @@ class KartenDeck {
 
   List<String> ort = [];
   List<int> index = [];
+  int zuegeCounter = 0;
 
   var spielen;
   Karte leer = new Karte(42, "Herz");
@@ -180,8 +181,9 @@ class KartenDeck {
   }
 
   topStapelClick(context) {
-    print(context);
     this.spielen = context;
+    zuegeCounter++;
+    print(zuegeCounter);
     this.anzeigeKarte.clear();
     if (this.kartenIndex > this.karten.length -1) {
       this.kartenIndex = 0;
@@ -232,60 +234,39 @@ class KartenDeck {
     ort.clear();
     index.clear();
       for (var i = 1; i < 5; i++) {
-        if (this.kannAufeinander(this
-            .gibRichtigenFertig(i)
-            .length != 0 ? this.gibRichtigenFertig(i)[this
-            .gibRichtigenFertig(i)
-            .length - 1] : null, karte, true)) {
-          for (var j = this.gibIndex(
-              this.gibRichtigenStapel(stapel), karte); j < this
-              .gibRichtigenStapel(stapel)
-              .length; j++) {
-//          print(i); //kartenstapel auf den angelegt werden kann
-//          print(j); //wenn mehrere dann abbruch weil karten drauf liegen (also nicht erreichbar)
-            if (this.wertAufeinanderfolgend(j, this
-                .gibRichtigenStapel(stapel)
-                .length)) {
-              this.gibRichtigenFertig(i).add(
-                  this.gibRichtigenStapel(stapel).elementAt(j));
+        if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
+          for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+            if (this.wertAufeinanderfolgend(j, this.gibRichtigenStapel(stapel).length)) {
+              this.gibRichtigenFertig(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
               this.gibRichtigenStapel(stapel).removeAt(j);
+              ort.add('Ablage');
+              index.add(i);
+              j = 10;
+              i = 10;
+              zuegeCounter++;
+              print(zuegeCounter);
+              return true;
             }
-            ort.add('Ablage');
-            index.add(i);
-            j = 10;
-            i = 10;
-            this.printAll();
-//            this.loesbar();
-            return true;
+            else {
+              return false;
+            }
           }
         }
       }
 
       for (var i = 1; i < 8; i++) {
-        if (this.kannAufeinander(karte, this
-            .gibRichtigenStapel(i)
-            .length != 0 ? this.gibRichtigenStapel(i)[this
-            .gibRichtigenStapel(i)
-            .length - 1] : null, false)) {
-          for (var j = this.gibIndex(
-              this.gibRichtigenStapel(stapel), karte); j < this
-              .gibRichtigenStapel(stapel)
-              .length; j++) {
-//          print(i); //kartenstapel auf den angelegt werden kann
-//          print(j);
-            while (this
-                .gibRichtigenStapel(stapel)
-                .length > j) {
-              this.gibRichtigenStapel(i).add(
-                  this.gibRichtigenStapel(stapel).elementAt(j));
+        if (this.kannAufeinander(karte, this.gibRichtigenStapel(i).length != 0 ? this.gibRichtigenStapel(i)[this.gibRichtigenStapel(i).length - 1] : null, false)) {
+          for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+            while (this.gibRichtigenStapel(stapel).length > j) {
+              this.gibRichtigenStapel(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
               this.gibRichtigenStapel(stapel).removeAt(j);
+              zuegeCounter++;
+              print(zuegeCounter);
             }
             ort.add('Stapel');
             index.add(i);
             j = 10;
             i = 10;
-            this.printAll();
-//            this.loesbar();
             return true;
           }
         }
@@ -310,29 +291,13 @@ class KartenDeck {
     this.fertig4.add(this.findeRichtigesZeichen(this.fertig4));
   }
 
-  printAll() {
-//    print(this.kartenStapel1);
-//    print(this.kartenStapel2);
-//    print(this.kartenStapel3);
-//    print(this.kartenStapel4);
-//    print(this.kartenStapel5);
-//    print(this.kartenStapel6);
-//    print(this.kartenStapel7);
-//    print(this.fertig1);
-//    print(this.fertig2);
-//    print(this.fertig3);
-//    print(this.fertig4);
-  }
-
   void loesbar() {
     if (rueckenStapel1 == 0 && rueckenStapel2 == 0 && rueckenStapel3 == 0 && rueckenStapel4 == 0 && rueckenStapel5 == 0 && rueckenStapel6 == 0 && rueckenStapel7 == 0) {
-      print("LÖSBAR");
       this.spielen.streamloesbar.add(true);
     }
   }
 
   Karte findeRichtigesZeichen(list) {
-    print(list.length);
     if (list.length != 0) {
       switch(list[0].farbe) {
         case 'pik': this.removeFromList("pik"); return new Karte(13, "pik");
