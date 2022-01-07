@@ -25,10 +25,10 @@ class _PlayPageState extends State<PlayPage> {
   var kartendeck;
 
   final streamDraw = StreamController<Karte>();
-  final streamAblage1 = StreamController<Karte>();
-  final streamAblage2 = StreamController<Karte>();
-  final streamAblage3 = StreamController<Karte>();
-  final streamAblage4 = StreamController<Karte>();
+  final streamAblage1 = StreamController<Karte?>();
+  final streamAblage2 = StreamController<Karte?>();
+  final streamAblage3 = StreamController<Karte?>();
+  final streamAblage4 = StreamController<Karte?>();
 
   final streamloesbar = StreamController<bool>();
 
@@ -358,6 +358,42 @@ class _PlayPageState extends State<PlayPage> {
     }
   }
 
+  void updateStream10() {
+    if (this.oberklasse.fertig1.length >= 1) {
+      streamAblage1.add(this.oberklasse.fertig1[this.oberklasse.fertig1.length - 1]);
+    }
+    else {
+      streamAblage1.add(null);
+    }
+  }
+
+  void updateStream11() {
+    if (this.oberklasse.fertig2.length >= 1) {
+      streamAblage2.add(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1]);
+    }
+    else {
+      streamAblage2.add(null);
+    }
+  }
+
+  void updateStream12() {
+    if (this.oberklasse.fertig3.length >= 1) {
+      streamAblage3.add(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1]);
+    }
+    else {
+      streamAblage3.add(null);
+    }
+  }
+
+  void updateStream13() {
+    if (this.oberklasse.fertig4.length >= 1) {
+      streamAblage4.add(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1]);
+    }
+    else {
+      streamAblage4.add(null);
+    }
+  }
+
   void updateHerkunft(stapel) {
     checkLength(stapel);
     switch(stapel) {
@@ -369,6 +405,10 @@ class _PlayPageState extends State<PlayPage> {
       case 5: updateStream5(); break;
       case 6: updateStream6(); break;
       case 7: updateStream7(); break;
+      case 10: updateStream10(); break;
+      case 11: updateStream11(); break;
+      case 12: updateStream12(); break;
+      case 13: updateStream13(); break;
     }
   }
 
@@ -697,6 +737,8 @@ class _PlayPageState extends State<PlayPage> {
                       this.streamAblage2.add(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1]);
                       this.streamAblage3.add(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1]);
                       this.streamAblage4.add(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1]);
+                      _stopWatchTimer.dispose();
+                      print(_stopWatchTimer.rawTime);//Stream auslesen
                     },
                     label: const Text('Lösen'),
                     icon: const Icon(Icons.check),
@@ -775,7 +817,7 @@ class _PlayPageState extends State<PlayPage> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
                               final card = snapshot.data;
-                              if (!snapshot.hasData) {
+                              if (!snapshot.hasData || snapshot.data.wert == 42) {
                                 return Container(
                                     margin: const EdgeInsets.all(15.0),
                                     padding: const EdgeInsets.all(3.0),
@@ -789,9 +831,7 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {
-                                  //TODO: Karten von der Ablage nehmen
-                                },
+                                onPressed: () {streamAdd(this.oberklasse.fertig1[this.oberklasse.fertig1.length-1], 10);},
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -804,7 +844,7 @@ class _PlayPageState extends State<PlayPage> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
                               final card = snapshot.data;
-                              if (!snapshot.hasData) {
+                              if (!snapshot.hasData || snapshot.data.wert == 42) {
                                 return Container(
                                   margin: const EdgeInsets.all(15.0),
                                   padding: const EdgeInsets.all(3.0),
@@ -818,9 +858,7 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {
-
-                                },
+                                onPressed: () {streamAdd(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1], 11);},
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -833,7 +871,7 @@ class _PlayPageState extends State<PlayPage> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
                               final card = snapshot.data;
-                              if (!snapshot.hasData) {
+                              if (!snapshot.hasData || snapshot.data.wert == 42) {
                                 return Container(
                                   margin: const EdgeInsets.all(15.0),
                                   padding: const EdgeInsets.all(3.0),
@@ -847,9 +885,7 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {
-
-                                },
+                                onPressed: () {streamAdd(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1], 12);},
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );
@@ -862,7 +898,7 @@ class _PlayPageState extends State<PlayPage> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<dynamic> snapshot) {
                               final card = snapshot.data;
-                              if (!snapshot.hasData) {
+                              if (!snapshot.hasData || snapshot.data.wert == 42) {
                                 return Container(
                                   margin: const EdgeInsets.all(15.0),
                                   padding: const EdgeInsets.all(3.0),
@@ -876,9 +912,7 @@ class _PlayPageState extends State<PlayPage> {
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,
                                     shadowColor: Colors.transparent),
-                                onPressed: () {
-
-                                },
+                                onPressed: () {streamAdd(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1], 13);},
                                 child: Container(
                                     child: Image.asset(card.getDateiname())),
                               );

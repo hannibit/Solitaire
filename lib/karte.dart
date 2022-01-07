@@ -218,6 +218,10 @@ class KartenDeck {
       case 5: return this.kartenStapel5;
       case 6: return this.kartenStapel6;
       case 7: return this.kartenStapel7;
+      case 10: return this.fertig1;
+      case 11: return this.fertig2;
+      case 12: return this.fertig3;
+      case 13: return this.fertig4;
     }
   }
 
@@ -233,11 +237,22 @@ class KartenDeck {
   karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
     ort.clear();
     index.clear();
+    if (stapel < 8) {
       for (var i = 1; i < 5; i++) {
-        if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
-          for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
-            if (this.wertAufeinanderfolgend(j, this.gibRichtigenStapel(stapel).length)) {
-              this.gibRichtigenFertig(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
+        if (this.kannAufeinander(this
+            .gibRichtigenFertig(i)
+            .length != 0 ? this.gibRichtigenFertig(i)[this
+            .gibRichtigenFertig(i)
+            .length - 1] : null, karte, true)) {
+          for (var j = this.gibIndex(
+              this.gibRichtigenStapel(stapel), karte); j < this
+              .gibRichtigenStapel(stapel)
+              .length; j++) {
+            if (this.wertAufeinanderfolgend(j, this
+                .gibRichtigenStapel(stapel)
+                .length)) {
+              this.gibRichtigenFertig(i).add(
+                  this.gibRichtigenStapel(stapel).elementAt(j));
               this.gibRichtigenStapel(stapel).removeAt(j);
               ort.add('Ablage');
               index.add(i);
@@ -245,6 +260,7 @@ class KartenDeck {
               i = 10;
               zuegeCounter++;
               print(zuegeCounter);
+              this.loesbar();
               return true;
             }
             else {
@@ -253,6 +269,7 @@ class KartenDeck {
           }
         }
       }
+    }
 
       for (var i = 1; i < 8; i++) {
         if (this.kannAufeinander(karte, this.gibRichtigenStapel(i).length != 0 ? this.gibRichtigenStapel(i)[this.gibRichtigenStapel(i).length - 1] : null, false)) {
@@ -260,13 +277,14 @@ class KartenDeck {
             while (this.gibRichtigenStapel(stapel).length > j) {
               this.gibRichtigenStapel(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
               this.gibRichtigenStapel(stapel).removeAt(j);
-              zuegeCounter++;
-              print(zuegeCounter);
             }
+            zuegeCounter++;
+            print(zuegeCounter);
             ort.add('Stapel');
             index.add(i);
             j = 10;
             i = 10;
+            this.loesbar();
             return true;
           }
         }
@@ -275,6 +293,20 @@ class KartenDeck {
   }
 
   clear() {
+    var counter = 0;
+    counter += this.kartenStapel1.length;
+    counter += this.kartenStapel2.length;
+    counter += this.kartenStapel3.length;
+    counter += this.kartenStapel4.length;
+    counter += this.kartenStapel5.length;
+    counter += this.kartenStapel6.length;
+    counter += this.kartenStapel7.length;
+    counter += this.karten.length*2;
+    if (this.anzeigeKarte.length == 1) {
+      counter--;
+    }
+    this.zuegeCounter += counter;
+    print(zuegeCounter);
     this.karten.clear();
     this.anzeigeKarte.clear();
     this.kartenIndex = 0;
