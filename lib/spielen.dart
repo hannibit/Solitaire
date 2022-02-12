@@ -532,8 +532,8 @@ class _PlayPageState extends State<PlayPage> {
   void initState() {
     super.initState();
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
     ]);
 
     this.kartendeck = this.oberklasse.getKartenDeck();
@@ -751,196 +751,111 @@ class _PlayPageState extends State<PlayPage> {
         )
     ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            //oberer Reihe
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //oberer Reihe
+          Expanded(
+          child:
+              Stack(
+                alignment: Alignment.topCenter,
                 children: [
-                  //Stapel
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 100,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
-                              shadowColor: Colors.transparent),
-                          onPressed: () {
-                            this.oberklasse.topStapelClick(this);
-                            streamDraw.add(this.oberklasse.gibStapelKarte());
-                          },
-                          child: Image.asset('playcards/ruecken.JPG'),
+                 FittedBox(
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 500,
+                    alignment: Alignment.topCenter,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //Stapel
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 100,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.transparent,
+                                    shadowColor: Colors.transparent),
+                                onPressed: () {
+                                  this.oberklasse.topStapelClick(this);
+                                  streamDraw.add(this.oberklasse.gibStapelKarte());
+                                },
+                                child: Image.asset('playcards/ruecken.JPG'),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                  stream: streamDraw.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    final card = snapshot.data;
+                                    if (!snapshot.hasData || snapshot.data.wert == 42) {
+                                      return Container(
+                                          margin: const EdgeInsets.all(15.0),
+                                          padding: const EdgeInsets.all(3.0),
+                                          decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.black)
+                                          ),
+                                          child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {streamAdd(this.oberklasse.anzeigeKarte[0], 0);},
+                                      child: Container(
+                                          child: Image.asset(card.getDateiname())),
+                                    );
+                                  }),
+                            ),
+                          ],
                         ),
-                      ),
-                      Container(
-                        width: 100,
-                        child: StreamBuilder(
-                            stream: streamDraw.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData || snapshot.data.wert == 42) {
-                                return Container(
-                                    margin: const EdgeInsets.all(15.0),
-                                    padding: const EdgeInsets.all(3.0),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.black)
-                                    ),
-                                    child: Image.asset('playcards/versuch.png'),
-                                );
-                              }
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.anzeigeKarte[0], 0);},
-                                child: Container(
-                                    child: Image.asset(card.getDateiname())),
-                              );
-                            }),
-                      ),
-                    ],
-                  ),
-                  //Ablage
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 100,
-                        child: StreamBuilder(
-                            stream: streamAblage1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData || snapshot.data.wert == 42) {
-                                return Container(
-                                    margin: const EdgeInsets.all(15.0),
-                                    padding: const EdgeInsets.all(3.0),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.black)
-                                    ),
-                                  child: Image.asset('playcards/versuch.png'),
-                                );
-                              }
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.fertig1[this.oberklasse.fertig1.length-1], 10);},
-                                child: Container(
-                                    child: Image.asset(card.getDateiname())),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 100,
-                        child: StreamBuilder(
-                            stream: streamAblage2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData || snapshot.data.wert == 42) {
-                                return Container(
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: Image.asset('playcards/versuch.png'),
-                                );
-                              }
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1], 11);},
-                                child: Container(
-                                    child: Image.asset(card.getDateiname())),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 100,
-                        child: StreamBuilder(
-                            stream: streamAblage3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData || snapshot.data.wert == 42) {
-                                return Container(
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: Image.asset('playcards/versuch.png'),
-                                );
-                              }
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1], 12);},
-                                child: Container(
-                                    child: Image.asset(card.getDateiname())),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 100,
-                        child: StreamBuilder(
-                            stream: streamAblage4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              final card = snapshot.data;
-                              if (!snapshot.hasData || snapshot.data.wert == 42) {
-                                return Container(
-                                  margin: const EdgeInsets.all(15.0),
-                                  padding: const EdgeInsets.all(3.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                  ),
-                                  child: Image.asset('playcards/versuch.png'),
-                                );
-                              }
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1], 13);},
-                                child: Container(
-                                    child: Image.asset(card.getDateiname())),
-                              );
-                            }),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            //Deck
-            Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //Stapel1
-                      Stack(
-                        alignment: Alignment.topCenter, children: [
-                        Container(
-                          width: 100,
-                          child: StreamBuilder(
-                            stream: stream1_1.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
+                        //Ablage
+                        Container(width:35, height: 0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                  stream: streamAblage1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    final card = snapshot.data;
+                                    if (!snapshot.hasData || snapshot.data.wert == 42) {
+                                      return Container(
+                                          margin: const EdgeInsets.all(15.0),
+                                          padding: const EdgeInsets.all(3.0),
+                                          decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.black)
+                                          ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {streamAdd(this.oberklasse.fertig1[this.oberklasse.fertig1.length-1], 10);},
+                                      child: Container(
+                                          child: Image.asset(card.getDateiname())),
+                                    );
+                                  }),
+                            ),
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                  stream: streamAblage2.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    final card = snapshot.data;
+                                    if (!snapshot.hasData || snapshot.data.wert == 42) {
                                       return Container(
                                         margin: const EdgeInsets.all(15.0),
                                         padding: const EdgeInsets.all(3.0),
@@ -950,3414 +865,789 @@ class _PlayPageState extends State<PlayPage> {
                                         child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                            }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream1_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                      return this.oberklasse.kartenStapel1.length >= 1 ? Container(
-                                        alignment: Alignment.topCenter,
-                                        child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname()),
-                                        ),
-                                      ) : Container();
-                              }
-                              ),
-                        ),
-                        StreamBuilder(
-                          stream: stream1_2.stream,
-                          builder: (BuildContext context,
-                          AsyncSnapshot<dynamic> snapshot) {
-                            if (!snapshot.hasData && snapshot.data != null) {
-                              return Positioned(
-                                top: 30,
-                                child: Container(
-                                alignment: Alignment.topCenter,
-                                child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                child: this.oberklasse.kartenStapel1.length >= 2 ? Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                ),
-                                ),
-                              );
-                            }
-                            return Positioned(
-                              top: 30,
-                              child: this.oberklasse.kartenStapel1.length >= 2?
-                                this.oberklasse.rueckenStapel1 <= 1?
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                  primary: Colors.transparent,
-                                  shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
-                                  child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                            );
-                            }
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.transparent,
+                                          shadowColor: Colors.transparent),
+                                      onPressed: () {streamAdd(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1], 11);},
+                                      child: Container(
+                                          child: Image.asset(card.getDateiname())),
+                                    );
+                                  }),
                             ),
-                        StreamBuilder(
-                          stream: stream1_3.stream,
-                          builder: (BuildContext context,
-                          AsyncSnapshot<dynamic> snapshot) {
-                            if (!snapshot.hasData && snapshot.data != null) {
-                              return Positioned(
-                                top: 60,
-                                child: Container(
-                                alignment: Alignment.topCenter,
-                                child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                shadowColor: Colors.transparent),
-                                onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                child: this.oberklasse.kartenStapel1.length >= 3 ? Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                ),
-                                ),
-                              );
-                            }
-                            return Positioned(
-                              top: 60,
-                              child: this.oberklasse.kartenStapel1.length >= 3?
-                                this.oberklasse.rueckenStapel1 <= 2?
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                  primary: Colors.transparent,
-                                  shadowColor: Colors.transparent),
-                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
-                                  child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                            );
-                          }
-                          ),
-                        StreamBuilder(
-                            stream: stream1_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                  stream: streamAblage3.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    final card = snapshot.data;
+                                    if (!snapshot.hasData || snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                    return ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[3], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel1.length >= 4?
-                                this.oberklasse.rueckenStapel1 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[3], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
+                                      onPressed: () {streamAdd(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1], 12);},
+                                      child: Container(
+                                          child: Image.asset(card.getDateiname())),
+                                    );
+                                  }),
+                            ),
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                  stream: streamAblage4.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    final card = snapshot.data;
+                                    if (!snapshot.hasData || snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                        ),
+                                        child: Image.asset('playcards/versuch.png'),
+                                      );
+                                    }
+                                    return ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           primary: Colors.transparent,
                                           shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[4], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel1.length >= 5?
-                                this.oberklasse.rueckenStapel1 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[4], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[5], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel1.length >= 6?
-                                this.oberklasse.rueckenStapel1 <= 5?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[5], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[5].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[6], 1);},
-                                      child: this.oberklasse.kartenStapel1.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel1[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: this.oberklasse.kartenStapel1.length >= 7?
-                                this.oberklasse.rueckenStapel1 <= 6?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[6], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[6].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 8
-                                    ? Positioned(
-                                  top: 210,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[7], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[7].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel1.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[7], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 9
-                                    ? Positioned(
-                                  top: 240,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[8], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[8].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel1.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[8], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 10
-                                    ? Positioned(
-                                  top: 270,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[9], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[9].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel1.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[9], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 11
-                                    ? Positioned(
-                                  top: 300,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[10], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[10].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel1.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[10], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 12
-                                    ? Positioned(
-                                  top: 330,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[11], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[11].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel1.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[11], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream1_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel1.length >= 13
-                                    ? Positioned(
-                                  top: 360,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[12], 1);},
-                                        child: Image.asset(this.oberklasse.kartenStapel1[12].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel1.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[12], 1);},
-                                    child: Image.asset(this.oberklasse.kartenStapel1[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        ],
-                      ),
-                      //Stapel2
-                      Stack(
-                        alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream2_1.stream,
+                                      onPressed: () {streamAdd(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1], 13);},
+                                      child: Container(
+                                          child: Image.asset(card.getDateiname())),
+                                    );
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              //Deck
+                Positioned(
+                    top: 150,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 500,
+                      alignment: Alignment.topCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          //Stapel1
+                          Stack(
+                            alignment: Alignment.topCenter, children: [
+                            Container(
+                              width: 100,
+                              child: StreamBuilder(
+                                stream: stream1_1.stream,
                                 builder: (BuildContext context,
                                     AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
-                                        ),
-                                        child: Image.asset('playcards/versuch.png'),
-                                      );
-                                    }
-                                  }
-                                  return Container();
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
                                 }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream2_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel2.length >= 1 ?
-                                  this.oberklasse.rueckenStapel2 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel2[0], 2);},
-                                    child: Image.asset(this.oberklasse.kartenStapel2[0].getDateiname()),
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream1_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                          return this.oberklasse.kartenStapel1.length >= 1 ? Container(
+                                            alignment: Alignment.topCenter,
+                                            child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[0], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[0].getDateiname()),
+                                            ),
+                                          ) : Container();
+                                  }
                                   ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                          StreamBuilder(
-                              stream: stream2_2.stream,
+                            ),
+                            StreamBuilder(
+                              stream: stream1_2.stream,
                               builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
+                              AsyncSnapshot<dynamic> snapshot) {
                                 if (!snapshot.hasData && snapshot.data != null) {
                                   return Positioned(
                                     top: 30,
                                     child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[1], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 2 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                      ),
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                    primary: Colors.transparent,
+                                    shadowColor: Colors.transparent),
+                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
+                                    child: this.oberklasse.kartenStapel1.length >= 2 ? Image.asset(this.oberklasse.kartenStapel1[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    ),
                                     ),
                                   );
                                 }
                                 return Positioned(
                                   top: 30,
-                                  child: this.oberklasse.kartenStapel2.length >= 2?
-                                  this.oberklasse.rueckenStapel2 <= 1?
-                                  ElevatedButton(
+                                  child: this.oberklasse.kartenStapel1.length >= 2?
+                                    this.oberklasse.rueckenStapel1 <= 1?
+                                    ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[1], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[1].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                      primary: Colors.transparent,
+                                      shadowColor: Colors.transparent),
+                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[1], 1);},
+                                      child: Image.asset(this.oberklasse.kartenStapel1[1].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
                                 );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_3.stream,
+                                }
+                                ),
+                            StreamBuilder(
+                              stream: stream1_3.stream,
                               builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
+                              AsyncSnapshot<dynamic> snapshot) {
                                 if (!snapshot.hasData && snapshot.data != null) {
                                   return Positioned(
                                     top: 60,
                                     child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[2], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 3 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                      ),
+                                    alignment: Alignment.topCenter,
+                                    child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                    primary: Colors.transparent,
+                                    shadowColor: Colors.transparent),
+                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
+                                    child: this.oberklasse.kartenStapel1.length >= 3 ? Image.asset(this.oberklasse.kartenStapel1[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                    ),
                                     ),
                                   );
                                 }
                                 return Positioned(
                                   top: 60,
-                                  child: this.oberklasse.kartenStapel2.length >= 3?
-                                  this.oberklasse.rueckenStapel2 <= 2?
-                                  ElevatedButton(
+                                  child: this.oberklasse.kartenStapel1.length >= 3?
+                                    this.oberklasse.rueckenStapel1 <= 2?
+                                    ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[2], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[2].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                      primary: Colors.transparent,
+                                      shadowColor: Colors.transparent),
+                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel1[2], 1);},
+                                      child: Image.asset(this.oberklasse.kartenStapel1[2].getDateiname())) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
                                 );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_4.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
+                              }
+                              ),
+                            StreamBuilder(
+                                stream: stream1_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel1[3], 1);},
+                                          child: this.oberklasse.kartenStapel1.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel1[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   return Positioned(
                                     top: 90,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
+                                    child: this.oberklasse.kartenStapel1.length >= 4?
+                                    this.oberklasse.rueckenStapel1 <= 3?
+                                    ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[3], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 4 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                      ),
-                                    ),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[3], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
                                   );
-                                }
-                                return Positioned(
-                                  top: 90,
-                                  child: this.oberklasse.kartenStapel2.length >= 4?
-                                  this.oberklasse.rueckenStapel2 <= 3?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[3], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[3].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_5.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
+                                }),
+                            StreamBuilder(
+                                stream: stream1_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel1[4], 1);},
+                                          child: this.oberklasse.kartenStapel1.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel1[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   return Positioned(
                                     top: 120,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
+                                    child: this.oberklasse.kartenStapel1.length >= 5?
+                                    this.oberklasse.rueckenStapel1 <= 4?
+                                    ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[4], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 5 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                      ),
-                                    ),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[4], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
                                   );
-                                }
-                                return Positioned(
-                                  top: 120,
-                                  child: this.oberklasse.kartenStapel2.length >= 5?
-                                  this.oberklasse.rueckenStapel2 <= 4?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[4], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[4].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_6.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
+                                }),
+                            StreamBuilder(
+                                stream: stream1_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel1[5], 1);},
+                                          child: this.oberklasse.kartenStapel1.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel1[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   return Positioned(
                                     top: 150,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
+                                    child: this.oberklasse.kartenStapel1.length >= 6?
+                                    this.oberklasse.rueckenStapel1 <= 5?
+                                    ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[5], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 6 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                      ),
-                                    ),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[5], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[5].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
                                   );
-                                }
-                                return Positioned(
-                                  top: 150,
-                                  child: this.oberklasse.kartenStapel2.length >= 6?
-                                  this.oberklasse.rueckenStapel2 <= 5?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[5], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[5].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_7.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData && snapshot.data != null) {
+                                }),
+                            StreamBuilder(
+                                stream: stream1_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel1[6], 1);},
+                                          child: this.oberklasse.kartenStapel1.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel1[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   return Positioned(
                                     top: 180,
-                                    child: Container(
+                                    child: this.oberklasse.kartenStapel1.length >= 7?
+                                    this.oberklasse.rueckenStapel1 <= 6?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[6], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[6].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 8
+                                        ? Positioned(
+                                      top: 210,
+                                      child: Container(
 
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[7], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[7].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel1.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[7], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 9
+                                        ? Positioned(
+                                      top: 240,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[8], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[8].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel1.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[8], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 10
+                                        ? Positioned(
+                                      top: 270,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[9], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[9].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel1.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[9], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 11
+                                        ? Positioned(
+                                      top: 300,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[10], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[10].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel1.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[10], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 12
+                                        ? Positioned(
+                                      top: 330,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[11], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[11].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel1.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[11], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream1_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel1.length >= 13
+                                        ? Positioned(
+                                      top: 360,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel1[12], 1);},
+                                            child: Image.asset(this.oberklasse.kartenStapel1[12].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel1.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel1[12], 1);},
+                                        child: Image.asset(this.oberklasse.kartenStapel1[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            ],
+                          ),
+                          //Stapel2
+                          Stack(
+                            alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream2_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream2_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel2.length >= 1 ?
+                                      this.oberklasse.rueckenStapel2 <= 0?
+                                    Container(
                                       alignment: Alignment.topCenter,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.transparent,
                                             shadowColor: Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[6], 2);},
-                                        child: this.oberklasse.kartenStapel2.length >= 7 ?
-                                        Image.asset(this.oberklasse.kartenStapel2[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel2[0], 2);},
+                                        child: Image.asset(this.oberklasse.kartenStapel2[0].getDateiname()),
                                       ),
-                                    ),
-                                  );
-                                }
-                                return Positioned(
-                                  top: 180,
-                                  child: this.oberklasse.kartenStapel2.length >= 7?
-                                  this.oberklasse.rueckenStapel2 <= 6?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[6], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[6].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_8.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 8
-                                      ? Positioned(
-                                    top: 210,
-                                    child: Container(
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                              StreamBuilder(
+                                  stream: stream2_2.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 30,
+                                        child: Container(
 
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[7], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[7].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 210,
-                                  child: this.oberklasse.kartenStapel2.length >= 8?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[7], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[7].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_9.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 9
-                                      ? Positioned(
-                                    top: 240,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[8], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[8].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 240,
-                                  child: this.oberklasse.kartenStapel2.length >= 9?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[8], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[8].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_10.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 10
-                                      ? Positioned(
-                                    top: 270,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[9], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[9].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 270,
-                                  child: this.oberklasse.kartenStapel2.length >= 10?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[9], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[9].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_11.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 11
-                                      ? Positioned(
-                                    top: 300,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[10], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[10].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 300,
-                                  child: this.oberklasse.kartenStapel2.length >= 11?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[10], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[10].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_12.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 12
-                                      ? Positioned(
-                                    top: 330,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[11], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[11].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 330,
-                                  child: this.oberklasse.kartenStapel2.length >= 12?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[11], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[11].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_13.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 13
-                                      ? Positioned(
-                                    top: 360,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[12], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[12].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 360,
-                                  child: this.oberklasse.kartenStapel2.length >= 13?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[12], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[12].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                          StreamBuilder(
-                              stream: stream2_14.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return this.oberklasse.kartenStapel2.length >= 14
-                                      ? Positioned(
-                                    top: 390,
-                                    child: Container(
-
-                                      alignment: Alignment.topCenter,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Colors.transparent,
-                                              shadowColor:
-                                              Colors.transparent),
-                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[13], 2);},
-                                          child: Image.asset(this.oberklasse.kartenStapel2[13].getDateiname())),
-                                    ),
-                                  ) : Positioned(child: Container());
-                                }
-                                return Positioned(
-                                  top: 390,
-                                  child: this.oberklasse.kartenStapel2.length >= 14?
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel2[13], 2);},
-                                      child: Image.asset(this.oberklasse.kartenStapel2[13].getDateiname())
-                                  ) : Image.asset('playcards/versuch.png'),
-                                );
-                              }),
-                        ],
-                      ),
-                      //Stapel3
-                      Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream3_1.stream,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[1], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 2 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
                                         ),
-                                        child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                                }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream3_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel3.length >= 1 ?
-                                this.oberklasse.rueckenStapel3 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[0], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[0].getDateiname()),
-                                  ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                        StreamBuilder(
-                            stream: stream3_2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 30,
-                                  child: Container(
+                                    return Positioned(
+                                      top: 30,
+                                      child: this.oberklasse.kartenStapel2.length >= 2?
+                                      this.oberklasse.rueckenStapel2 <= 1?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[1], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[1].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_3.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 60,
+                                        child: Container(
 
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[1], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel3.length >= 2?
-                                this.oberklasse.rueckenStapel3 <= 1?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[1], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[2], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel3.length >= 3?
-                                this.oberklasse.rueckenStapel3 <= 2?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[2], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[3], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel3.length >= 4?
-                                this.oberklasse.rueckenStapel3 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[3], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[4], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel3.length >= 5?
-                                this.oberklasse.rueckenStapel3 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[4], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[5], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel3.length >= 6?
-                                this.oberklasse.rueckenStapel3 <= 5?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[5], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[5].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel3[6], 3);},
-                                      child: this.oberklasse.kartenStapel3.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel3[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: this.oberklasse.kartenStapel3.length >= 7?
-                                this.oberklasse.rueckenStapel3 <= 6?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[6], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[6].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 8
-                                    ? Positioned(
-                                  top: 210,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[7], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[7].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel3.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[7], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 9
-                                    ? Positioned(
-                                  top: 240,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[8], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[8].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel3.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[8], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 10
-                                    ? Positioned(
-                                  top: 270,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[9], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[9].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel3.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[9], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 11
-                                    ? Positioned(
-                                  top: 300,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[10], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[10].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel3.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[10], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 12
-                                    ? Positioned(
-                                  top: 330,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[11], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[11].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel3.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[11], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 13
-                                    ? Positioned(
-                                  top: 360,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[12], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[12].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel3.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[12], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_14.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 14
-                                    ? Positioned(
-                                  top: 390,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[13], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[13].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 390,
-                                child: this.oberklasse.kartenStapel3.length >= 14?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[13], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[13].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream3_15.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel3.length >= 15
-                                    ? Positioned(
-                                  top: 420,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[14], 3);},
-                                        child: Image.asset(this.oberklasse.kartenStapel3[14].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 420,
-                                child: this.oberklasse.kartenStapel3.length >= 15?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel3[14], 3);},
-                                    child: Image.asset(this.oberklasse.kartenStapel3[14].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                      ]),
-                      //Stapel4
-                      Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream4_1.stream,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[2], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 3 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
                                         ),
-                                        child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                                }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream4_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel4.length >= 1 ?
-                                this.oberklasse.rueckenStapel4 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[0], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[0].getDateiname()),
-                                  ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                        StreamBuilder(
-                            stream: stream4_2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 30,
-                                  child: Container(
+                                    return Positioned(
+                                      top: 60,
+                                      child: this.oberklasse.kartenStapel2.length >= 3?
+                                      this.oberklasse.rueckenStapel2 <= 2?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[2], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[2].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_4.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 90,
+                                        child: Container(
 
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[1], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel4.length >= 2?
-                                this.oberklasse.rueckenStapel4 <= 1?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[1], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[2], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel4.length >= 3?
-                                this.oberklasse.rueckenStapel4 <= 2?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[2], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[3], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel4.length >= 4?
-                                this.oberklasse.rueckenStapel4 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[3], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[4], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel4.length >= 5?
-                                this.oberklasse.rueckenStapel4 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[4], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[5], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel4.length >= 6?
-                                this.oberklasse.rueckenStapel4 <= 5?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[5], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[5].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel4[6], 4);},
-                                      child: this.oberklasse.kartenStapel4.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel4[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: this.oberklasse.kartenStapel4.length >= 7?
-                                this.oberklasse.rueckenStapel4 <= 6?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[6], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[6].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 8
-                                    ? Positioned(
-                                  top: 210,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[7], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[7].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel4.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[7], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 9
-                                    ? Positioned(
-                                  top: 240,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[8], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[8].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel4.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[8], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 10
-                                    ? Positioned(
-                                  top: 270,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[9], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[9].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel4.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[9], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 11
-                                    ? Positioned(
-                                  top: 300,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[10], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[10].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel4.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[10], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 12
-                                    ? Positioned(
-                                  top: 330,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[11], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[11].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel4.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[11], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 13
-                                    ? Positioned(
-                                  top: 360,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[12], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[12].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel4.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[12], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_14.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 14
-                                    ? Positioned(
-                                  top: 390,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[13], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[13].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 390,
-                                child: this.oberklasse.kartenStapel4.length >= 14?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[13], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[13].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_15.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 15
-                                    ? Positioned(
-                                  top: 420,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[14], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[14].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 420,
-                                child: this.oberklasse.kartenStapel4.length >= 15?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[14], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[14].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream4_16.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel4.length >= 16
-                                    ? Positioned(
-                                  top: 450,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[15], 4);},
-                                        child: Image.asset(this.oberklasse.kartenStapel4[15].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 450,
-                                child: this.oberklasse.kartenStapel4.length >= 16?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel4[15], 4);},
-                                    child: Image.asset(this.oberklasse.kartenStapel4[15].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                      ]),
-                      //Stapel5
-                      Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream5_1.stream,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[3], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 4 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
                                         ),
-                                        child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                                }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream5_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel5.length >= 1 ?
-                                this.oberklasse.rueckenStapel5 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[0], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[0].getDateiname()),
-                                  ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                        StreamBuilder(
-                            stream: stream5_2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 30,
-                                  child: Container(
+                                    return Positioned(
+                                      top: 90,
+                                      child: this.oberklasse.kartenStapel2.length >= 4?
+                                      this.oberklasse.rueckenStapel2 <= 3?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[3], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[3].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_5.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 120,
+                                        child: Container(
 
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[1], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel5.length >= 2?
-                                this.oberklasse.rueckenStapel5 <= 1?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[1], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[2], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel5.length >= 3?
-                                this.oberklasse.rueckenStapel5 <= 2?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[2], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[3], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel5.length >= 4?
-                                this.oberklasse.rueckenStapel5 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[3], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[4], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel5.length >= 5?
-                                this.oberklasse.rueckenStapel5 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[4], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[5], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel5.length >= 6?
-                                this.oberklasse.rueckenStapel5 <= 5?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[5], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[5].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel5[6], 5);},
-                                      child: this.oberklasse.kartenStapel5.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel5[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: this.oberklasse.kartenStapel5.length >= 7?
-                                this.oberklasse.rueckenStapel5 <= 6?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[6], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[6].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 8
-                                    ? Positioned(
-                                  top: 210,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[7], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[7].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel5.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[7], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 9
-                                    ? Positioned(
-                                  top: 240,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[8], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[8].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel5.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[8], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 10
-                                    ? Positioned(
-                                  top: 270,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[9], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[9].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel5.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[9], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 11
-                                    ? Positioned(
-                                  top: 300,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[10], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[10].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel5.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[10], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 12
-                                    ? Positioned(
-                                  top: 330,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[11], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[11].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel5.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[11], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 13
-                                    ? Positioned(
-                                  top: 360,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[12], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[12].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel5.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[12], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_14.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 14
-                                    ? Positioned(
-                                  top: 390,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[13], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[13].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 390,
-                                child: this.oberklasse.kartenStapel5.length >= 14?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[13], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[13].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_15.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 15
-                                    ? Positioned(
-                                  top: 420,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[14], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[14].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 420,
-                                child: this.oberklasse.kartenStapel5.length >= 15?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[14], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[14].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_16.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 16
-                                    ? Positioned(
-                                  top: 450,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[15], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[15].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 450,
-                                child: this.oberklasse.kartenStapel5.length >= 16?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[15], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[15].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream5_17.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel5.length >= 17
-                                    ? Positioned(
-                                  top: 480,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[16], 5);},
-                                        child: Image.asset(this.oberklasse.kartenStapel5[16].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 480,
-                                child: this.oberklasse.kartenStapel5.length >= 17?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel5[16], 5);},
-                                    child: Image.asset(this.oberklasse.kartenStapel5[16].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                      ]),
-                      //Stapel6
-                      Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream6_1.stream,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[4], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 5 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
                                         ),
-                                        child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                                }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream6_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel6.length >= 1 ?
-                                this.oberklasse.rueckenStapel6 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[0], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[0].getDateiname()),
-                                  ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                        StreamBuilder(
-                            stream: stream6_2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 30,
-                                  child: Container(
+                                    return Positioned(
+                                      top: 120,
+                                      child: this.oberklasse.kartenStapel2.length >= 5?
+                                      this.oberklasse.rueckenStapel2 <= 4?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[4], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[4].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_6.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 150,
+                                        child: Container(
 
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[1], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel6.length >= 2?
-                                this.oberklasse.rueckenStapel6 <= 1?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[1], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[2], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel6.length >= 3?
-                                this.oberklasse.rueckenStapel6 <= 2?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[2], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[3], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel6.length >= 4?
-                                this.oberklasse.rueckenStapel6 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[3], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[4], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel6.length >= 5?
-                                this.oberklasse.rueckenStapel6 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[4], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[5], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel6.length >= 6?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[5], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[5].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel6[6], 6);},
-                                      child: this.oberklasse.kartenStapel6.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel6[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                child: this.oberklasse.kartenStapel6.length >= 7?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[6], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[6].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 8
-                                    ? Positioned(
-                                  top: 210,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[7], 7);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[7].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel6.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[7], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 9
-                                    ? Positioned(
-                                  top: 240,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[8], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[8].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel6.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[8], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 10
-                                    ? Positioned(
-                                  top: 270,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[9], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[9].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel6.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[9], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 11
-                                    ? Positioned(
-                                  top: 300,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[10], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[10].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel6.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[10], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 12
-                                    ? Positioned(
-                                  top: 330,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[11], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[11].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel6.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[11], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 13
-                                    ? Positioned(
-                                  top: 360,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[12], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[12].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel6.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[12], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_14.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 14
-                                    ? Positioned(
-                                  top: 390,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[13], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[13].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 390,
-                                child: this.oberklasse.kartenStapel6.length >= 14?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[13], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[13].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_15.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 15
-                                    ? Positioned(
-                                  top: 420,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[14], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[14].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 420,
-                                child: this.oberklasse.kartenStapel6.length >= 15?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[14], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[14].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_16.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 16
-                                    ? Positioned(
-                                  top: 450,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[15], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[15].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 450,
-                                child: this.oberklasse.kartenStapel6.length >= 16?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[15], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[15].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_17.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 17
-                                    ? Positioned(
-                                  top: 480,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[16], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[16].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 480,
-                                child: this.oberklasse.kartenStapel6.length >= 17?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[16], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[16].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream6_18.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel6.length >= 18
-                                    ? Positioned(
-                                  top: 510,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: Colors.transparent,
-                                            shadowColor:
-                                            Colors.transparent),
-                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[17], 6);},
-                                        child: Image.asset(this.oberklasse.kartenStapel6[17].getDateiname())),
-                                  ),
-                                ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 510,
-                                child: this.oberklasse.kartenStapel6.length >= 18?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel6[17], 6);},
-                                    child: Image.asset(this.oberklasse.kartenStapel6[17].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                      ]),
-                      //Stapel7
-                      Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                            width: 100,
-                            child: StreamBuilder(
-                                stream: stream7_1.stream,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<dynamic> snapshot) {
-                                  if (snapshot.data != null) {
-                                    if (snapshot.data.wert == 42) {
-                                      return Container(
-                                        margin: const EdgeInsets.all(15.0),
-                                        padding: const EdgeInsets.all(3.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.black)
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[5], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 6 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
                                         ),
-                                        child: Image.asset('playcards/versuch.png'),
                                       );
                                     }
-                                  }
-                                  return Container();
-                                }
-                            )
-                        ),
-                        Container(
-                          child: StreamBuilder(
-                              stream: stream7_1.stream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                return this.oberklasse.kartenStapel7.length >= 1 ?
-                                this.oberklasse.rueckenStapel7 <= 0?
-                                Container(
-                                  alignment: Alignment.topCenter,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[0], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[0].getDateiname()),
-                                  ),
-                                ) : Image.asset('playcards/ruecken.JPG') : Container();
-                              }
-                          ),
-                        ),
-                        StreamBuilder(
-                            stream: stream7_2.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 30,
-                                  child: Container(
+                                    return Positioned(
+                                      top: 150,
+                                      child: this.oberklasse.kartenStapel2.length >= 6?
+                                      this.oberklasse.rueckenStapel2 <= 5?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[5], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[5].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_7.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData && snapshot.data != null) {
+                                      return Positioned(
+                                        top: 180,
+                                        child: Container(
 
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[1], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 2 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[1].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 30,
-                                child: this.oberklasse.kartenStapel7.length >= 2?
-                                this.oberklasse.rueckenStapel7 <= 1?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[1], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[1].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_3.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 60,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[2], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 3 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[2].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 60,
-                                child: this.oberklasse.kartenStapel7.length >= 3?
-                                this.oberklasse.rueckenStapel7 <= 2?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[2], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[2].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_4.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 90,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[3], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 4 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[3].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 90,
-                                child: this.oberklasse.kartenStapel7.length >= 4?
-                                this.oberklasse.rueckenStapel7 <= 3?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[3], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[3].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_5.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 120,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[4], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 5 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[4].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 120,
-                                child: this.oberklasse.kartenStapel7.length >= 5?
-                                this.oberklasse.rueckenStapel7 <= 4?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[4], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[4].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_6.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 150,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[5], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 6 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[5].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 150,
-                                child: this.oberklasse.kartenStapel7.length >= 6?
-                                this.oberklasse.rueckenStapel7 <= 5?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[5], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[5].getDateiname())
-                                ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_7.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData && snapshot.data != null) {
-                                return Positioned(
-                                  top: 180,
-                                  child: Container(
-
-                                    alignment: Alignment.topCenter,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
-                                          shadowColor: Colors.transparent),
-                                      onPressed: () {streamAdd(this.oberklasse.kartenStapel7[6], 7);},
-                                      child: this.oberklasse.kartenStapel7.length >= 7 ?
-                                      Image.asset(this.oberklasse.kartenStapel7[6].getDateiname()) : Image.asset('playcards/versuch.png'),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Positioned(
-                                top: 180,
-                                  child: this.oberklasse.kartenStapel7.length >= 7?
-                                  this.oberklasse.rueckenStapel7 <= 6?
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[6], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[6].getDateiname())
-                                  ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_8.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 8
-                                    ? Positioned(
+                                          alignment: Alignment.topCenter,
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor: Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel2[6], 2);},
+                                            child: this.oberklasse.kartenStapel2.length >= 7 ?
+                                            Image.asset(this.oberklasse.kartenStapel2[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    return Positioned(
+                                      top: 180,
+                                      child: this.oberklasse.kartenStapel2.length >= 7?
+                                      this.oberklasse.rueckenStapel2 <= 6?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[6], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[6].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_8.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 8
+                                          ? Positioned(
                                         top: 210,
                                         child: Container(
 
@@ -4366,31 +1656,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[7], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[7].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[7], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[7].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 210,
-                                child: this.oberklasse.kartenStapel7.length >= 8?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[7], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[7].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_9.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 9
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 210,
+                                      child: this.oberklasse.kartenStapel2.length >= 8?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[7], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[7].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_9.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 9
+                                          ? Positioned(
                                         top: 240,
                                         child: Container(
 
@@ -4399,31 +1689,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[8], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[8].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[8], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[8].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 240,
-                                child: this.oberklasse.kartenStapel7.length >= 9?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[8], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[8].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_10.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 10
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 240,
+                                      child: this.oberklasse.kartenStapel2.length >= 9?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[8], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[8].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_10.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 10
+                                          ? Positioned(
                                         top: 270,
                                         child: Container(
 
@@ -4432,31 +1722,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[9], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[9].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[9], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[9].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 270,
-                                child: this.oberklasse.kartenStapel7.length >= 10?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[9], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[9].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_11.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 11
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 270,
+                                      child: this.oberklasse.kartenStapel2.length >= 10?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[9], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[9].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_11.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 11
+                                          ? Positioned(
                                         top: 300,
                                         child: Container(
 
@@ -4465,31 +1755,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[10], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[10].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[10], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[10].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 300,
-                                child: this.oberklasse.kartenStapel7.length >= 11?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[10], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[10].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_12.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 12
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 300,
+                                      child: this.oberklasse.kartenStapel2.length >= 11?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[10], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[10].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_12.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 12
+                                          ? Positioned(
                                         top: 330,
                                         child: Container(
 
@@ -4498,31 +1788,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[11], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[11].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[11], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[11].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 330,
-                                child: this.oberklasse.kartenStapel7.length >= 12?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[11], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[11].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_13.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 13
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 330,
+                                      child: this.oberklasse.kartenStapel2.length >= 12?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[11], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[11].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_13.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 13
+                                          ? Positioned(
                                         top: 360,
                                         child: Container(
 
@@ -4531,31 +1821,31 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[12], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[12].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[12], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[12].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 360,
-                                child: this.oberklasse.kartenStapel7.length >= 13?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[12], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[12].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_14.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 14
-                                    ? Positioned(
+                                    }
+                                    return Positioned(
+                                      top: 360,
+                                      child: this.oberklasse.kartenStapel2.length >= 13?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[12], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[12].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                              StreamBuilder(
+                                  stream: stream2_14.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return this.oberklasse.kartenStapel2.length >= 14
+                                          ? Positioned(
                                         top: 390,
                                         child: Container(
 
@@ -4564,197 +1854,2931 @@ class _PlayPageState extends State<PlayPage> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Colors.transparent,
                                                   shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[13], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[13].getDateiname())),
+                                                  Colors.transparent),
+                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel2[13], 2);},
+                                              child: Image.asset(this.oberklasse.kartenStapel2[13].getDateiname())),
                                         ),
                                       ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 390,
-                                child: this.oberklasse.kartenStapel7.length >= 14?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[13], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[13].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_15.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 15
-                                    ? Positioned(
-                                        top: 420,
-                                        child: Container(
+                                    }
+                                    return Positioned(
+                                      top: 390,
+                                      child: this.oberklasse.kartenStapel2.length >= 14?
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel2[13], 2);},
+                                          child: Image.asset(this.oberklasse.kartenStapel2[13].getDateiname())
+                                      ) : Image.asset('playcards/versuch.png'),
+                                    );
+                                  }),
+                            ],
+                          ),
+                          //Stapel3
+                          Stack(alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream3_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream3_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel3.length >= 1 ?
+                                    this.oberklasse.rueckenStapel3 <= 0?
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[0], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[0].getDateiname()),
+                                      ),
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                            StreamBuilder(
+                                stream: stream3_2.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 30,
+                                      child: Container(
 
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[14], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[14].getDateiname())),
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[1], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 2 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[1].getDateiname()) : Image.asset('playcards/versuch.png'),
                                         ),
-                                      ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 420,
-                                child: this.oberklasse.kartenStapel7.length >= 15?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[14], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[14].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_16.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 16
-                                    ? Positioned(
-                                        top: 450,
-                                        child: Container(
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 30,
+                                    child: this.oberklasse.kartenStapel3.length >= 2?
+                                    this.oberklasse.rueckenStapel3 <= 1?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[1], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[1].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_3.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 60,
+                                      child: Container(
 
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[15], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[15].getDateiname())),
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[2], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 3 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[2].getDateiname()) : Image.asset('playcards/versuch.png'),
                                         ),
-                                      ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 450,
-                                child: this.oberklasse.kartenStapel7.length >= 16?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[15], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[15].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_17.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 17
-                                    ? Positioned(
-                                        top: 480,
-                                        child: Container(
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 60,
+                                    child: this.oberklasse.kartenStapel3.length >= 3?
+                                    this.oberklasse.rueckenStapel3 <= 2?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[2], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[2].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
 
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[16], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[16].getDateiname())),
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[3], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[3].getDateiname()) : Image.asset('playcards/versuch.png'),
                                         ),
-                                      ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 480,
-                                child: this.oberklasse.kartenStapel7.length >= 17?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[16], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[16].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_18.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 18
-                                    ? Positioned(
-                                        top: 510,
-                                        child: Container(
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 90,
+                                    child: this.oberklasse.kartenStapel3.length >= 4?
+                                    this.oberklasse.rueckenStapel3 <= 3?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[3], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
 
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[17], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[17].getDateiname())),
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[4], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[4].getDateiname()) : Image.asset('playcards/versuch.png'),
                                         ),
-                                      ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 510,
-                                child: this.oberklasse.kartenStapel7.length >= 18?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[17], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[17].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                        StreamBuilder(
-                            stream: stream7_19.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<dynamic> snapshot) {
-                              if (!snapshot.hasData) {
-                                return this.oberklasse.kartenStapel7.length >= 19
-                                    ? Positioned(
-                                        top: 540,
-                                        child: Container(
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 120,
+                                    child: this.oberklasse.kartenStapel3.length >= 5?
+                                    this.oberklasse.rueckenStapel3 <= 4?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[4], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
 
-                                          alignment: Alignment.topCenter,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  shadowColor:
-                                                      Colors.transparent),
-                                              onPressed: () {streamAdd(this.oberklasse.kartenStapel7[18], 7);},
-                                              child: Image.asset(this.oberklasse.kartenStapel7[18].getDateiname())),
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[5], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[5].getDateiname()) : Image.asset('playcards/versuch.png'),
                                         ),
-                                      ) : Positioned(child: Container());
-                              }
-                              return Positioned(
-                                top: 540,
-                                child: this.oberklasse.kartenStapel7.length >= 19?
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
-                                        shadowColor: Colors.transparent),
-                                    onPressed: () {streamAdd(this.oberklasse.kartenStapel7[18], 7);},
-                                    child: Image.asset(this.oberklasse.kartenStapel7[18].getDateiname())
-                                ) : Image.asset('playcards/versuch.png'),
-                              );
-                            }),
-                      ]),
-                    ],
-                  )
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 150,
+                                    child: this.oberklasse.kartenStapel3.length >= 6?
+                                    this.oberklasse.rueckenStapel3 <= 5?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[5], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[5].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel3[6], 3);},
+                                          child: this.oberklasse.kartenStapel3.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel3[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 180,
+                                    child: this.oberklasse.kartenStapel3.length >= 7?
+                                    this.oberklasse.rueckenStapel3 <= 6?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[6], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[6].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 8
+                                        ? Positioned(
+                                      top: 210,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[7], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[7].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel3.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[7], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 9
+                                        ? Positioned(
+                                      top: 240,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[8], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[8].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel3.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[8], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 10
+                                        ? Positioned(
+                                      top: 270,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[9], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[9].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel3.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[9], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 11
+                                        ? Positioned(
+                                      top: 300,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[10], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[10].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel3.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[10], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 12
+                                        ? Positioned(
+                                      top: 330,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[11], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[11].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel3.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[11], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 13
+                                        ? Positioned(
+                                      top: 360,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[12], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[12].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel3.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[12], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_14.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 14
+                                        ? Positioned(
+                                      top: 390,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[13], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[13].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 390,
+                                    child: this.oberklasse.kartenStapel3.length >= 14?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[13], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[13].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream3_15.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel3.length >= 15
+                                        ? Positioned(
+                                      top: 420,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel3[14], 3);},
+                                            child: Image.asset(this.oberklasse.kartenStapel3[14].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 420,
+                                    child: this.oberklasse.kartenStapel3.length >= 15?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel3[14], 3);},
+                                        child: Image.asset(this.oberklasse.kartenStapel3[14].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                          ]),
+                          //Stapel4
+                          Stack(alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream4_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream4_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel4.length >= 1 ?
+                                    this.oberklasse.rueckenStapel4 <= 0?
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[0], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[0].getDateiname()),
+                                      ),
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                            StreamBuilder(
+                                stream: stream4_2.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 30,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[1], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 2 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 30,
+                                    child: this.oberklasse.kartenStapel4.length >= 2?
+                                    this.oberklasse.rueckenStapel4 <= 1?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[1], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[1].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_3.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 60,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[2], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 3 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 60,
+                                    child: this.oberklasse.kartenStapel4.length >= 3?
+                                    this.oberklasse.rueckenStapel4 <= 2?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[2], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[2].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[3], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 90,
+                                    child: this.oberklasse.kartenStapel4.length >= 4?
+                                    this.oberklasse.rueckenStapel4 <= 3?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[3], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[4], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 120,
+                                    child: this.oberklasse.kartenStapel4.length >= 5?
+                                    this.oberklasse.rueckenStapel4 <= 4?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[4], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[5], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 150,
+                                    child: this.oberklasse.kartenStapel4.length >= 6?
+                                    this.oberklasse.rueckenStapel4 <= 5?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[5], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[5].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel4[6], 4);},
+                                          child: this.oberklasse.kartenStapel4.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel4[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 180,
+                                    child: this.oberklasse.kartenStapel4.length >= 7?
+                                    this.oberklasse.rueckenStapel4 <= 6?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[6], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[6].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 8
+                                        ? Positioned(
+                                      top: 210,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[7], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[7].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel4.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[7], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 9
+                                        ? Positioned(
+                                      top: 240,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[8], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[8].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel4.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[8], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 10
+                                        ? Positioned(
+                                      top: 270,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[9], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[9].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel4.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[9], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 11
+                                        ? Positioned(
+                                      top: 300,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[10], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[10].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel4.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[10], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 12
+                                        ? Positioned(
+                                      top: 330,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[11], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[11].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel4.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[11], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 13
+                                        ? Positioned(
+                                      top: 360,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[12], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[12].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel4.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[12], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_14.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 14
+                                        ? Positioned(
+                                      top: 390,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[13], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[13].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 390,
+                                    child: this.oberklasse.kartenStapel4.length >= 14?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[13], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[13].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_15.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 15
+                                        ? Positioned(
+                                      top: 420,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[14], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[14].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 420,
+                                    child: this.oberklasse.kartenStapel4.length >= 15?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[14], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[14].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream4_16.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel4.length >= 16
+                                        ? Positioned(
+                                      top: 450,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel4[15], 4);},
+                                            child: Image.asset(this.oberklasse.kartenStapel4[15].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 450,
+                                    child: this.oberklasse.kartenStapel4.length >= 16?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel4[15], 4);},
+                                        child: Image.asset(this.oberklasse.kartenStapel4[15].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                          ]),
+                          //Stapel5
+                          Stack(alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream5_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream5_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel5.length >= 1 ?
+                                    this.oberklasse.rueckenStapel5 <= 0?
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[0], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[0].getDateiname()),
+                                      ),
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                            StreamBuilder(
+                                stream: stream5_2.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 30,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[1], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 2 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 30,
+                                    child: this.oberklasse.kartenStapel5.length >= 2?
+                                    this.oberklasse.rueckenStapel5 <= 1?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[1], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[1].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_3.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 60,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[2], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 3 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 60,
+                                    child: this.oberklasse.kartenStapel5.length >= 3?
+                                    this.oberklasse.rueckenStapel5 <= 2?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[2], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[2].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[3], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 90,
+                                    child: this.oberklasse.kartenStapel5.length >= 4?
+                                    this.oberklasse.rueckenStapel5 <= 3?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[3], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[4], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 120,
+                                    child: this.oberklasse.kartenStapel5.length >= 5?
+                                    this.oberklasse.rueckenStapel5 <= 4?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[4], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[5], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 150,
+                                    child: this.oberklasse.kartenStapel5.length >= 6?
+                                    this.oberklasse.rueckenStapel5 <= 5?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[5], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[5].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel5[6], 5);},
+                                          child: this.oberklasse.kartenStapel5.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel5[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 180,
+                                    child: this.oberklasse.kartenStapel5.length >= 7?
+                                    this.oberklasse.rueckenStapel5 <= 6?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[6], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[6].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 8
+                                        ? Positioned(
+                                      top: 210,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[7], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[7].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel5.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[7], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 9
+                                        ? Positioned(
+                                      top: 240,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[8], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[8].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel5.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[8], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 10
+                                        ? Positioned(
+                                      top: 270,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[9], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[9].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel5.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[9], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 11
+                                        ? Positioned(
+                                      top: 300,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[10], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[10].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel5.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[10], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 12
+                                        ? Positioned(
+                                      top: 330,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[11], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[11].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel5.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[11], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 13
+                                        ? Positioned(
+                                      top: 360,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[12], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[12].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel5.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[12], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_14.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 14
+                                        ? Positioned(
+                                      top: 390,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[13], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[13].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 390,
+                                    child: this.oberklasse.kartenStapel5.length >= 14?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[13], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[13].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_15.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 15
+                                        ? Positioned(
+                                      top: 420,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[14], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[14].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 420,
+                                    child: this.oberklasse.kartenStapel5.length >= 15?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[14], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[14].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_16.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 16
+                                        ? Positioned(
+                                      top: 450,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[15], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[15].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 450,
+                                    child: this.oberklasse.kartenStapel5.length >= 16?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[15], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[15].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream5_17.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel5.length >= 17
+                                        ? Positioned(
+                                      top: 480,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel5[16], 5);},
+                                            child: Image.asset(this.oberklasse.kartenStapel5[16].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 480,
+                                    child: this.oberklasse.kartenStapel5.length >= 17?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel5[16], 5);},
+                                        child: Image.asset(this.oberklasse.kartenStapel5[16].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                          ]),
+                          //Stapel6
+                          Stack(alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream6_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream6_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel6.length >= 1 ?
+                                    this.oberklasse.rueckenStapel6 <= 0?
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[0], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[0].getDateiname()),
+                                      ),
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                            StreamBuilder(
+                                stream: stream6_2.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 30,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[1], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 2 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 30,
+                                    child: this.oberklasse.kartenStapel6.length >= 2?
+                                    this.oberklasse.rueckenStapel6 <= 1?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[1], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[1].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_3.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 60,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[2], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 3 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 60,
+                                    child: this.oberklasse.kartenStapel6.length >= 3?
+                                    this.oberklasse.rueckenStapel6 <= 2?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[2], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[2].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[3], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 90,
+                                    child: this.oberklasse.kartenStapel6.length >= 4?
+                                    this.oberklasse.rueckenStapel6 <= 3?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[3], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[4], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 120,
+                                    child: this.oberklasse.kartenStapel6.length >= 5?
+                                    this.oberklasse.rueckenStapel6 <= 4?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[4], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[5], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 150,
+                                    child: this.oberklasse.kartenStapel6.length >= 6?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[5], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[5].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel6[6], 6);},
+                                          child: this.oberklasse.kartenStapel6.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel6[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 180,
+                                    child: this.oberklasse.kartenStapel6.length >= 7?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[6], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[6].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 8
+                                        ? Positioned(
+                                      top: 210,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[7], 7);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[7].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel6.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[7], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 9
+                                        ? Positioned(
+                                      top: 240,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[8], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[8].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel6.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[8], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 10
+                                        ? Positioned(
+                                      top: 270,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[9], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[9].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel6.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[9], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 11
+                                        ? Positioned(
+                                      top: 300,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[10], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[10].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel6.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[10], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 12
+                                        ? Positioned(
+                                      top: 330,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[11], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[11].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel6.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[11], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 13
+                                        ? Positioned(
+                                      top: 360,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[12], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[12].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel6.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[12], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_14.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 14
+                                        ? Positioned(
+                                      top: 390,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[13], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[13].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 390,
+                                    child: this.oberklasse.kartenStapel6.length >= 14?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[13], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[13].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_15.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 15
+                                        ? Positioned(
+                                      top: 420,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[14], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[14].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 420,
+                                    child: this.oberklasse.kartenStapel6.length >= 15?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[14], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[14].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_16.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 16
+                                        ? Positioned(
+                                      top: 450,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[15], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[15].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 450,
+                                    child: this.oberklasse.kartenStapel6.length >= 16?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[15], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[15].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_17.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 17
+                                        ? Positioned(
+                                      top: 480,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[16], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[16].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 480,
+                                    child: this.oberklasse.kartenStapel6.length >= 17?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[16], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[16].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream6_18.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel6.length >= 18
+                                        ? Positioned(
+                                      top: 510,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: Colors.transparent,
+                                                shadowColor:
+                                                Colors.transparent),
+                                            onPressed: () {streamAdd(this.oberklasse.kartenStapel6[17], 6);},
+                                            child: Image.asset(this.oberklasse.kartenStapel6[17].getDateiname())),
+                                      ),
+                                    ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 510,
+                                    child: this.oberklasse.kartenStapel6.length >= 18?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel6[17], 6);},
+                                        child: Image.asset(this.oberklasse.kartenStapel6[17].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                          ]),
+                          //Stapel7
+                          Stack(alignment: Alignment.topCenter, children: [
+                            Container(
+                                width: 100,
+                                child: StreamBuilder(
+                                    stream: stream7_1.stream,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.data != null) {
+                                        if (snapshot.data.wert == 42) {
+                                          return Container(
+                                            margin: const EdgeInsets.all(15.0),
+                                            padding: const EdgeInsets.all(3.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.black)
+                                            ),
+                                            child: Image.asset('playcards/versuch.png'),
+                                          );
+                                        }
+                                      }
+                                      return Container();
+                                    }
+                                )
+                            ),
+                            Container(
+                              child: StreamBuilder(
+                                  stream: stream7_1.stream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<dynamic> snapshot) {
+                                    return this.oberklasse.kartenStapel7.length >= 1 ?
+                                    this.oberklasse.rueckenStapel7 <= 0?
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[0], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[0].getDateiname()),
+                                      ),
+                                    ) : Image.asset('playcards/ruecken.JPG') : Container();
+                                  }
+                              ),
+                            ),
+                            StreamBuilder(
+                                stream: stream7_2.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 30,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[1], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 2 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[1].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 30,
+                                    child: this.oberklasse.kartenStapel7.length >= 2?
+                                    this.oberklasse.rueckenStapel7 <= 1?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[1], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[1].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_3.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 60,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[2], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 3 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[2].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 60,
+                                    child: this.oberklasse.kartenStapel7.length >= 3?
+                                    this.oberklasse.rueckenStapel7 <= 2?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[2], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[2].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_4.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 90,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[3], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 4 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[3].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 90,
+                                    child: this.oberklasse.kartenStapel7.length >= 4?
+                                    this.oberklasse.rueckenStapel7 <= 3?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[3], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[3].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_5.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 120,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[4], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 5 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[4].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 120,
+                                    child: this.oberklasse.kartenStapel7.length >= 5?
+                                    this.oberklasse.rueckenStapel7 <= 4?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[4], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[4].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_6.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 150,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[5], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 6 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[5].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 150,
+                                    child: this.oberklasse.kartenStapel7.length >= 6?
+                                    this.oberklasse.rueckenStapel7 <= 5?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[5], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[5].getDateiname())
+                                    ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_7.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData && snapshot.data != null) {
+                                    return Positioned(
+                                      top: 180,
+                                      child: Container(
+
+                                        alignment: Alignment.topCenter,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.transparent,
+                                              shadowColor: Colors.transparent),
+                                          onPressed: () {streamAdd(this.oberklasse.kartenStapel7[6], 7);},
+                                          child: this.oberklasse.kartenStapel7.length >= 7 ?
+                                          Image.asset(this.oberklasse.kartenStapel7[6].getDateiname()) : Image.asset('playcards/versuch.png'),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Positioned(
+                                    top: 180,
+                                      child: this.oberklasse.kartenStapel7.length >= 7?
+                                      this.oberklasse.rueckenStapel7 <= 6?
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[6], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[6].getDateiname())
+                                      ) : Image.asset('playcards/ruecken.JPG') : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_8.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 8
+                                        ? Positioned(
+                                            top: 210,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[7], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[7].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 210,
+                                    child: this.oberklasse.kartenStapel7.length >= 8?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[7], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[7].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_9.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 9
+                                        ? Positioned(
+                                            top: 240,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[8], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[8].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 240,
+                                    child: this.oberklasse.kartenStapel7.length >= 9?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[8], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[8].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_10.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 10
+                                        ? Positioned(
+                                            top: 270,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[9], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[9].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 270,
+                                    child: this.oberklasse.kartenStapel7.length >= 10?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[9], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[9].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_11.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 11
+                                        ? Positioned(
+                                            top: 300,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[10], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[10].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 300,
+                                    child: this.oberklasse.kartenStapel7.length >= 11?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[10], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[10].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_12.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 12
+                                        ? Positioned(
+                                            top: 330,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[11], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[11].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 330,
+                                    child: this.oberklasse.kartenStapel7.length >= 12?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[11], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[11].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_13.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 13
+                                        ? Positioned(
+                                            top: 360,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[12], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[12].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 360,
+                                    child: this.oberklasse.kartenStapel7.length >= 13?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[12], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[12].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_14.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 14
+                                        ? Positioned(
+                                            top: 390,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[13], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[13].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 390,
+                                    child: this.oberklasse.kartenStapel7.length >= 14?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[13], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[13].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_15.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 15
+                                        ? Positioned(
+                                            top: 420,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[14], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[14].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 420,
+                                    child: this.oberklasse.kartenStapel7.length >= 15?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[14], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[14].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_16.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 16
+                                        ? Positioned(
+                                            top: 450,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[15], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[15].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 450,
+                                    child: this.oberklasse.kartenStapel7.length >= 16?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[15], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[15].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_17.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 17
+                                        ? Positioned(
+                                            top: 480,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[16], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[16].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 480,
+                                    child: this.oberklasse.kartenStapel7.length >= 17?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[16], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[16].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_18.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 18
+                                        ? Positioned(
+                                            top: 510,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[17], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[17].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 510,
+                                    child: this.oberklasse.kartenStapel7.length >= 18?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[17], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[17].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                            StreamBuilder(
+                                stream: stream7_19.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return this.oberklasse.kartenStapel7.length >= 19
+                                        ? Positioned(
+                                            top: 540,
+                                            child: Container(
+
+                                              alignment: Alignment.topCenter,
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      primary: Colors.transparent,
+                                                      shadowColor:
+                                                          Colors.transparent),
+                                                  onPressed: () {streamAdd(this.oberklasse.kartenStapel7[18], 7);},
+                                                  child: Image.asset(this.oberklasse.kartenStapel7[18].getDateiname())),
+                                            ),
+                                          ) : Positioned(child: Container());
+                                  }
+                                  return Positioned(
+                                    top: 540,
+                                    child: this.oberklasse.kartenStapel7.length >= 19?
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                            shadowColor: Colors.transparent),
+                                        onPressed: () {streamAdd(this.oberklasse.kartenStapel7[18], 7);},
+                                        child: Image.asset(this.oberklasse.kartenStapel7[18].getDateiname())
+                                    ) : Image.asset('playcards/versuch.png'),
+                                  );
+                                }),
+                          ]),
+                        ],
+                      ),
+                    )
+                ),
+                  ),
+                ),
+              ],
               ),
-            ),
-          ],
+          ),
+            ],
+          ),
         ),
-      ),
     );
   }
 }
