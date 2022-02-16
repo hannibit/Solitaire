@@ -25,6 +25,7 @@ class _PlayPageState extends State<PlayPage> {
   var kartendeck;
 
   final streamDraw = StreamController<Karte>();
+  final streamEmptyDraw = StreamController<Karte>();
   final streamAblage1 = StreamController<Karte?>();
   final streamAblage2 = StreamController<Karte?>();
   final streamAblage3 = StreamController<Karte?>();
@@ -173,7 +174,6 @@ class _PlayPageState extends State<PlayPage> {
     }
     this.oberklasse.kartenIndex += 1;
     this.streamDraw.add(this.oberklasse.gibStapelKarte());
-//    this.oberklasse.topStapelClick();
   }
 
   void updateStream1() {
@@ -420,50 +420,51 @@ class _PlayPageState extends State<PlayPage> {
             this.oberklasse.rueckenStapel1 = this.oberklasse.rueckenStapel1 - 1;
           }
         }
-        return;
+        break;
       case 2:
         if (this.oberklasse.kartenStapel2.length == this.oberklasse.rueckenStapel2) {
           if (this.oberklasse.rueckenStapel2 != 0) {
             this.oberklasse.rueckenStapel2 = this.oberklasse.rueckenStapel2 - 1;
           }
         }
-        return;
+        break;
       case 3:
         if (this.oberklasse.kartenStapel3.length == this.oberklasse.rueckenStapel3) {
           if (this.oberklasse.rueckenStapel3 != 0) {
             this.oberklasse.rueckenStapel3 = this.oberklasse.rueckenStapel3 - 1;
           }
         }
-        return;
+        break;
       case 4:
         if (this.oberklasse.kartenStapel4.length == this.oberklasse.rueckenStapel4) {
           if (this.oberklasse.rueckenStapel4 != 0) {
             this.oberklasse.rueckenStapel4 = this.oberklasse.rueckenStapel4 - 1;
           }
         }
-        return;
+        break;
       case 5:
         if (this.oberklasse.kartenStapel5.length == this.oberklasse.rueckenStapel5) {
           if (this.oberklasse.rueckenStapel5 != 0) {
             this.oberklasse.rueckenStapel5 = this.oberklasse.rueckenStapel5 - 1;
           }
         }
-        return;
+        break;
       case 6:
         if (this.oberklasse.kartenStapel6.length == this.oberklasse.rueckenStapel6) {
           if (this.oberklasse.rueckenStapel6 != 0) {
             this.oberklasse.rueckenStapel6 = this.oberklasse.rueckenStapel6 - 1;
           }
         }
-        return;
+        break;
       case 7:
         if (this.oberklasse.kartenStapel7.length == this.oberklasse.rueckenStapel7) {
           if (this.oberklasse.rueckenStapel7 != 0) {
             this.oberklasse.rueckenStapel7 = this.oberklasse.rueckenStapel7 - 1;
           }
         }
-        return;
+        break;
     }
+    this.oberklasse.loesbar();
   }
 
   void streamAdd(Karte karte, stapel) {
@@ -476,19 +477,23 @@ class _PlayPageState extends State<PlayPage> {
             case 1:
               streamAblage1.add(karte);
               updateHerkunft(stapel);
-              return;
+              break;
             case 2:
               streamAblage2.add(karte);
               updateHerkunft(stapel);
-              return;
+              break;
             case 3:
               streamAblage3.add(karte);
               updateHerkunft(stapel);
-              return;
+              break;
             case 4:
               streamAblage4.add(karte);
               updateHerkunft(stapel);
-              return;
+              break;
+          }
+          if (this.oberklasse.manuellLoesen()) {
+            _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+            _displayDialog(context, this);
           }
           return;
         case 'Stapel':
@@ -549,6 +554,7 @@ class _PlayPageState extends State<PlayPage> {
     super.dispose();
     await _stopWatchTimer.dispose();
     streamDraw.close();
+    streamEmptyDraw.close();
     streamAblage1.close();
     streamAblage2.close();
     streamAblage3.close();
@@ -737,8 +743,8 @@ class _PlayPageState extends State<PlayPage> {
                       this.streamAblage2.add(this.oberklasse.fertig2[this.oberklasse.fertig2.length-1]);
                       this.streamAblage3.add(this.oberklasse.fertig3[this.oberklasse.fertig3.length-1]);
                       this.streamAblage4.add(this.oberklasse.fertig4[this.oberklasse.fertig4.length-1]);
-                      _stopWatchTimer.dispose();
-                      print(_stopWatchTimer.rawTime);//Stream auslesen
+                      _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+                      _displayDialog(context, this);
                     },
                     label: const Text('Lösen'),
                     icon: const Icon(Icons.check),
@@ -4775,10 +4781,74 @@ class _PlayPageState extends State<PlayPage> {
                 ),
               ],
               ),
-          ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     );
   }
+}
+
+_displayDialog(BuildContext context, kontext) async {
+  var _selected ="";
+  final int = 1;
+  String msToTime(duration) {
+    var milliseconds = (duration % 1000).floor();
+    var seconds = ((duration / 1000) % 60).floor();
+    var minutes = ((duration / (1000 * 60)) % 60).floor();
+    var hours = ((duration / (1000 * 60 * 60)) % 24).floor();
+
+    hours = (hours < 10) ? "0" + hours.toString() : hours.toString();
+    minutes = (minutes < 10) ? "0" + minutes.toString() : minutes.toString();
+    seconds = (seconds < 10) ? "0" + seconds.toString() : seconds.toString();
+
+    return hours.toString() + ":" + minutes.toString() + ":" + seconds.toString() + "." + milliseconds.toString();
+  }
+
+  _selected = await showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return new Column(
+        children: [
+          Expanded(
+            child: SimpleDialog(
+              title: Text('Herzlichen Glückwunsch',
+                textAlign: TextAlign.center),
+                children:[
+                  Container(
+                    child: Column(
+                      children: [
+                        Container(margin: const EdgeInsets.only(left: 55.0, right: 55.0), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text("Zeit: "), Text(msToTime(kontext._stopWatchTimer.rawTime.value) + "")])),
+                        Container(margin: const EdgeInsets.only(left: 55.0, right: 55.0), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text("Züge: "), Text(kontext.oberklasse.zuegeCounter.toString())])),
+                        Container(margin: const EdgeInsets.only(left: 25.0, right: 35.0), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ SimpleDialogOption(
+                          onPressed: () { Navigator.pop(context, ""); Navigator.pop(context, ""); Navigator.push(context,
+                              MaterialPageRoute(
+                                builder: (context) => PlayPage(),
+                                settings: RouteSettings(
+                                  arguments: int,
+                                ),
+                              )
+                          );
+                          },
+                          child: const Text('Neustarten'),
+                        ),
+                          SimpleDialogOption(
+                            onPressed: () { Navigator.pop(context, ""); Navigator.pop(context, ""); },
+                            child: const Text('Hauptmenü'),
+                          )
+                        ]
+                        )
+                        )
+                      ]
+                    )
+                  ),
+                ],
+              elevation: 10,
+            ),
+          )
+        ],
+      );
+    },
+  );
 }

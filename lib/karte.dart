@@ -182,16 +182,17 @@ class KartenDeck {
 
   topStapelClick(context) {
     this.spielen = context;
-    zuegeCounter++;
-    print(zuegeCounter);
-    this.anzeigeKarte.clear();
-    if (this.kartenIndex > this.karten.length -1) {
-      this.kartenIndex = 0;
-      this.anzeigeKarte.add(new Karte(42, "Herz"));
-    }
-    else {
-      this.anzeigeKarte.add(this.karten[this.kartenIndex]);
-      this.kartenIndex++;
+    if (this.karten.length != 0) {
+      zuegeCounter++;
+      this.anzeigeKarte.clear();
+      if (this.kartenIndex > this.karten.length - 1) {
+        this.kartenIndex = 0;
+        this.anzeigeKarte.add(new Karte(42, "Herz"));
+      }
+      else {
+        this.anzeigeKarte.add(this.karten[this.kartenIndex]);
+        this.kartenIndex++;
+      }
     }
   }
 
@@ -234,37 +235,25 @@ class KartenDeck {
     }
   }
 
-  karteClick(karte, stapel) { //noch nicht bedacht wie weg vom fertig stapel und vom Draw Stapel gehen soll
+  karteClick(karte, stapel) {
     ort.clear();
     index.clear();
     if (stapel < 8) {
       for (var i = 1; i < 5; i++) {
-        if (this.kannAufeinander(this
-            .gibRichtigenFertig(i)
-            .length != 0 ? this.gibRichtigenFertig(i)[this
-            .gibRichtigenFertig(i)
-            .length - 1] : null, karte, true)) {
-          for (var j = this.gibIndex(
-              this.gibRichtigenStapel(stapel), karte); j < this
-              .gibRichtigenStapel(stapel)
-              .length; j++) {
-            if (this.wertAufeinanderfolgend(j, this
-                .gibRichtigenStapel(stapel)
-                .length)) {
-              this.gibRichtigenFertig(i).add(
-                  this.gibRichtigenStapel(stapel).elementAt(j));
+        if (this.kannAufeinander(this.gibRichtigenFertig(i).length != 0 ? this.gibRichtigenFertig(i)[this.gibRichtigenFertig(i).length - 1] : null, karte, true)) {
+          for (var j = this.gibIndex(this.gibRichtigenStapel(stapel), karte); j < this.gibRichtigenStapel(stapel).length; j++) {
+            if (this.wertAufeinanderfolgend(j, this.gibRichtigenStapel(stapel).length)) {
+              this.gibRichtigenFertig(i).add(this.gibRichtigenStapel(stapel).elementAt(j));
               this.gibRichtigenStapel(stapel).removeAt(j);
               ort.add('Ablage');
               index.add(i);
               j = 10;
               i = 10;
               zuegeCounter++;
-              print(zuegeCounter);
-              this.loesbar();
               return true;
             }
             else {
-              return false;
+              break;
             }
           }
         }
@@ -279,12 +268,10 @@ class KartenDeck {
               this.gibRichtigenStapel(stapel).removeAt(j);
             }
             zuegeCounter++;
-            print(zuegeCounter);
             ort.add('Stapel');
             index.add(i);
             j = 10;
             i = 10;
-            this.loesbar();
             return true;
           }
         }
@@ -306,7 +293,6 @@ class KartenDeck {
       counter--;
     }
     this.zuegeCounter += counter;
-    print(zuegeCounter);
     this.karten.clear();
     this.anzeigeKarte.clear();
     this.kartenIndex = 0;
@@ -321,12 +307,23 @@ class KartenDeck {
     this.fertig2.add(this.findeRichtigesZeichen(this.fertig2));
     this.fertig3.add(this.findeRichtigesZeichen(this.fertig3));
     this.fertig4.add(this.findeRichtigesZeichen(this.fertig4));
+    this.spielen.streamEmptyDraw.add(new Karte(42, "Herz"));
   }
 
   void loesbar() {
     if (rueckenStapel1 == 0 && rueckenStapel2 == 0 && rueckenStapel3 == 0 && rueckenStapel4 == 0 && rueckenStapel5 == 0 && rueckenStapel6 == 0 && rueckenStapel7 == 0) {
       this.spielen.streamloesbar.add(true);
     }
+    if (this.karten.length == 0) {
+      this.spielen.streamEmptyDraw.add(new Karte(42, "Herz"));
+    }
+  }
+
+  bool manuellLoesen() {
+    if (this.kartenStapel1.length == 0 && this.kartenStapel2.length == 0 && this.kartenStapel3.length == 0 && this.kartenStapel4.length == 0 && this.kartenStapel5.length == 0 && this.kartenStapel6.length == 0 && this.kartenStapel7.length == 0 && this.karten.length == 0) {
+      return true;
+    }
+    return false;
   }
 
   Karte findeRichtigesZeichen(list) {
