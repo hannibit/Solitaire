@@ -24,6 +24,7 @@ class _PlayPageState extends State<PlayPage> {
   var oberklasse = new KartenDeck();
   var kartendeck;
 
+  final streamRuecken = StreamController<Karte?>();
   final streamDraw = StreamController<Karte>();
   final streamEmptyDraw = StreamController<Karte>();
   final streamAblage1 = StreamController<Karte?>();
@@ -553,6 +554,7 @@ class _PlayPageState extends State<PlayPage> {
   void dispose() async {
     super.dispose();
     await _stopWatchTimer.dispose();
+    streamRuecken.close();
     streamDraw.close();
     streamEmptyDraw.close();
     streamAblage1.close();
@@ -767,7 +769,11 @@ class _PlayPageState extends State<PlayPage> {
               Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                 FittedBox(
+                  Positioned(
+                    top: 10,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: FittedBox(
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.topCenter,
                   child: Container(
@@ -781,21 +787,44 @@ class _PlayPageState extends State<PlayPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              width: 100,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
-                                    shadowColor: Colors.transparent),
-                                onPressed: () {
-                                  this.oberklasse.topStapelClick(this);
-                                  streamDraw.add(this.oberklasse.gibStapelKarte());
-                                },
-                                child: Image.asset('playcards/ruecken.JPG'),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
+                              width: 120,
+                              height: 150,
                               child: StreamBuilder(
+                              stream: streamRuecken.stream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  final card = snapshot.data;
+                                  if (snapshot.hasData) {
+                                    if (snapshot.data.wert == 42) {
+                                      return Container(
+                                        margin: const EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(3.0),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black)
+                                        ),
+                                        child: Image.asset(
+                                            'playcards/versuch.png'),
+                                      );
+                                    }
+                                  }
+                                  return ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.transparent,
+                                        shadowColor: Colors.transparent),
+                                    onPressed: () {
+                                      this.oberklasse.topStapelClick(this);
+                                      streamDraw.add(this.oberklasse.gibStapelKarte());
+                                    },
+                                    child: Image.asset('playcards/ruecken.JPG'),
+                                  );
+                                }
+                                ),
+                                  ),
+                                Container(
+                                width: 120,
+                                height: 150,
+                                child: StreamBuilder(
                                   stream: streamDraw.stream,
                                   builder: (BuildContext context,
                                       AsyncSnapshot<dynamic> snapshot) {
@@ -828,7 +857,8 @@ class _PlayPageState extends State<PlayPage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              width: 100,
+                              width: 120,
+                              height: 150,
                               child: StreamBuilder(
                                   stream: streamAblage1.stream,
                                   builder: (BuildContext context,
@@ -855,7 +885,8 @@ class _PlayPageState extends State<PlayPage> {
                                   }),
                             ),
                             Container(
-                              width: 100,
+                              width: 120,
+                              height: 150,
                               child: StreamBuilder(
                                   stream: streamAblage2.stream,
                                   builder: (BuildContext context,
@@ -882,7 +913,8 @@ class _PlayPageState extends State<PlayPage> {
                                   }),
                             ),
                             Container(
-                              width: 100,
+                              width: 120,
+                              height: 150,
                               child: StreamBuilder(
                                   stream: streamAblage3.stream,
                                   builder: (BuildContext context,
@@ -909,7 +941,8 @@ class _PlayPageState extends State<PlayPage> {
                                   }),
                             ),
                             Container(
-                              width: 100,
+                              width: 120,
+                              height: 150,
                               child: StreamBuilder(
                                   stream: streamAblage4.stream,
                                   builder: (BuildContext context,
@@ -941,6 +974,8 @@ class _PlayPageState extends State<PlayPage> {
                     ),
                   ),
                 ),
+                    ),
+                  ),
               //Deck
                 Positioned(
                     top: 150,
@@ -950,7 +985,7 @@ class _PlayPageState extends State<PlayPage> {
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.topCenter,
                     child: Container(
-                      height: 500,
+                      height: 700,
                       alignment: Alignment.topCenter,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -959,7 +994,7 @@ class _PlayPageState extends State<PlayPage> {
                           Stack(
                             alignment: Alignment.topCenter, children: [
                             Container(
-                              width: 100,
+                              width: 120,
                               child: StreamBuilder(
                                 stream: stream1_1.stream,
                                 builder: (BuildContext context,
@@ -1402,7 +1437,7 @@ class _PlayPageState extends State<PlayPage> {
                           Stack(
                             alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream2_1.stream,
                                     builder: (BuildContext context,
@@ -1883,7 +1918,7 @@ class _PlayPageState extends State<PlayPage> {
                           //Stapel3
                           Stack(alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream3_1.stream,
                                     builder: (BuildContext context,
@@ -2396,7 +2431,7 @@ class _PlayPageState extends State<PlayPage> {
                           //Stapel4
                           Stack(alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream4_1.stream,
                                     builder: (BuildContext context,
@@ -2942,7 +2977,7 @@ class _PlayPageState extends State<PlayPage> {
                           //Stapel5
                           Stack(alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream5_1.stream,
                                     builder: (BuildContext context,
@@ -3521,7 +3556,7 @@ class _PlayPageState extends State<PlayPage> {
                           //Stapel6
                           Stack(alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream6_1.stream,
                                     builder: (BuildContext context,
@@ -4131,7 +4166,7 @@ class _PlayPageState extends State<PlayPage> {
                           //Stapel7
                           Stack(alignment: Alignment.topCenter, children: [
                             Container(
-                                width: 100,
+                                width: 120,
                                 child: StreamBuilder(
                                     stream: stream7_1.stream,
                                     builder: (BuildContext context,
