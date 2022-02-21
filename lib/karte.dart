@@ -177,7 +177,12 @@ class KartenDeck {
   
   topStapelRemove() {
     if (this.karten.length > 0) {
-      this.karten.removeAt(this.kartenIndex-1);
+      if (this.kartenIndex > 0) {
+        this.karten.removeAt(this.kartenIndex-1);
+      }
+      else {
+        this.karten.removeAt(0);
+      }
     }
     if (this.firstRemoved && this.kartenIndex == 2) {
       this.kartenIndex--;
