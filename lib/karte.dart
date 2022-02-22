@@ -69,6 +69,8 @@ class KartenDeck {
   int zuegeCounter = 0;
 
   var spielen;
+  var firstRemoved = false;
+  bool fehler = false;
   Karte leer = new Karte(42, "Herz");
   List<String> zeichenList = ["herz", "karo", "kreuz", "pik"];
 
@@ -176,7 +178,26 @@ class KartenDeck {
   
   topStapelRemove() {
     if (this.karten.length > 0) {
-      this.karten.removeAt(this.kartenIndex-1);
+      if (this.kartenIndex > 0) {
+        this.karten.removeAt(this.kartenIndex-1);
+      }
+      else {
+        this.karten.removeAt(0);
+      }
+    }
+    if (this.firstRemoved && this.kartenIndex == 2) {
+      this.kartenIndex--;
+    }
+    this.firstRemoved = false;
+    if(kartenIndex == 1) {
+      this.firstRemoved = true;
+      this.kartenIndex--;
+      if (this.karten.length == 1) {
+        this.fehler = true;
+      }
+    }
+    if (this.karten.length == 0) {
+      this.spielen.streamRuecken.add(new Karte(42, "Herz"));
     }
   }
 
@@ -186,12 +207,26 @@ class KartenDeck {
       zuegeCounter++;
       this.anzeigeKarte.clear();
       if (this.kartenIndex > this.karten.length - 1) {
-        this.kartenIndex = 0;
-        this.anzeigeKarte.add(new Karte(42, "Herz"));
+        if (this.fehler) {
+          this.anzeigeKarte.add(this.karten[0]);
+          this.kartenIndex = 1;
+          this.fehler = false;
+        }
+        else {
+          this.kartenIndex = 0;
+          this.anzeigeKarte.add(new Karte(42, "Herz"));
+        }
       }
       else {
-        this.anzeigeKarte.add(this.karten[this.kartenIndex]);
-        this.kartenIndex++;
+        if(this.firstRemoved) {
+          this.anzeigeKarte.add(this.karten[0]);
+          this.kartenIndex = 1;
+          this.firstRemoved = false;
+        }
+        else {
+          this.anzeigeKarte.add(this.karten[this.kartenIndex]);
+          this.kartenIndex++;
+        }
       }
     }
   }
@@ -308,6 +343,7 @@ class KartenDeck {
     this.fertig3.add(this.findeRichtigesZeichen(this.fertig3));
     this.fertig4.add(this.findeRichtigesZeichen(this.fertig4));
     this.spielen.streamEmptyDraw.add(new Karte(42, "Herz"));
+    this.spielen.streamRuecken.add(new Karte(42, "Herz"));
   }
 
   void loesbar() {
