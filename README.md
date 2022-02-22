@@ -14,7 +14,7 @@ Dabei werden nach und nach auch verdeckte Karten freigelegt, die dann benutzt we
 Ziel des Spieles ist es, vier Stapel mit je derselben Farbe und demselben Zeichen beginnend beim Ass bis zum König zu bilden, die sogenannten „Stacks“.
 Achtung: Der Zufall kann darüber entscheiden, ob ein Spiellauf beendet werden kann.
 
-## verantwortlicher Lehrende
+## verantwortlicher Lehrender
 Prof. Dr. Frank Victor
 
 ## Gruppenmitglieder
